@@ -6,6 +6,6 @@ Bracket = function(teams) {
 # Maybe this should be a constructor? Need to review those notes...
   if (length(teams) != 64) error("length(teams) must be 64.")
   bracket = list(seeds = as.character(teams))
-  class(bracket) = "bracket-blank"
+  class(bracket) = "bracket.blank"
   bracket
 }
