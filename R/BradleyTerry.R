@@ -4,7 +4,7 @@
 #' @returns data.frame giving point spread and win probability for each matchup
 #' @examples
 #' data(games2017)
-#' BradleyTerr(games2017)
+#' BradleyTerry(games2017)
 BradleyTerry <- function(game.data) {
 
   x = Matrix::sparseMatrix(1:nrow(game.data),
