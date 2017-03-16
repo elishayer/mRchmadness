@@ -25,10 +25,5 @@ BradleyTerry <- function(game.data) {
     matrix(beta, nrow = length(beta), ncol = length(beta), byrow = TRUE)
 
   rownames(point.spread.matrix) = colnames(point.spread.matrix) = names(beta)
-
-  point.spread.matrix %>% as.data.frame %>%
-    mutate(team = names(beta)) %>%
-    gather(key = opponent, value = spread, -team) %>%
-    filter(team != opponent) %>%
-    mutate(probability = 1 - pnorm(0, mean = spread, sd = sigma))
+  pnorm(point.spread.matrix, sd = sigma)
 }
