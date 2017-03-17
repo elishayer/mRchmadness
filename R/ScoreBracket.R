@@ -4,5 +4,5 @@
 #' @param result an outcome bracket of class "bracket.filled"
 #' @returns score for prediction bracket if result is what actually happens
 ScoreBracket = function(prediction, result) {
-  sum(prediction == result)
+  apply(result$winners, 2, function (x) colSums(x == prediction$winners))
 }
