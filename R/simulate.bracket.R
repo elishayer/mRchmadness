@@ -7,7 +7,7 @@ simulate.bracket = function(bracket, probability.matrix, num.reps = 1) {
 
   result = matrix('', 63, num.reps)
   round = c(rep(1, 32), rep(2, 16), rep(3, 8), rep(4, 4), rep(5, 2), 6)
-  teams = bracket$seeds %>% fold(1) %>% fold(2) %>% fold(4) %>%
+  teams = bracket %>% fold(1) %>% fold(2) %>% fold(4) %>%
     fold(8) %>% fold(16) %>% fold(32) %>% rep(num.reps)
 
   # The following chunk of code is a currently necessary evil.
