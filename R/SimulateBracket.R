@@ -6,6 +6,7 @@
 SimulateBracket = function(bracket, probability.matrix, num.reps) {
 
   result = matrix('', 63, num.reps)
+  round = c(rep(1, 32), rep(2, 16), rep(3, 8), rep(4, 4), rep(5, 2), 6)
   teams = bracket$seeds %>% fold(1) %>% fold(2) %>% fold(4) %>%
     fold(8) %>% fold(16) %>% fold(32) %>% rep(num.reps)
 
@@ -23,14 +24,13 @@ SimulateBracket = function(bracket, probability.matrix, num.reps) {
   untangling.indices[[5]] = 1:2 %>% unfold(1)
   untangling.indices[[6]] = 1
 
-  for (round in 1:6) {
-    matchups = matrix(teams, nrow = 2^(6 - round) * num.reps, ncol = 2,
+  for (r in 1:6) {
+    matchups = matrix(teams, nrow = 2^(6 - r) * num.reps, ncol = 2,
       byrow = TRUE)
     teams = matchups[1:nrow(matchups) + nrow(matchups) *
       (1 - rbinom(nrow(matchups), 1, probability.matrix[matchups]))]
-    indices = (c(0, cumsum(2^(5:1)))[round] + 1):(cumsum(2^(5:0))[round])
-    result[indices, ] = matrix(teams, nrow = 2^(6 - round),
-      ncol = num.reps)[untangling.indices[[round]], ]
+    result[round == r, ] = matrix(teams, nrow = 2^(6 - r),
+      ncol = num.reps)[untangling.indices[[r]], ]
   }
   bracket = list(winners = result)
   class(bracket) = "bracket.simulated"
