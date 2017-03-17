@@ -3,6 +3,6 @@
 #' @param brackets a predicted bracket of class "bracket.filled"
 #' @param results an outcome bracket of class "bracket.filled"
 #' @returns score for prediction bracket if result is what actually happens
-ScoreBracket = function(brackets, results) {
+score.bracket = function(brackets, results) {
   apply(results, 2, function (x) colSums(x == brackets))
 }
