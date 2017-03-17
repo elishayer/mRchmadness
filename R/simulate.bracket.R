@@ -1,9 +1,9 @@
 #' Simulate the full bracket starting with an empty bracket
 #'
 #' @param bracket an instance of bracket.blank
-#' @param probability.matrix output from BradleyTerry
+#' @param probability.matrix output from bradley.terry
 #' @returns an instance of bracket.simulated
-SimulateBracket = function(bracket, probability.matrix, num.reps) {
+simulate.bracket = function(bracket, probability.matrix, num.reps = 1) {
 
   result = matrix('', 63, num.reps)
   round = c(rep(1, 32), rep(2, 16), rep(3, 8), rep(4, 4), rep(5, 2), 6)
@@ -32,9 +32,7 @@ SimulateBracket = function(bracket, probability.matrix, num.reps) {
     result[round == r, ] = matrix(teams, nrow = 2^(6 - r),
       ncol = num.reps)[untangling.indices[[r]], ]
   }
-  bracket = list(winners = result)
-  class(bracket) = "bracket.simulated"
-  bracket
+  result
 }
 
 ##' Get the pairs of teams that will play each other in the next round
