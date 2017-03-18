@@ -3,26 +3,26 @@
 #' @param year
 #' @returns data.frame giving percentage of population picking each team in each round
 #' @examples
-#' populationDistribution = ScrapePopulationDistribution(2017)
-ScrapePopulationDistribution = function(year) {
+#' populationDistribution = scrape.population.distribution(2017)
+scrape.population.distribution = function(year) {
   if (!(year %in% c(2016, 2017))) stop(paste0('The year ', year, ' is not available'))
   url = paste0('http://games.espn.com/tournament-challenge-bracket/', year, '/en/whopickedwhom')
   
-  cells = read_html(url) %>%
-    html_nodes('table.wpw-table td')
+  cells = xml2::read_html(url) %>%
+    rvest::html_nodes('table.wpw-table td')
   
   names = cells %>%
     rvest::html_nodes('span.teamName') %>%
-    html_text
+    rvest::html_text(trim = TRUE)
   
   probabilities = cells %>%
     rvest::html_nodes('span.percentage') %>%
-    html_text %>%
+    rvest::html_text(trim = TRUE) %>%
     substr(0, nchar(.) - 1) %>%
     as.numeric %>%
     `/`(100)
   
-  round = rep(0:5, 64)
+  round = rep(1:6, 64)
   
   data.frame(names = names, probabilities = probabilities, round = round)
 }
