@@ -3,8 +3,6 @@
 test.bracket = function(bracket, probability.matrix, my.bracket,
   pool.size = 30, num.sims = 1000) {
 
-  criterion = match.arg(criterion)
-  
   num.sims = 1000
   pool.size = 30
   
