@@ -8,7 +8,7 @@
 find.bracket = function(pool.size = 30, num.candidates = 100, num.sims = 1000,
   criterion = c("percentile", "score", "win")) {
 
-  criterion = arg.match(criterion)
+  criterion = match.arg(criterion)
 
   candidates = simulate.bracket(bracket, probability.matrix,
     num.reps = num.candidates)
