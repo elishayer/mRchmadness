@@ -90,13 +90,19 @@ scrape.team.game.results = function(year, id) {
   
   skip = result.cells %>%
     rvest::html_text(trim = TRUE) %in%
-    c('Postponed') %>%
+    c('Postponed', 'Canceled') %>%
     which
   skip = result.cells %>%
     rvest::html_node('a') %>%
     rvest::html_attr('href') %>%
     strsplit('/') %>%
     sapply(function(row) row[5] %in% c('preview', 'onair')) %>%
+    which %>%
+    c(skip)
+  skip = result.cells %>%
+    rvest::html_node('li.score') %>%
+    rvest::html_text(trim = TRUE) %>%
+    is.na %>%
     which %>%
     c(skip)
 
