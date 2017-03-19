@@ -19,8 +19,7 @@ scrape.population.distribution = function(year) {
     rvest::html_nodes('span.percentage') %>%
     rvest::html_text(trim = TRUE) %>%
     substr(0, nchar(.) - 1) %>%
-    as.numeric %>%
-    `/`(100)
+    as.numeric / 100
   
   round = rep(1:6, 64)
   
