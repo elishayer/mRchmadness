@@ -5,7 +5,8 @@
 #' @param num.sims
 #' @param criterion
 #' @returns 
-find.bracket = function(pool.size = 30, num.candidates = 100, num.sims = 1000,
+find.bracket = function(bracket, probability.matrix, pool.size = 30,
+  num.candidates = 100, num.sims = 1000,
   criterion = c("percentile", "score", "win")) {
 
   criterion = match.arg(criterion)
