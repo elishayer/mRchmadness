@@ -1,0 +1,104 @@
+---
+title: Summary
+author: Eli Shayer and Scott Powers
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r, echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+#library(mRchmadness)
+```
+
+```{r, echo = FALSE, message = FALSE}
+`%>%` = dplyr::`%>%`
+for (file in list.files("../R")) {
+  source(paste0("../R/", file))
+}
+```
+
+It's Selection Sunday! The field of 68 teams for the NCAA men's basketball tournament has been
+announced, and you're excited to fill out a bracket to submit to your friend's pool. In
+mRchmadness, we store the initial seeding announced by the selection committee as a length-64
+character vector, giving the teams in order of their overall seed in the tournament.
+
+```{r}
+bracket = readRDS("../data/bracket2017.rds")
+head(bracket)
+```
+
+We've already taken care of those pesky first-four games for you, so you have to imagine that
+we're working with a field of 64 teams. In fact, you can specify any field of 64 teams you could
+imagine! All you have to do is encode the teams as a length-64 character vector in order of
+overall seeding.
+
+Is this the first day you've paid any attention to college basketball this season? We've got
+you covered, with the results of all of the games that have happened this year!
+
+```{r}
+games = readRDS("../data/games2017.rds")
+head(games, 2)
+```
+
+### Simulate the tournament
+
+Now that you know everything that happened this year, you know how good all of the teams are,
+right? The Bradley-Terry model can help you make sense of these scores. According to this model,
+in game $i$ between home team $H_i$ and away team $A_i$, the number of points $y_i$ (which may
+be negative) by which the home team wins has the following distribution:
+$$y_i\sim\mathcal N(\beta_{H_i} - \beta_{A_i}, \sigma^2)$$
+where the $\beta$'s represent the unknown quality of the teams. We provide the
+**bradley.terry()**
+function to estimate the $\beta$'s, $\sigma$ and the corresponding probabilities for each team
+beating each other team.  This function returns a matrix of probabilities, with one row for each
+team and one column for each team. Each entry of the matrix gives the estimated probability of
+the team in that row beating the team in that column.
+
+```{r}
+probability.matrix = bradley.terry(games)
+```
+
+Now that we have a sense for how good all of the teams are, let's demonstrate the
+**simulate.bracket()** and **plot.bracket()** functions by simulating the tournament and
+viewing the results.
+
+```{r, fig.width = 10}
+set.seed(2017)
+outcome = simulate.bracket(bracket, probability.matrix)
+plot.bracket(bracket, outcome)
+```
+
+Congratulations are in order to Louisville, for winning the set.seed(2017) NCAA men's
+basketball tournament!
+
+### Win your office pool
+
+That's all well and good for Louisville, but wouldn't you prefer to win something yourself?
+Now you can, using the **find.bracket()** function. This function produces a large selection
+of candidate brackets and then evaluates each of them by simulation. You can choose whether
+you want the bracket which maximizes your expected score, expected percentile within your pool,
+or even the probability of winning your pool!
+
+```{r, fig.width = 10}
+set.seed(42)
+my.bracket = find.bracket(bracket, probability.matrix)
+plot.bracket(bracket, my.bracket)
+```
+
+So you're picking Gonzaga? Bold choice. Let's see how well we can expect this bracket to do,
+using the **test.bracket()** function. This function simulates your pool to determine your
+expected score, expected percentile and probability of winning.
+
+```{r, fig.height = 3.5,  fig.width = 4.5, fig.show = "hold"}
+set.seed(8675309)
+test = test.bracket(bracket, probability.matrix, my.bracket)
+hist(test$score, breaks = 20)
+hist(test$percentile, breaks = 20)
+mean(test$win)
+```
+
+There you have it. You can expect this bracket to win 6.2% of the Groundhog Day-like replays
+of your bracket pool. Here's to the "real" outcome being one of those 6.2%!
+
+
