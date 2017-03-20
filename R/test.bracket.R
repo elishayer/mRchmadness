@@ -8,6 +8,7 @@
 #' @param bonus.round
 #' @param bonus.seed
 #' @param bonus.combine
+#' @author sspowers
 test.bracket = function(bracket.empty, probability.matrix, my.bracket,
   pool.size = 30, num.sims = 1000,
   bonus.round = c(1, 2, 4, 8, 16, 32), bonus.seed = rep(0, 16),

@@ -6,6 +6,7 @@
 #' @examples
 #' data(games2017)
 #' bradley.terry(games2017)
+#' @author sspowers
 bradley.terry <- function(game.data) {
 
   x = Matrix::sparseMatrix(1:nrow(game.data),

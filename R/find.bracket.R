@@ -4,7 +4,8 @@
 #' @param num.candidates
 #' @param num.sims
 #' @param criterion
-#' @returns 
+#' @returns
+#' @author sspowers
 find.bracket = function(bracket.empty, probability.matrix, pool.size = 30,
   num.candidates = 100, num.sims = 1000,
   criterion = c("percentile", "score", "win"),

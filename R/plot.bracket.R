@@ -3,6 +3,7 @@
 #' @param bracket vector of length 64 giving initial tournament seeding
 #' @param filling optional vector of length 63 giving tournament results
 #' @examples
+#' @author sspowers
 plot.bracket = function(bracket, filling = NULL) {
 
 # append "seed" to beginning of team names

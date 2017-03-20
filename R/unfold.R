@@ -4,6 +4,7 @@
 #' @param block.size The size of groups in which to block the data
 #' @examples
 #' unfold(fold(1:64))
+#' @author sspowers
 unfold = function(x, block.size = 1) {
   if (length(x) %% block.size != 0) {
     error("length(x) / block.size must be an integer.")

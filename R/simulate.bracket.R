@@ -3,6 +3,7 @@
 #' @param bracket an instance of bracket.blank
 #' @param probability.matrix output from bradley.terry
 #' @returns an instance of bracket.simulated
+#' @author sspowers
 simulate.bracket = function(bracket, probability.matrix, num.reps = 1) {
 
   result = matrix('', 63, num.reps)

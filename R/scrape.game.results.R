@@ -4,6 +4,7 @@
 #' @returns data.frame with game-by-game results
 #' @examples
 #' game.results = scrape.game.results(2017)
+#' @author eshayer
 scrape.game.results = function(year) {
   teams = scrape.teams()
   

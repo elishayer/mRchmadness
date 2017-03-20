@@ -6,6 +6,7 @@
 #'  second element, second-to-last element, ...
 #' @examples
 #' fold(1:64)
+#' @author sspowers
 fold = function(x, block.size = 1) {
   if (length(x) %% block.size != 0) {
     error("length(x) / block.size must be an integer.")

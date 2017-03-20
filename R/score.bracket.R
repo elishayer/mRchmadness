@@ -7,6 +7,7 @@
 #' @param bonus.seed
 #' @param bonus.combine
 #' @returns 
+#' @author sspowers
 score.bracket = function(bracket.empty, bracket.picks, bracket.outcome,
   bonus.round = c(1, 2, 4, 8, 16, 32), bonus.seed = rep(0, 16),
   bonus.combine = c("add", "multiply")) {
