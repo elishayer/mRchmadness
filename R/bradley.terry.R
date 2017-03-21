@@ -31,11 +31,11 @@ bradley.terry <- function(games) {
 # Choose lambda to minimize cross-validation error
   fit = glmnet::cv.glmnet(x, y, alpha = 0, standardize = FALSE,
     lambda = exp(seq(5, -10, length = 100)))
-  beta = coef(fit, s = 'lambda.min')[-1, 1]
+  beta = stats::coef(fit, s = 'lambda.min')[-1, 1]
   names(beta) = sort(unique(games$home.id))
 
 # Estimate variance in score differential
-  sigma = sqrt(mean((y - predict(fit, x, s = 'lambda.min'))^2))
+  sigma = sqrt(mean((y - stats::predict(fit, x, s = 'lambda.min'))^2))
 
 # Get estimated point spread for each possible matchup
   point.spread.matrix = beta -
@@ -45,5 +45,5 @@ bradley.terry <- function(games) {
   rownames(point.spread.matrix) = colnames(point.spread.matrix) = names(beta)
 
 # Convert point spreads into probability of winning
-  pnorm(point.spread.matrix, sd = sigma)
+  stats::pnorm(point.spread.matrix, sd = sigma)
 }

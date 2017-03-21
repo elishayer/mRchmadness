@@ -5,7 +5,9 @@
 #' @param bracket.filled an optional length-63 character vector encoding
 #'   tournament results (matching output from simulate.bracket)
 #' @author sspowers
-plot.bracket = function(bracket.empty, bracket.filled = NULL) {
+draw.bracket = function(bracket.empty, bracket.filled = NULL) {
+
+  `%>%` = dplyr::`%>%`
 
 # Sanitize inputs
   if (length(bracket.empty) != 64) {
@@ -45,19 +47,22 @@ plot.bracket = function(bracket.empty, bracket.filled = NULL) {
     rep(seq(15/16, 1/16, -1/8), 2), rep(seq(7/8, 1/8, -1/4), 2),
     rep(c(3/4, 1/4), 2), 3/5, 2/5, 1/2)
 
-  plot(NA, xlim = c(-7, 7), ylim = 0:1, xlab = '', ylab = '', axes = FALSE)
+  graphics::plot(NA, xlim = c(-7, 7), ylim = 0:1, xlab = '', ylab = '',
+    axes = FALSE)
 # horizontal line segments
-  segments(x - 1/2, y, x + 1/2, y)
+  graphics::segments(x - 1/2, y, x + 1/2, y)
 # vertical line segments
-  segments((x + (x < 0) - 1/2)[seq(1, length(x) - 3, 2)],
+  graphics::segments((x + (x < 0) - 1/2)[seq(1, length(x) - 3, 2)],
     y[seq(1, length(y) - 3, 2)],
     (x + (x < 0) - 1/2)[seq(2, length(x) - 3, 2)],
     y[seq(2, length(y) - 3, 2)])
 
 # fill in intial seeding
-  text(x[1:64] - 0.46, y[1:64] + 0.01, bracket.empty, cex = 0.4, adj = 0)
+  graphics::text(x[1:64] - 0.46, y[1:64] + 0.01, bracket.empty, cex = 0.4,
+    adj = 0)
 
   if (!is.null(bracket.filled)) { # fill in tournament results
-    text(x[-(1:64)] - 0.46, y[-(1:64)] + 0.01, bracket.filled, cex = 0.4, adj = 0)
+    graphics::text(x[-(1:64)] - 0.46, y[-(1:64)] + 0.01, bracket.filled,
+      cex = 0.4, adj = 0)
   }
 }

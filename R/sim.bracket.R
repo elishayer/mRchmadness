@@ -12,7 +12,9 @@
 #'   seeds 1 and 2 after round 5, and finally seed 1 after round 6 (the
 #'   champion)
 #' @author sspowers
-simulate.bracket = function(bracket.empty, probability.matrix, num.reps = 1) {
+sim.bracket = function(bracket.empty, probability.matrix, num.reps = 1) {
+
+  `%>%` = dplyr::`%>%`
 
 # Sanitize inputs
   if (length(bracket.empty) != 64) {
@@ -50,7 +52,7 @@ simulate.bracket = function(bracket.empty, probability.matrix, num.reps = 1) {
       byrow = TRUE)
 # Randomly select one team from each row of matchup matrix
     teams = matchups[1:nrow(matchups) + nrow(matchups) *
-      (1 - rbinom(nrow(matchups), 1, probability.matrix[matchups]))]
+      (1 - stats::rbinom(nrow(matchups), 1, probability.matrix[matchups]))]
 # Store outcomes from this round (across all simulations) in corresponding rows
     outcome[round == r, ] = matrix(teams, nrow = 2^(6 - r),
       ncol = num.reps)[untangling.indices[[r]], ]
