@@ -8,6 +8,13 @@ scrape.game.results = function(year) {
 
   `%>%` = dplyr::`%>%`
 
+  if (missing(year))
+    stop('scrape.game.results: A year must be provided')
+  if (!(class(year) %in% c('integer', 'numeric')))
+    stop('scrape.game.results: The year must be numeric')
+  if (year < 2002 | year > 2017)
+    stop('The available seasons are 2002 to 2017')
+
   teams = scrape.teams()
   
   results = data.frame(game.id = character(0),
@@ -51,6 +58,9 @@ scrape.game.results = function(year) {
 #' Scrape the team names and ids from the ESPN NCAA MBB index
 #'
 #' @returns data.frame of team names and ids
+#' @examples 
+#' teams = scrape.teams()
+#' @author eshayer
 scrape.teams = function() {
 
   `%>%` = dplyr::`%>%`
@@ -61,25 +71,29 @@ scrape.teams = function() {
     rvest::html_nodes('.mod-content > ul.medium-logos > li h5 a')
   
   name = cells %>%
-    rvest::html_text(trim = TRUE) %>%
-    as.character()
+    rvest::html_text(trim = TRUE)
   
   id = cells %>%
     rvest::html_attr('href') %>%
     strsplit('/') %>%
     sapply(identity) %>%
-    `[`(8,) %>%
-    as.character
+    `[`(8,)
   
-  data.frame(name = as.character(name), id = as.character(id))
+  data.frame(name = name, id = id, stringsAsFactors = FALSE)
 }
 
 #' Scrape game results for a single team-year combination
 #' @param year
 #' @returns data.frame of game data for the team-year
+#' @examples 
+#' stanford.2017.games = scrape.team.game.results(2017, 24)
+#' @author eshayer
 scrape.team.game.results = function(year, id) {
 
   `%>%` = dplyr::`%>%`
+
+  if (!all(c(class(year), class(id)) %in% 'character'))
+    stop('scrape.team.game.results: year and id must be characters')
 
   url = paste0('http://www.espn.com/mens-college-basketball/',
                'team/schedule/_/id/', id, '/year/', year)
