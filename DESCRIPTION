@@ -1,12 +1,15 @@
 Package: mRchmadness
-Title: What the Package Does (one line, title case)
+Title: Numerical Tools for Filling Out an NCAA Basketball Tournament Bracket
 Version: 1.0
 Authors@R: c(
-  person("Eli", "Shayer", email = "eshayer@stanord.edu", role = c("aut", "cre"))
-  person("Scott", "Powers", email = "sspowers@stanord.edu", role = "aut"))
+  person("Eli", "Shayer", email = "eshayer@stanford.edu",
+    role = c("aut", "cre"))
+  person("Scott", "Powers", email = "sspowers@stanford.edu", role = "aut"))
 URL: https://github.com/eshayer/mRchmadness
-Description: What the package does (one paragraph).
+Description: Scrape season results, estimate win probabilities, and find a
+  competitive bracket for your office pool. Additional utilities include:
+  scraping population picks; simulating tournament results; and 
 Depends: R (>= 3.3.2)
-License: What license is it under?
+License: GPL-2
 Encoding: UTF-8
 LazyData: true
