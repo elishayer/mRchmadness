@@ -38,6 +38,11 @@ multiply}
 \description{
 Test a bracket
 }
+\examples{
+probability.matrix = bradley.terry(games.2017)
+my.bracket = find.bracket(bracket.2017, probability.matrix)
+result = test.bracket(bracket.2017, probability.matrix, my.bracket)
+}
 \author{
 sspowers
 }

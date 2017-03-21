@@ -17,6 +17,11 @@
 #'   multiply
 #' @returns a vector giving the score for bracket.picks for each outcome in
 #'   the matrix bracket.oucome
+#' @examples
+#' probability.matrix = bradley.terry(games.2017)
+#' picks = sim.bracket(bracket.2017, probability.matrix, num.reps = 30)
+#' outcome = sim.bracket(bracket.2017, probability.matrix)
+#' score.bracket(bracket.2017, picks, outcome)
 #' @export
 #' @author sspowers
 score.bracket = function(bracket.empty, bracket.picks, bracket.outcome,

@@ -18,6 +18,10 @@ corresponding to teams, matching the output of bradley.terry()}
 \description{
 Simulate the full bracket starting with an empty bracket
 }
+\examples{
+probability.matrix = bradley.terry(games.2017)
+sim.bracket(bracket.2017, probability.matrix)
+}
 \author{
 sspowers
 }

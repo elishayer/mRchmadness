@@ -58,8 +58,6 @@ scrape.game.results = function(year) {
 #' Scrape the team names and ids from the ESPN NCAA MBB index
 #'
 #' @returns data.frame of team names and ids
-#' @examples 
-#' teams = scrape.teams()
 #' @author eshayer
 scrape.teams = function() {
 
@@ -85,8 +83,6 @@ scrape.teams = function() {
 #' Scrape game results for a single team-year combination
 #' @param year
 #' @returns data.frame of game data for the team-year
-#' @examples 
-#' stanford.2017.games = scrape.team.game.results(2017, 24)
 #' @author eshayer
 scrape.team.game.results = function(year, id) {
 

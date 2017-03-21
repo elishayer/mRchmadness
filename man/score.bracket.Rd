@@ -33,6 +33,12 @@ multiply}
 \description{
 Compute score for bracket given actual result
 }
+\examples{
+probability.matrix = bradley.terry(games.2017)
+picks = sim.bracket(bracket.2017, probability.matrix, num.reps = 30)
+outcome = sim.bracket(bracket.2017, probability.matrix)
+score.bracket(bracket.2017, picks, outcome)
+}
 \author{
 sspowers
 }

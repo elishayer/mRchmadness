@@ -9,3 +9,6 @@ scrape.teams()
 \description{
 Scrape the team names and ids from the ESPN NCAA MBB index
 }
+\author{
+eshayer
+}

@@ -4,6 +4,10 @@
 #'   teams in the tournament, in order of initial overall seeding
 #' @param bracket.filled an optional length-63 character vector encoding
 #'   tournament results (matching output from simulate.bracket)
+#' @examples
+#' probability.matrix = bradley.terry(games.2017)
+#' picks = sim.bracket(bracket.2017, probability.matrix)
+#' draw.bracket(bracket.2017, picks)
 #' @export
 #' @author sspowers
 draw.bracket = function(bracket.empty, bracket.filled = NULL) {

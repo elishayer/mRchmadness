@@ -18,6 +18,10 @@
 #' @param bonus.combine how to combine the round bonus with the seed bonus to
 #'   get the number of points awarded for each correct pick: "add" (default) or
 #'   multiply
+#' @examples
+#' probability.matrix = bradley.terry(games.2017)
+#' my.bracket = find.bracket(bracket.2017, probability.matrix)
+#' result = test.bracket(bracket.2017, probability.matrix, my.bracket)
 #' @export
 #' @author sspowers
 test.bracket = function(bracket.empty, probability.matrix, bracket.picks,
@@ -34,10 +38,10 @@ test.bracket = function(bracket.empty, probability.matrix, bracket.picks,
   }
 
 # Simulate the rest of the pool for all simulations
-  pool = simulate.bracket(bracket.empty, probability.matrix,
+  pool = sim.bracket(bracket.empty, probability.matrix,
     num.reps = num.sims * pool.size)
 # Simulate the outcome for all simulations
-  outcome = simulate.bracket(bracket.empty, probability.matrix,
+  outcome = sim.bracket(bracket.empty, probability.matrix,
     num.reps = num.sims)
 
 # Set up the matrix to hold the scores of all brackets in pool

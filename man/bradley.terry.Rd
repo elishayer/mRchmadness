@@ -14,6 +14,9 @@ scrape.game.results)}
 \description{
 Fit a Bradley-Terry model on game score data
 }
+\examples{
+  probability.matrix = bradley.terry(games.2017)
+}
 \author{
 sspowers
 }

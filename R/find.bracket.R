@@ -26,6 +26,9 @@
 #'   performs best according to criterion among all num.candidates brackets
 #'   tried, across num.sims simulations of a pool of pool.size with scoring
 #'   rules specified by bonus.round, bonus.seed and bonus.combine
+#' @examples
+#' probability.matrix = bradley.terry(games.2017)
+#' find.bracket(bracket.2017, probability.matrix)
 #' @export
 #' @author sspowers
 find.bracket = function(bracket.empty, probability.matrix, pool.size = 30,
@@ -45,15 +48,15 @@ find.bracket = function(bracket.empty, probability.matrix, pool.size = 30,
   }
 
 # Simulate the brackets to be considered
-  candidates = simulate.bracket(bracket.empty, probability.matrix,
+  candidates = sim.bracket(bracket.empty, probability.matrix,
     num.reps = num.candidates)
 
 # Simulate all of the pools (across all simulations)
-  pool = simulate.bracket(bracket.empty, probability.matrix,
+  pool = sim.bracket(bracket.empty, probability.matrix,
     num.reps = num.sims * pool.size)
 
 # Simulate all of the outcomes
-  outcome = simulate.bracket(bracket.empty, probability.matrix,
+  outcome = sim.bracket(bracket.empty, probability.matrix,
     num.reps = num.sims)
 
 # Prepare matrix to store all bracket scores

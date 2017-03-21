@@ -44,6 +44,10 @@ multiply}
 \description{
 Fill out a bracket based on some criteria
 }
+\examples{
+probability.matrix = bradley.terry(games.2017)
+find.bracket(bracket.2017, probability.matrix)
+}
 \author{
 sspowers
 }

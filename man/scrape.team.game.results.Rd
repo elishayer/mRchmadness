@@ -9,3 +9,6 @@ scrape.team.game.results(year, id)
 \description{
 Scrape game results for a single team-year combination
 }
+\author{
+eshayer
+}
