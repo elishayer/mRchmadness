@@ -6,8 +6,11 @@
 #' populationDistribution = scrape.population.distribution(2017)
 #' @author eshayer
 scrape.population.distribution = function(year) {
-  if (!(year %in% c(2016, 2017))) stop(paste0('The year ', year, ' is not available'))
-  url = paste0('http://games.espn.com/tournament-challenge-bracket/', year, '/en/whopickedwhom')
+  if (!(year %in% c(2016, 2017)))
+    stop(paste0('The year ', year, ' is not available'))
+
+  url = paste0('http://games.espn.com/tournament-challenge-bracket/',
+               year, '/en/whopickedwhom')
   
   cells = xml2::read_html(url) %>%
     rvest::html_nodes('table.wpw-table td')
