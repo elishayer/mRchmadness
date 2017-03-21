@@ -22,7 +22,7 @@
 #' @param bonus.combine how to combine the round bonus with the seed bonus to
 #'   get the number of points awarded for each correct pick: "add" (default) or
 #'   multiply
-#' @returns the length-63 character vector describing the filled bracket which
+#' @return the length-63 character vector describing the filled bracket which
 #'   performs best according to criterion among all num.candidates brackets
 #'   tried, across num.sims simulations of a pool of pool.size with scoring
 #'   rules specified by bonus.round, bonus.seed and bonus.combine

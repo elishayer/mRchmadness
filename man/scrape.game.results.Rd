@@ -6,6 +6,12 @@
 \usage{
 scrape.game.results(year)
 }
+\arguments{
+\item{year}{a numeric value of the year, between 2002 and 2017 inclusive}
+}
+\value{
+data.frame with game-by-game results
+}
 \description{
 Scrape the game-by-game results of the NCAA MBB seaon
 }

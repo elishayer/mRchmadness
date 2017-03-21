@@ -41,6 +41,12 @@ picking winner based on winner's seed (default is zero)}
 get the number of points awarded for each correct pick: "add" (default) or
 multiply}
 }
+\value{
+the length-63 character vector describing the filled bracket which
+  performs best according to criterion among all num.candidates brackets
+  tried, across num.sims simulations of a pool of pool.size with scoring
+  rules specified by bonus.round, bonus.seed and bonus.combine
+}
 \description{
 Fill out a bracket based on some criteria
 }

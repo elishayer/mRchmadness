@@ -1,7 +1,7 @@
 #' Scrape the game-by-game results of the NCAA MBB seaon
 #'
-#' @param year
-#' @returns data.frame with game-by-game results
+#' @param year a numeric value of the year, between 2002 and 2017 inclusive
+#' @return data.frame with game-by-game results
 #' @export
 #' @author eshayer
 scrape.game.results = function(year) {
@@ -57,7 +57,7 @@ scrape.game.results = function(year) {
 
 #' Scrape the team names and ids from the ESPN NCAA MBB index
 #'
-#' @returns data.frame of team names and ids
+#' @return data.frame of team names and ids
 #' @author eshayer
 scrape.teams = function() {
 
@@ -81,8 +81,8 @@ scrape.teams = function() {
 }
 
 #' Scrape game results for a single team-year combination
-#' @param year
-#' @returns data.frame of game data for the team-year
+#' @param year a character value representing a year
+#' @return data.frame of game data for the team-year
 #' @author eshayer
 scrape.team.game.results = function(year, id) {
 

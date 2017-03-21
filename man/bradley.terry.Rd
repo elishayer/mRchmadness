@@ -11,6 +11,11 @@ bradley.terry(games)
 away.id, home.score, away.score, neutral, ot (matched by output of
 scrape.game.results)}
 }
+\value{
+matrix of win probabilities, with rows and columns labeled by team.
+  Each entry gives the probability of the team corresponding to that row
+  beating the team corresponding to that column.
+}
 \description{
 Fit a Bradley-Terry model on game score data
 }

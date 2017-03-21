@@ -15,7 +15,7 @@
 #' @param bonus.combine how to combine the round bonus with the seed bonus to
 #'   get the number of points awarded for each correct pick: "add" (default) or
 #'   multiply
-#' @returns a vector giving the score for bracket.picks for each outcome in
+#' @return a vector giving the score for bracket.picks for each outcome in
 #'   the matrix bracket.oucome
 #' @author sspowers
 score.bracket = function(bracket.empty, bracket.picks, bracket.outcome,

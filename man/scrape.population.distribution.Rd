@@ -6,6 +6,12 @@
 \usage{
 scrape.population.distribution(year)
 }
+\arguments{
+\item{year}{the numeric year to scrape, either 2016 or 2017}
+}
+\value{
+data.frame giving percentage of population picking each team in each round
+}
 \description{
 Scrape the average rate of teams being picked to win across all ESPN brackets
 }

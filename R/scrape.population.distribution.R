@@ -1,7 +1,7 @@
 #' Scrape the average rate of teams being picked to win across all ESPN brackets
 #'
-#' @param year
-#' @returns data.frame giving percentage of population picking each team in each round
+#' @param year the numeric year to scrape, either 2016 or 2017
+#' @return data.frame giving percentage of population picking each team in each round
 #' @examples
 #' populationDistribution = scrape.population.distribution(2017)
 #' @export

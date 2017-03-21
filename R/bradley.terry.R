@@ -3,7 +3,7 @@
 #' @param games data.frame with the following columns: game.id, home.id,
 #'   away.id, home.score, away.score, neutral, ot (matched by output of
 #'   scrape.game.results)
-#' @returns matrix of win probabilities, with rows and columns labeled by team.
+#' @return matrix of win probabilities, with rows and columns labeled by team.
 #'   Each entry gives the probability of the team corresponding to that row
 #'   beating the team corresponding to that column.
 #' @examples

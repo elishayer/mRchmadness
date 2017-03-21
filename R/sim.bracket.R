@@ -5,7 +5,7 @@
 #' @param probability.matrix a matrix of probabilities, with rows and columns
 #'   corresponding to teams, matching the output of bradley.terry()
 #' @param num.reps number of simulations to perform (default is 1)
-#' @returns a 63-by-num.reps matrix storing the simulation outcome, each
+#' @return a 63-by-num.reps matrix storing the simulation outcome, each
 #'   column encoding the outcome for a single simulation in the following
 #'   order: seeds 1 through 32 after round 1, seeds 1 through 16 after round 2,
 #'   seeds 1 through 8 after round 3, seeds 1 through 4 after round 4,

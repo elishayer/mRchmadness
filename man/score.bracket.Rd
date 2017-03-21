@@ -30,6 +30,10 @@ picking winner based on winner's seed (default is zero)}
 get the number of points awarded for each correct pick: "add" (default) or
 multiply}
 }
+\value{
+a vector giving the score for bracket.picks for each outcome in
+  the matrix bracket.oucome
+}
 \description{
 Compute score for bracket given actual result
 }
