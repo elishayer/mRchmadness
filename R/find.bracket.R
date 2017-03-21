@@ -26,6 +26,7 @@
 #'   performs best according to criterion among all num.candidates brackets
 #'   tried, across num.sims simulations of a pool of pool.size with scoring
 #'   rules specified by bonus.round, bonus.seed and bonus.combine
+#' @export
 #' @author sspowers
 find.bracket = function(bracket.empty, probability.matrix, pool.size = 30,
   num.candidates = 100, num.sims = 1000,

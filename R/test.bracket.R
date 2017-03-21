@@ -18,6 +18,7 @@
 #' @param bonus.combine how to combine the round bonus with the seed bonus to
 #'   get the number of points awarded for each correct pick: "add" (default) or
 #'   multiply
+#' @export
 #' @author sspowers
 test.bracket = function(bracket.empty, probability.matrix, bracket.picks,
   pool.size = 30, num.sims = 1000,

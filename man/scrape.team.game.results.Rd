@@ -9,6 +9,3 @@ scrape.team.game.results(year, id)
 \description{
 Scrape game results for a single team-year combination
 }
-\examples{
-stanford.2017.games = scrape.team.game.results(2017, 24)
-}

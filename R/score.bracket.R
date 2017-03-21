@@ -17,6 +17,7 @@
 #'   multiply
 #' @returns a vector giving the score for bracket.picks for each outcome in
 #'   the matrix bracket.oucome
+#' @export
 #' @author sspowers
 score.bracket = function(bracket.empty, bracket.picks, bracket.outcome,
   bonus.round = c(1, 2, 4, 8, 16, 32), bonus.seed = rep(0, 16),

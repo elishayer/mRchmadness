@@ -4,10 +4,18 @@
 #' @returns data.frame giving percentage of population picking each team in each round
 #' @examples
 #' populationDistribution = scrape.population.distribution(2017)
+#' @export
 #' @author eshayer
 scrape.population.distribution = function(year) {
-  if (!(year %in% c(2016, 2017))) stop(paste0('The year ', year, ' is not available'))
-  url = paste0('http://games.espn.com/tournament-challenge-bracket/', year, '/en/whopickedwhom')
+
+  `%>%` = dplyr::`%>%`
+
+  if (!(year %in% c(2016, 2017))) {
+    stop(paste0('The year ', year, ' is not available'))
+  }
+
+  url = paste0('http://games.espn.com/tournament-challenge-bracket/', year,
+    '/en/whopickedwhom')
   
   cells = xml2::read_html(url) %>%
     rvest::html_nodes('table.wpw-table td')

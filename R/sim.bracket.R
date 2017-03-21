@@ -11,6 +11,7 @@
 #'   seeds 1 through 8 after round 3, seeds 1 through 4 after round 4,
 #'   seeds 1 and 2 after round 5, and finally seed 1 after round 6 (the
 #'   champion)
+#' @export
 #' @author sspowers
 sim.bracket = function(bracket.empty, probability.matrix, num.reps = 1) {
 

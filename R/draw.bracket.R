@@ -4,6 +4,7 @@
 #'   teams in the tournament, in order of initial overall seeding
 #' @param bracket.filled an optional length-63 character vector encoding
 #'   tournament results (matching output from simulate.bracket)
+#' @export
 #' @author sspowers
 draw.bracket = function(bracket.empty, bracket.filled = NULL) {
 

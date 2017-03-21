@@ -6,6 +6,7 @@
 #' @returns matrix of win probabilities, with rows and columns labeled by team.
 #'   Each entry gives the probability of the team corresponding to that row
 #'   beating the team corresponding to that column.
+#' @export
 #' @author sspowers
 bradley.terry <- function(games) {
 

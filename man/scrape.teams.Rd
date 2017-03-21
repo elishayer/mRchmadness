@@ -9,6 +9,3 @@ scrape.teams()
 \description{
 Scrape the team names and ids from the ESPN NCAA MBB index
 }
-\examples{
-teams = scrape.teams()
-}

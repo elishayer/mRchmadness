@@ -4,8 +4,6 @@
 #' @param block.size the size of groups in which to block the data
 #' @return a new vector in the following order: first block, last block,
 #'   second block, second-to-last block, ...
-#' @examples
-#' fold(1:64)
 #' @author sspowers
 fold = function(x, block.size = 1) {
 

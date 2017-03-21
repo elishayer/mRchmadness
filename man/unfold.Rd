@@ -18,9 +18,6 @@ a vector in the following order: block 1, block 3, ..., block n-1,
 \description{
 Unfold a vector (the inverse of the fold function)
 }
-\examples{
-unfold(fold(1:64))
-}
 \author{
 sspowers
 }

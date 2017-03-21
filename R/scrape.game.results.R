@@ -2,10 +2,12 @@
 #'
 #' @param year
 #' @returns data.frame with game-by-game results
-#' @examples
-#' game.results = scrape.game.results(2017)
+#' @export
 #' @author eshayer
 scrape.game.results = function(year) {
+
+  `%>%` = dplyr::`%>%`
+
   teams = scrape.teams()
   
   results = data.frame(game.id = character(0),
@@ -49,9 +51,10 @@ scrape.game.results = function(year) {
 #' Scrape the team names and ids from the ESPN NCAA MBB index
 #'
 #' @returns data.frame of team names and ids
-#' @examples 
-#' teams = scrape.teams()
 scrape.teams = function() {
+
+  `%>%` = dplyr::`%>%`
+
   url = 'http://www.espn.com/mens-college-basketball/teams'
   
   cells = xml2::read_html(url) %>%
@@ -74,9 +77,10 @@ scrape.teams = function() {
 #' Scrape game results for a single team-year combination
 #' @param year
 #' @returns data.frame of game data for the team-year
-#' @examples 
-#' stanford.2017.games = scrape.team.game.results(2017, 24)
 scrape.team.game.results = function(year, id) {
+
+  `%>%` = dplyr::`%>%`
+
   url = paste0('http://www.espn.com/mens-college-basketball/',
                'team/schedule/_/id/', id, '/year/', year)
   

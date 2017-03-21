@@ -4,8 +4,6 @@
 #' @param block.size the size of groups in which to block the data
 #' @return a vector in the following order: block 1, block 3, ..., block n-1,
 #'   block n, block n-2, ..., block 2.
-#' @examples
-#' unfold(fold(1:64))
 #' @author sspowers
 unfold = function(x, block.size = 1) {
 

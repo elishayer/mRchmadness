@@ -18,9 +18,6 @@ a new vector in the following order: first block, last block,
 \description{
 Fold a vector onto itself
 }
-\examples{
-fold(1:64)
-}
 \author{
 sspowers
 }

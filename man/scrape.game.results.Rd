@@ -9,9 +9,6 @@ scrape.game.results(year)
 \description{
 Scrape the game-by-game results of the NCAA MBB seaon
 }
-\examples{
-game.results = scrape.game.results(2017)
-}
 \author{
 eshayer
 }
