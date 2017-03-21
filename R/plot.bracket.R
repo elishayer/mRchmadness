@@ -1,31 +1,41 @@
 #' Plot bracket to device
 #'
-#' @param bracket vector of length 64 giving initial tournament seeding
-#' @param filling optional vector of length 63 giving tournament results
-#' @examples
+#' @param bracket.empty a length-64 character vector giving the field of 64
+#'   teams in the tournament, in order of initial overall seeding
+#' @param bracket.filled an optional length-63 character vector encoding
+#'   tournament results (matching output from simulate.bracket)
 #' @author sspowers
-plot.bracket = function(bracket, filling = NULL) {
+plot.bracket = function(bracket.empty, bracket.filled = NULL) {
+
+# Sanitize inputs
+  if (length(bracket.empty) != 64) {
+    stop("Length of bracket.empty must be 64.")
+  }
+  if (!is.null(bracket.filled) && length(bracket.filled) != 63) {
+    stop("Length of bracket.empty (if specified) must be 63.")
+  }
 
 # append "seed" to beginning of team names
   seed = rep(1:16, each = 4)
-  names(seed) = bracket
+  names(seed) = bracket.empty
 
 # convert initial team placement from seed order to matchup order
-  bracket = paste(seed, bracket) %>% fold(1) %>% fold(2) %>% fold(4) %>%
-    fold(8) %>% fold(16) %>% fold(32)
+  bracket.empty = paste(seed, bracket.empty) %>% fold(1) %>% fold(2) %>%
+    fold(4) %>% fold(8) %>% fold(16) %>% fold(32)
 
-  if (!is.null(filling)) {
+  if (!is.null(bracket.filled)) {
 # convert each round of results from seed order to matchup order
-    filling = paste(seed[filling], filling)
+    bracket.filled = paste(seed[bracket.filled], bracket.filled)
     round = c(rep(1, 32), rep(2, 16), rep(3, 8), rep(4, 4), 5, 5, 6)
-    filling[round == 1] = filling[round == 1] %>% fold(1) %>% fold(2) %>%
-      fold(4) %>% fold(8) %>% fold(16)
-    filling[round == 2] = filling[round == 2] %>% fold(1) %>% fold(2) %>%
-      fold(4) %>% fold(8)
-    filling[round == 3] = filling[round == 3] %>% fold(1) %>% fold(2) %>%
-      fold(4)
-    filling[round == 4] = filling[round == 4] %>% fold(1) %>% fold(2)
-    filling[round == 5] = filling[round == 5] %>% fold(1)
+    bracket.filled[round == 1] = bracket.filled[round == 1] %>% fold(1) %>%
+      fold(2) %>% fold(4) %>% fold(8) %>% fold(16)
+    bracket.filled[round == 2] = bracket.filled[round == 2] %>% fold(1) %>%
+      fold(2) %>% fold(4) %>% fold(8)
+    bracket.filled[round == 3] = bracket.filled[round == 3] %>% fold(1) %>%
+      fold(2) %>% fold(4)
+    bracket.filled[round == 4] = bracket.filled[round == 4] %>% fold(1) %>%
+      fold(2)
+    bracket.filled[round == 5] = bracket.filled[round == 5] %>% fold(1)
   }
 
 # x and y coordinates for centers of all horizontal lines in bracket
@@ -45,9 +55,9 @@ plot.bracket = function(bracket, filling = NULL) {
     y[seq(2, length(y) - 3, 2)])
 
 # fill in intial seeding
-  text(x[1:64] - 0.46, y[1:64] + 0.01, bracket, cex = 0.4, adj = 0)
+  text(x[1:64] - 0.46, y[1:64] + 0.01, bracket.empty, cex = 0.4, adj = 0)
 
-  if (!is.null(filling)) { # fill in tournament results
-    text(x[-(1:64)] - 0.46, y[-(1:64)] + 0.01, filling, cex = 0.4, adj = 0)
+  if (!is.null(bracket.filled)) { # fill in tournament results
+    text(x[-(1:64)] - 0.46, y[-(1:64)] + 0.01, bracket.filled, cex = 0.4, adj = 0)
   }
 }
