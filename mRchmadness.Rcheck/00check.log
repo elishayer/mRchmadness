@@ -1,0 +1,98 @@
+* using log directory ‘/Users/sspowers/Repositories/mRchmadness/mRchmadness.Rcheck’
+* using R version 3.3.2 (2016-10-31)
+* using platform: x86_64-apple-darwin13.4.0 (64-bit)
+* using session charset: UTF-8
+* checking for file ‘mRchmadness/DESCRIPTION’ ... OK
+* this is package ‘mRchmadness’ version ‘1.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘mRchmadness’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+find.bracket: no visible global function definition for
+  ‘simulate.bracket’
+scrape.game.results: no visible binding for global variable ‘location’
+scrape.game.results: no visible binding for global variable ‘other.id’
+scrape.game.results: no visible binding for global variable
+  ‘primary.id’
+scrape.game.results: no visible binding for global variable ‘game.id’
+scrape.game.results: no visible binding for global variable ‘home’
+scrape.game.results: no visible binding for global variable
+  ‘primary.score’
+scrape.game.results: no visible binding for global variable
+  ‘other.score’
+scrape.game.results: no visible binding for global variable ‘ot’
+scrape.game.results: no visible binding for global variable ‘home.id’
+scrape.game.results: no visible binding for global variable ‘away.id’
+scrape.population.distribution: no visible binding for global variable
+  ‘.’
+scrape.team.game.results: no visible binding for global variable ‘.’
+test.bracket: no visible global function definition for
+  ‘simulate.bracket’
+Undefined global functions or variables:
+  . away.id game.id home home.id location ot other.id other.score
+  primary.id primary.score simulate.bracket
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘bracket.2017’ ‘games.2016’ ‘games.2017’ ‘pred.538.2017’
+  ‘pred.pop.2016’ ‘pred.pop.2017’ ‘teams’
+Undocumented data sets:
+  ‘bracket.2017’ ‘games.2016’ ‘games.2017’ ‘pred.538.2017’
+  ‘pred.pop.2016’ ‘pred.pop.2017’ ‘teams’
+All user-level objects in a package should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Undocumented arguments in documentation object 'scrape.game.results'
+  ‘year’
+
+Undocumented arguments in documentation object 'scrape.population.distribution'
+  ‘year’
+
+Undocumented arguments in documentation object 'scrape.team.game.results'
+  ‘year’ ‘id’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+* checking PDF version of manual ... OK
+* DONE
+Status: 2 WARNINGs, 1 NOTE

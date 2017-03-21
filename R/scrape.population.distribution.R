@@ -7,6 +7,7 @@
 #' @export
 #' @author eshayer
 scrape.population.distribution = function(year) {
+<<<<<<< HEAD
 
   `%>%` = dplyr::`%>%`
 
@@ -16,6 +17,13 @@ scrape.population.distribution = function(year) {
 
   url = paste0('http://games.espn.com/tournament-challenge-bracket/', year,
     '/en/whopickedwhom')
+=======
+  if (!(year %in% c(2016, 2017)))
+    stop(paste0('The year ', year, ' is not available'))
+
+  url = paste0('http://games.espn.com/tournament-challenge-bracket/',
+               year, '/en/whopickedwhom')
+>>>>>>> 72468c807f05df10f8167538b5b23276d2fe912d
   
   cells = xml2::read_html(url) %>%
     rvest::html_nodes('table.wpw-table td')
