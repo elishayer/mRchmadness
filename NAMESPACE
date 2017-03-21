@@ -3,7 +3,6 @@
 export(bradley.terry)
 export(draw.bracket)
 export(find.bracket)
-export(score.bracket)
 export(scrape.game.results)
 export(scrape.population.distribution)
 export(sim.bracket)

@@ -4,8 +4,6 @@
 #'   teams in the tournament, in order of initial overall seeding
 #' @param probability.matrix a matrix of probabilities, with rows and columns
 #'   corresponding to teams, matching the output of bradley.terry()
-#' @param pool.size number of brackets in your pool, matters only if
-#'   criterion == "win" (default is 30)
 #' @param num.candidates number of random brackets to try, taking the best one
 #'   (default is 100)
 #' @param num.sims number of simulations over which to evaluate the candidate
@@ -14,6 +12,8 @@
 #'   "percentile" (default, maximize expected percentile within pool),
 #'   "score" (maximize expected number of points) or "win" (maximize probabilty
 #'   of winning pool).
+#' @param pool.size number of brackets in your pool (excluding yours), matters
+#'   only if criterion == "win" (default is 30)
 #' @param bonus.round a length-6 vector giving the number of points awarded in
 #'   your pool's scoring rules for correct picks in each round (default is
 #'   2^round)
@@ -27,13 +27,14 @@
 #'   tried, across num.sims simulations of a pool of pool.size with scoring
 #'   rules specified by bonus.round, bonus.seed and bonus.combine
 #' @examples
-#' probability.matrix = bradley.terry(games.2017)
-#' find.bracket(bracket.2017, probability.matrix)
+#' probability.matrix = bradley.terry(games = games.2017)
+#' find.bracket(bracket.empty = bracket.2017,
+#'              probability.matrix = probability.matrix)
 #' @export
 #' @author sspowers
-find.bracket = function(bracket.empty, probability.matrix, pool.size = 30,
+find.bracket = function(bracket.empty, probability.matrix,
   num.candidates = 100, num.sims = 1000,
-  criterion = c("percentile", "score", "win"),
+  criterion = c("percentile", "score", "win"), pool.size = 30,
   bonus.round = c(1, 2, 4, 8, 16, 32), bonus.seed = rep(0, 16),
   bonus.combine = c("add", "multiply")) {
 
@@ -45,6 +46,9 @@ find.bracket = function(bracket.empty, probability.matrix, pool.size = 30,
   }
   if (!is.numeric(bonus.seed) | length(bonus.seed) != 16) {
     stop("bonus.seed must be length-16 numeric vector")
+  }
+  if (pool.size < 2) {
+    stop("pool.size must be at least 2")
   }
 
 # Simulate the brackets to be considered

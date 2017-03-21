@@ -18,8 +18,8 @@ corresponding to teams, matching the output of bradley.terry()}
 \item{bracket.picks}{an length-63 character vector encoding your picks
 (this is the bracket to be evaluated)}
 
-\item{pool.size}{number of brackets in your pool, matters only if
-criterion == "win" (default is 30)}
+\item{pool.size}{number of brackets in your pool (excluding yours), matters
+only if criterion == "win" (default is 30)}
 
 \item{num.sims}{number of simulations over which to evaluate the candidate
 brackets (default is 1000)}

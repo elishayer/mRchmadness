@@ -6,8 +6,8 @@
 #'   corresponding to teams, matching the output of bradley.terry()
 #' @param bracket.picks an length-63 character vector encoding your picks
 #'   (this is the bracket to be evaluated)
-#' @param pool.size number of brackets in your pool, matters only if
-#'   criterion == "win" (default is 30)
+#' @param pool.size number of brackets in your pool (excluding yours), matters
+#'   only if criterion == "win" (default is 30)
 #' @param num.sims number of simulations over which to evaluate the candidate
 #'   brackets (default is 1000)
 #' @param bonus.round a length-6 vector giving the number of points awarded in
@@ -35,6 +35,9 @@ test.bracket = function(bracket.empty, probability.matrix, bracket.picks,
   }
   if (length(bracket.picks) != 63) {
     stop("Length of bracket.picks must be 63.")
+  }
+  if (pool.size < 2) {
+    stop("pool.size must be at least 2")
   }
 
 # Simulate the rest of the pool for all simulations

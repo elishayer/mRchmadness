@@ -4,9 +4,9 @@
 \alias{find.bracket}
 \title{Fill out a bracket based on some criteria}
 \usage{
-find.bracket(bracket.empty, probability.matrix, pool.size = 30,
-  num.candidates = 100, num.sims = 1000, criterion = c("percentile",
-  "score", "win"), bonus.round = c(1, 2, 4, 8, 16, 32), bonus.seed = rep(0,
+find.bracket(bracket.empty, probability.matrix, num.candidates = 100,
+  num.sims = 1000, criterion = c("percentile", "score", "win"),
+  pool.size = 30, bonus.round = c(1, 2, 4, 8, 16, 32), bonus.seed = rep(0,
   16), bonus.combine = c("add", "multiply"))
 }
 \arguments{
@@ -15,9 +15,6 @@ teams in the tournament, in order of initial overall seeding}
 
 \item{probability.matrix}{a matrix of probabilities, with rows and columns
 corresponding to teams, matching the output of bradley.terry()}
-
-\item{pool.size}{number of brackets in your pool, matters only if
-criterion == "win" (default is 30)}
 
 \item{num.candidates}{number of random brackets to try, taking the best one
 (default is 100)}
@@ -29,6 +26,9 @@ brackets (default is 1000)}
 "percentile" (default, maximize expected percentile within pool),
 "score" (maximize expected number of points) or "win" (maximize probabilty
 of winning pool).}
+
+\item{pool.size}{number of brackets in your pool (excluding yours), matters
+only if criterion == "win" (default is 30)}
 
 \item{bonus.round}{a length-6 vector giving the number of points awarded in
 your pool's scoring rules for correct picks in each round (default is
@@ -45,8 +45,9 @@ multiply}
 Fill out a bracket based on some criteria
 }
 \examples{
-probability.matrix = bradley.terry(games.2017)
-find.bracket(bracket.2017, probability.matrix)
+probability.matrix = bradley.terry(games = games.2017)
+find.bracket(bracket.empty = bracket.2017,
+             probability.matrix = probability.matrix)
 }
 \author{
 sspowers
