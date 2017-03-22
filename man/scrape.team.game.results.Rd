@@ -8,6 +8,8 @@ scrape.team.game.results(year, id)
 }
 \arguments{
 \item{year}{a character value representing a year}
+
+\item{id}{a character value for an ESPN team id}
 }
 \value{
 data.frame of game data for the team-year

@@ -5,7 +5,7 @@ Authors@R: c(
   person("Eli", "Shayer", email = "eshayer@stanford.edu",
     role = c("aut", "cre")),
   person("Scott", "Powers", email = "sspowers@stanford.edu", role = "aut"))
-URL: https://github.com/eshayer/mRchmadness
+URL: https://github.com/elishayer/mRchmadness
 Imports:
   dplyr,
   glmnet,
@@ -16,7 +16,7 @@ Description: Scrape season results, estimate win probabilities, and find a
   competitive bracket for your office pool. Additional utilities include:
   scraping population picks; simulating tournament results; and testing your
   bracket in simulation.
-Depends: R (>= 3.3.2)
+Depends: R (>= 3.3.0)
 License: GPL-2
 Encoding: UTF-8
 LazyData: true

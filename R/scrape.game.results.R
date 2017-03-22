@@ -82,6 +82,7 @@ scrape.teams = function() {
 
 #' Scrape game results for a single team-year combination
 #' @param year a character value representing a year
+#' @param id a character value for an ESPN team id
 #' @return data.frame of game data for the team-year
 #' @author eshayer
 scrape.team.game.results = function(year, id) {
