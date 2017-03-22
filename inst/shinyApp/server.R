@@ -1,4 +1,4 @@
-bt.prob.matrix = mRchmadness::bradley.terry(games.2017)
+bt.prob.matrix = mRchmadness::bradley.terry(mRchmadness::games.2017)
 
 criterion.map = matrix(c('percentile', 'score', 'win'),
                        dimnames = list(c('Percentile',
@@ -14,7 +14,7 @@ shiny::shinyServer(function(input, output) {
   num.sims = shiny::eventReactive(input$btn.optimal, {input$num.sims})
   
   output$bracket.empty.plot = shiny::renderPlot({
-    draw.bracket(bracket.2017)
+    mRchmadness::draw.bracket(bracket.2017)
   })
   
   output$bracket.filled.plot = shiny::renderPlot({
@@ -33,7 +33,7 @@ shiny::shinyServer(function(input, output) {
     # only bt for now, until 538 is ready to go
     prob.matrix = bt.prob.matrix
     
-    bracket.filled = find.bracket(bracket.empty = bracket.2017,
+    bracket.filled = mRchmadness::find.bracket(bracket.empty = bracket.2017,
                                   probability.matrix = prob.matrix,
                                   num.candidates = num.brackets(),
                                   num.sims = num.sims(),
@@ -43,6 +43,6 @@ shiny::shinyServer(function(input, output) {
                                   bonus.seed = bonus.seed,
                                   bonus.combine = bonus.combine)
     
-    draw.bracket(bracket.2017, bracket.filled)
+    mRchmadness::draw.bracket(bracket.2017, bracket.filled)
   })
 })
