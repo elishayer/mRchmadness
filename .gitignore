@@ -3,3 +3,4 @@ mRchmadness.Rcheck
 .Rhistory
 .DS_Store
 ..Rcheck
+inst/doc
