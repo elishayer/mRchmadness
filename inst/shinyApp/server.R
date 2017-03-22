@@ -14,7 +14,7 @@ shiny::shinyServer(function(input, output) {
   num.sims = shiny::eventReactive(input$btn.optimal, {input$num.sims})
   
   output$bracket.empty.plot = shiny::renderPlot({
-    mRchmadness::draw.bracket(bracket.2017)
+    mRchmadness::draw.bracket(mRchmadness::bracket.2017)
   })
   
   output$bracket.filled.plot = shiny::renderPlot({
@@ -33,7 +33,8 @@ shiny::shinyServer(function(input, output) {
     # only bt for now, until 538 is ready to go
     prob.matrix = bt.prob.matrix
     
-    bracket.filled = mRchmadness::find.bracket(bracket.empty = bracket.2017,
+    bracket.filled = mRchmadness::find.bracket(bracket.empty =
+                                                 mRchmadness::bracket.2017,
                                   probability.matrix = prob.matrix,
                                   num.candidates = num.brackets(),
                                   num.sims = num.sims(),
@@ -43,6 +44,6 @@ shiny::shinyServer(function(input, output) {
                                   bonus.seed = bonus.seed,
                                   bonus.combine = bonus.combine)
     
-    mRchmadness::draw.bracket(bracket.2017, bracket.filled)
+    mRchmadness::draw.bracket(mRchmadness::bracket.2017, bracket.filled)
   })
 })
