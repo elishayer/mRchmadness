@@ -5,7 +5,7 @@ Authors@R: c(
   person("Eli", "Shayer", email = "eshayer@stanford.edu",
     role = c("aut", "cre")),
   person("Scott", "Powers", email = "sspowers@stanford.edu", role = "aut"))
-URL: https://github.com/eshayer/mRchmadness
+URL: https://github.com/elishayer/mRchmadness
 Imports:
   dplyr,
   glmnet,
