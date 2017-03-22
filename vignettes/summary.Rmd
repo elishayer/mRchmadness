@@ -92,7 +92,7 @@ as it's a character vector of length 64. Once you've done so, you can use the **
 function to play out your own personal tournament and the **draw.bracket** function to display
 the outcome.
 
-```{r,dpi=150,fig.height=6,fig.width=6,out.height="500px",out.width="700px"}
+```{r,dpi=150,fig.height=6,fig.width=8,out.height="500px",out.width="700px"}
 set.seed(2017)
 outcome = sim.bracket(bracket.empty = bracket.2017, probability.matrix = probability.matrix)
 draw.bracket(bracket.empty = bracket.2017, bracket.filled = outcome)
