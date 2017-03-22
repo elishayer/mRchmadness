@@ -63,4 +63,3 @@ sim.bracket = function(bracket.empty, probability.matrix, num.reps = 1) {
   }
   outcome
 }
-
