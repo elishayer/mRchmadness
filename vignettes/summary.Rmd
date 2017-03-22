@@ -92,7 +92,7 @@ as it's a character vector of length 64. Once you've done so, you can use the **
 function to play out your own personal tournament and the **draw.bracket** function to display
 the outcome.
 
-```{r,dpi=150,fig.height=7,fig.width=10,out.height="300px",out.width="700px"}
+```{r,dpi=150,fig.height=6,fig.width=6,out.height="500px",out.width="700px"}
 set.seed(2017)
 outcome = sim.bracket(bracket.empty = bracket.2017, probability.matrix = probability.matrix)
 draw.bracket(bracket.empty = bracket.2017, bracket.filled = outcome)
@@ -115,7 +115,7 @@ You can also customize these results based on the scoring rules and size (exclud
 pool. Below we search for a good bracket to use if we want to maximize our chances of winning a
 pool with 30 other people in it, using the default scoring rules for CBS Sports.
 
-```{r,dpi=150,fig.height=7,fig.width=10,out.height="300px",out.width="700px"}
+```{r,dpi=150,fig.height=6,fig.width=10,out.height="500px",out.width="500px"}
 set.seed(42)
 my.bracket = find.bracket(bracket.empty = bracket.2017, probability.matrix = probability.matrix,
                           num.candidates = 100, num.sims = 1000, criterion = "win",
