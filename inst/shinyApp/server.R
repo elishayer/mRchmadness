@@ -1,4 +1,4 @@
-bt.prob.matrix = bradley.terry(games.2017)
+bt.prob.matrix = mRchmadness::bradley.terry(games.2017)
 
 criterion.map = matrix(c('percentile', 'score', 'win'),
                        dimnames = list(c('Percentile',
