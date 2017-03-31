@@ -16,14 +16,20 @@
 #' sim.bracket(bracket.2017, probability.matrix)
 #' @export
 #' @author sspowers
-sim.bracket = function(bracket.empty, probability.matrix, num.reps = 1) {
+sim.bracket.by.round = function(bracket.empty, probability.matrix,
+  num.reps = 1, source = c("population", "538", "KenPom")) {
 
   `%>%` = dplyr::`%>%`
+
+  source = match.arg(source)
 
 # Sanitize inputs
   if (length(bracket.empty) != 64) {
     stop("Length of bracket.empty must be 64.")
   }
+
+  if (source == "population") {
+    mRchmadness::
 
 # Prepare matrix in which to store the outcomes of the simulation
   outcome = matrix('', 63, num.reps)
@@ -61,9 +67,6 @@ sim.bracket = function(bracket.empty, probability.matrix, num.reps = 1) {
     outcome[cbind(c(rows), c(columns))] = rep(winners, times = ncol(rows))
   }
 
-
-
-
 # The following chunk of code is a currently necessary evil.
 # To simulate quickly, teams need to be in matchup order, but we want to
 # store the outcome in seed order within each round.
@@ -78,17 +81,9 @@ sim.bracket = function(bracket.empty, probability.matrix, num.reps = 1) {
   untangling.indices[[5]] = 1:2 %>% unfold(1)
   untangling.indices[[6]] = 1
 
-# Loop over rounds (simulate round for all simulations simultaneously)
-  for (r in 1:6) {
-# Represent games as 2-column matrix with one row for each game
-    matchups = matrix(teams, nrow = 2^(6 - r) * num.reps, ncol = 2,
-      byrow = TRUE)
-# Randomly select one team from each row of matchup matrix
-    teams = matchups[1:nrow(matchups) + nrow(matchups) *
-      (1 - stats::rbinom(nrow(matchups), 1, probability.matrix[matchups]))]
-# Store outcomes from this round (across all simulations) in corresponding rows
-    outcome[round == r, ] = matrix(teams, nrow = 2^(6 - r),
-      ncol = num.reps)[untangling.indices[[r]], ]
+  for (r in 1:5) {
+    outcome[round == r, ] = outcome[round == r, ][untangling.indices[[r]], ]
   }
+
   outcome
 }
