@@ -16,11 +16,13 @@
 #' sim.bracket(bracket.2017, probability.matrix)
 #' @export
 #' @author sspowers
-sim.bracket = function(bracket.empty, probability.matrix, num.reps = 1) {
+sim.bracket = function(bracket.empty, prob.matrix = NULL,
+  prob.source = c("pop", "Pom", "538"), year = 2017, num.reps = 1) {
 
   `%>%` = dplyr::`%>%`
 
 # Sanitize inputs
+  prob.source = match.arg(prob.source)
   if (length(bracket.empty) != 64) {
     stop("Length of bracket.empty must be 64.")
   }
@@ -48,6 +50,20 @@ sim.bracket = function(bracket.empty, probability.matrix, num.reps = 1) {
   untangling.indices[[4]] = 1:4 %>% unfold(2) %>% unfold(1)
   untangling.indices[[5]] = 1:2 %>% unfold(1)
   untangling.indices[[6]] = 1
+
+  if (!is.null(prob.matrix)) {
+    outcome = sim.bracket.matrix(bracket.empty = bracket.empty,
+      prob.matrix = prob.matrix, num.reps = num.reps,
+      outcome = outcome, round = round, teams = teams,
+      untangling.indices = untangling.indices)
+  } else {
+    outcome = sim.bracket.source(bracket.empty = bracket.empty,
+      prob.source = prob.source, year = year, num.reps = num.reps,
+      outcome = outcome, round = round, teams = teams,
+      untangling.indices = untangling.indices)
+  }
+  outcome
+}
 
 # Loop over rounds (simulate round for all simulations simultaneously)
   for (r in 1:6) {
