@@ -22,9 +22,16 @@ draw.bracket = function(bracket.empty, bracket.filled = NULL) {
     stop("Length of bracket.empty (if specified) must be 63.")
   }
 
+# Convert team IDs into names
+  team.names = mRchmadness::teams$name
+  names(team.names) = mRchmadness::teams$id
+  bracket.empty = as.character(team.names[bracket.empty])
+  bracket.filled = as.character(team.names[bracket.filled])
+
 # append "seed" to beginning of team names
   seed = rep(1:16, each = 4)
   names(seed) = bracket.empty
+  bracket.empty = paste(seed, bracket.empty)
 
 # convert initial team placement from seed order to matchup order
   bracket.empty = paste(seed, bracket.empty) %>% fold(1) %>% fold(2) %>%
