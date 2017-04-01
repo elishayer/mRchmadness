@@ -21,28 +21,33 @@ bradley.terry <- function(games) {
     stop(paste("games much be 'data.frame' with columns", columns))
   }
 
-# Construct design matrix for Bradley-Terry model: +1 for home, -1 for away
-  x = Matrix::sparseMatrix(1:nrow(games),
-    as.numeric(as.factor(games$home.id))) -
-    Matrix::sparseMatrix(1:nrow(games),
-    as.numeric(as.factor(games$away.id)))
+# Construct design matrix for Bradley-Terry model:
+# First column: 0 if neutral location, 1 otherwise
+# All other columns correspond to teams --- +1 in row means that team is home
+# for corresponding game, -1 means that team is away.
+  x = Matrix::sparseMatrix(
+    i = c(which(games$neutral == 0), rep(1:nrow(games), 2)),
+    j = c(rep(1, sum(games$neutral == 0)),
+      1 + as.numeric(as.factor(c(games$home.id, games$away.id)))),
+    x = c(rep(1, sum(games$neutral == 0)), rep(c(1, -1), each = nrow(games))))
 
-# Build response vector: home score minus away score
+# Build response vector: home score minus away score (0 if game went overtime)
   y = as.numeric(games$home.score) - as.numeric(games$away.score)
+  y[games$ot != ""] = 0
 
 # Fit model via ridge regression
 # Choose lambda to minimize cross-validation error
   fit = glmnet::cv.glmnet(x, y, alpha = 0, standardize = FALSE,
-    lambda = exp(seq(5, -10, length = 100)))
+    intercept = FALSE, lambda = exp(seq(5, -10, length = 100)))
   beta = stats::coef(fit, s = 'lambda.min')[-1, 1]
-  names(beta) = sort(unique(games$home.id))
+  names(beta) = c("home", sort(unique(games$home.id)))
 
 # Estimate variance in score differential
   sigma = sqrt(mean((y - stats::predict(fit, x, s = 'lambda.min'))^2))
 
 # Get estimated point spread for each possible matchup
-  point.spread.matrix = beta -
-    matrix(beta, nrow = length(beta), ncol = length(beta), byrow = TRUE)
+  point.spread.matrix = beta[-1] -
+    matrix(beta[-1], nrow = length(beta), ncol = length(beta), byrow = TRUE)
 
 # Name the rows and columns of the matrix according to corresponding team
   rownames(point.spread.matrix) = colnames(point.spread.matrix) = names(beta)
