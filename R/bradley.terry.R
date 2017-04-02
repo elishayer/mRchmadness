@@ -46,11 +46,12 @@ bradley.terry <- function(games) {
   sigma = sqrt(mean((y - stats::predict(fit, x, s = 'lambda.min'))^2))
 
 # Get estimated point spread for each possible matchup
-  point.spread.matrix = beta[-1] -
-    matrix(beta[-1], nrow = length(beta), ncol = length(beta), byrow = TRUE)
+  point.spread.matrix = beta[-1] - matrix(beta[-1], nrow = length(beta) - 1,
+    ncol = length(beta) - 1, byrow = TRUE)
 
 # Name the rows and columns of the matrix according to corresponding team
-  rownames(point.spread.matrix) = colnames(point.spread.matrix) = names(beta)
+  rownames(point.spread.matrix) = colnames(point.spread.matrix) =
+    names(beta)[-1]
 
 # Convert point spreads into probability of winning
   stats::pnorm(point.spread.matrix, sd = sigma)

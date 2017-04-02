@@ -59,14 +59,12 @@ sim.bracket = function(bracket.empty, prob.matrix = NULL,
   untangling.indices[[6]] = 1
 
   if (!is.null(prob.matrix)) {
-    outcome = sim.bracket.matrix(bracket.empty = bracket.empty,
-      prob.matrix = prob.matrix, num.reps = num.reps,
-      outcome = outcome, round = round, teams = teams,
+    outcome = sim.bracket.matrix(prob.matrix = prob.matrix,
+      num.reps = num.reps, outcome = outcome, round = round, teams = teams,
       untangling.indices = untangling.indices)
   } else {
-    outcome = sim.bracket.source(bracket.empty = bracket.empty,
-      prob.source = prob.source, year = year, num.reps = num.reps,
-      outcome = outcome, round = round, teams = teams,
+    outcome = sim.bracket.source(prob.source = prob.source, year = year,
+      num.reps = num.reps, outcome = outcome, round = round, teams = teams,
       untangling.indices = untangling.indices)
   }
   outcome

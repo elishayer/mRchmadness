@@ -67,8 +67,8 @@ probability that North Carolina beats Duke, for example.
 
 ```{r}
 set.seed(1)
-probability.matrix = bradley.terry(games = games.2017)
-probability.matrix["153", "150"]
+prob.matrix = bradley.terry(games = games.2017)
+prob.matrix["153", "150"]
 ```
 
 Not satisfied with this model? Perhaps you'd trust the predictions of the pundits at
@@ -94,7 +94,7 @@ the outcome.
 
 ```{r,dpi=150,fig.height=6,fig.width=8,out.height="500px",out.width="700px"}
 set.seed(2017)
-outcome = sim.bracket(bracket.empty = bracket.2017, probability.matrix = probability.matrix)
+outcome = sim.bracket(bracket.empty = bracket.2017, prob.matrix = prob.matrix)
 draw.bracket(bracket.empty = bracket.2017, bracket.filled = outcome)
 ```
 
@@ -117,10 +117,10 @@ pool with 30 other people in it, using the default scoring rules for CBS Sports.
 
 ```{r,dpi=150,fig.height=6,fig.width=8,out.height="500px",out.width="700px"}
 set.seed(42)
-my.bracket = find.bracket(bracket.empty = bracket.2017, probability.matrix = probability.matrix,
-                          num.candidates = 100, num.sims = 1000, criterion = "win",
-                          pool.size = 30, bonus.round = c(1, 2, 4, 8, 16, 32),
-                          bonus.seed = rep(0, 16), bonus.combine = "add")
+my.bracket = find.bracket(bracket.empty = bracket.2017,
+  prob.matrix = prob.matrix, num.candidates = 100, num.sims = 1000,
+  criterion = "win", pool.size = 30, bonus.round = c(1, 2, 4, 8, 16, 32),
+  bonus.seed = rep(0, 16), bonus.combine = "add")
 draw.bracket(bracket.empty = bracket.2017, bracket.filled = my.bracket)
 ```
 
