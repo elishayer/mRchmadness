@@ -72,17 +72,3 @@ sim.bracket = function(bracket.empty, prob.matrix = NULL,
   outcome
 }
 
-# Loop over rounds (simulate round for all simulations simultaneously)
-  for (r in 1:6) {
-# Represent games as 2-column matrix with one row for each game
-    matchups = matrix(teams, nrow = 2^(6 - r) * num.reps, ncol = 2,
-      byrow = TRUE)
-# Randomly select one team from each row of matchup matrix
-    teams = matchups[1:nrow(matchups) + nrow(matchups) *
-      (1 - stats::rbinom(nrow(matchups), 1, prob.matrix[matchups]))]
-# Store outcomes from this round (across all simulations) in corresponding rows
-    outcome[round == r, ] = matrix(teams, nrow = 2^(6 - r),
-      ncol = num.reps)[untangling.indices[[r]], ]
-  }
-  outcome
-}
