@@ -32,7 +32,9 @@
 #'              probability.matrix = probability.matrix)
 #' @export
 #' @author sspowers
-find.bracket = function(bracket.empty, probability.matrix,
+find.bracket = function(bracket.empty, prob.matrix = NULL,
+  prob.source = c("pop", "Pom", "538"),
+  pool.source = c("pop", "Pom", "538"), year = 2017,
   num.candidates = 100, num.sims = 1000,
   criterion = c("percentile", "score", "win"), pool.size = 30,
   bonus.round = c(1, 2, 4, 8, 16, 32), bonus.seed = rep(0, 16),
@@ -47,20 +49,22 @@ find.bracket = function(bracket.empty, probability.matrix,
   if (!is.numeric(bonus.seed) | length(bonus.seed) != 16) {
     stop("bonus.seed must be length-16 numeric vector")
   }
-  if (pool.size < 2) {
-    stop("pool.size must be at least 2")
+  if (pool.size < 1) {
+    stop("pool.size must be at least 1")
   }
 
 # Simulate the brackets to be considered
-  candidates = sim.bracket(bracket.empty, probability.matrix,
+  candidates = sim.bracket(bracket.empty = bracket.empty,
+    prob.matrix = prob.matrix, prob.source = prob.source, year = year,
     num.reps = num.candidates)
 
 # Simulate all of the pools (across all simulations)
-  pool = sim.bracket(bracket.empty, probability.matrix,
-    num.reps = num.sims * pool.size)
+  pool = sim.bracket(bracket.empty = bracket.empty, prob.source = pool.source,
+    year = year, num.reps = num.sims * pool.size)
 
 # Simulate all of the outcomes
-  outcome = sim.bracket(bracket.empty, probability.matrix,
+  outcome = sim.bracket(bracket.empty = bracket.empty,
+    prob.matrix = prob.matrix, prob.source = prob.source, year = year,
     num.reps = num.sims)
 
 # Prepare matrix to store all bracket scores
@@ -90,7 +94,8 @@ find.bracket = function(bracket.empty, probability.matrix,
 
 # Find bracket which wins most
   if (criterion == "win") {
-    win = score[-(1:pool.size), ] >= apply(score[1:pool.size, ], 2, max)
+    win = score[-(1:pool.size), ] >=
+      apply(score[1:pool.size, , drop = FALSE], 2, max)
     return(candidates[, which.max(rowMeans(win))])
   }
 }  

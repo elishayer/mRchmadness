@@ -24,7 +24,9 @@
 #' result = test.bracket(bracket.2017, probability.matrix, my.bracket)
 #' @export
 #' @author sspowers
-test.bracket = function(bracket.empty, probability.matrix, bracket.picks,
+test.bracket = function(bracket.empty, bracket.picks, prob.matrix = NULL,
+  prob.source = c("pop", "Pom", "538"),
+  pool.source = c("pop", "Pom", "538"), year = 2017,
   pool.size = 30, num.sims = 1000,
   bonus.round = c(1, 2, 4, 8, 16, 32), bonus.seed = rep(0, 16),
   bonus.combine = c("add", "multiply")) {
@@ -41,10 +43,11 @@ test.bracket = function(bracket.empty, probability.matrix, bracket.picks,
   }
 
 # Simulate the rest of the pool for all simulations
-  pool = sim.bracket(bracket.empty, probability.matrix,
-    num.reps = num.sims * pool.size)
+  pool = sim.bracket(bracket.empty = bracket.empty, prob.source = pool.source,
+    year = year, num.reps = num.sims * pool.size)
 # Simulate the outcome for all simulations
-  outcome = sim.bracket(bracket.empty, probability.matrix,
+  outcome = sim.bracket(bracket.empty = bracket.empty,
+    prob.matrix = prob.matrix, prob.source = prob.source, year = year,
     num.reps = num.sims)
 
 # Set up the matrix to hold the scores of all brackets in pool
