@@ -2,10 +2,19 @@
 #'
 #' @param bracket.empty a length-64 character vector giving the field of 64
 #'   teams in the tournament, in order of initial overall seeding
-#' @param probability.matrix a matrix of probabilities, with rows and columns
-#'   corresponding to teams, matching the output of bradley.terry()
 #' @param bracket.picks an length-63 character vector encoding your picks
 #'   (this is the bracket to be evaluated)
+#' @param prob.matrix a matrix of probabilities, with rows and columns
+#'   corresponding to teams, matching the output of bradley.terry().
+#'   This probabilities are used to simulate outcomes on
+#'   which to evaluate bracket.picks. If NULL, prob.source is used.
+#' @param prob.source source from which to use round probabilities to simulate
+#'   outcomes --- "pop": ESPN's population of picks (default),
+#'   "Pom": Ken Pomeroy's predictions (kenpom.com), or
+#'   "538": predictions form fivethirtyeight.com.
+#'   Ignored if prob.matrix is specified.
+#' @param year year of tournament, used for prob.source.
+#'   Ignored if prob.matrix is specified.
 #' @param pool.size number of brackets in your pool (excluding yours), matters
 #'   only if criterion == "win" (default is 30)
 #' @param num.sims number of simulations over which to evaluate the candidate
@@ -19,9 +28,12 @@
 #'   get the number of points awarded for each correct pick: "add" (default) or
 #'   multiply
 #' @examples
-#' probability.matrix = bradley.terry(games.2017)
-#' my.bracket = find.bracket(bracket.2017, probability.matrix)
-#' result = test.bracket(bracket.2017, probability.matrix, my.bracket)
+#' prob.matrix = bradley.terry(games = games.2017)
+#' my.bracket = find.bracket(bracket.empty = bracket.2017,
+#'   prob.matrix = prob.matrix, pool.soure = "pop")
+#' result = test.bracket(bracket.empty = bracket.2017,
+#'   bracket.picks = my.bracket, prob.matrix = prob.matrix,
+#'   pool.source = "pop", year = 2017)
 #' @export
 #' @author sspowers
 test.bracket = function(bracket.empty, bracket.picks, prob.matrix = NULL,

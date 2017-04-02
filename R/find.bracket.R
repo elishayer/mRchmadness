@@ -2,8 +2,18 @@
 #'
 #' @param bracket.empty a length-64 character vector giving the field of 64
 #'   teams in the tournament, in order of initial overall seeding
-#' @param probability.matrix a matrix of probabilities, with rows and columns
-#'   corresponding to teams, matching the output of bradley.terry()
+#' @param prob.matrix a matrix of probabilities, with rows and columns
+#'   corresponding to teams, matching the output of bradley.terry().
+#'   This probabilities are used to simulate candidate brackets and outcomes on
+#'   which to evaluate the candidates. If NULL, prob.source is used.
+#' @param prob.source source from which to use round probabilities to simulate
+#'   candidate brackets and outcomes --- "pop": ESPN's population of picks
+#'   (default), "Pom": Ken Pomeroy's predictions (kenpom.com), or
+#'   "538": predictions form fivethirtyeight.com.
+#'   Ignored if prob.matrix is specified.
+#' @param pool.source source from which to use round probabilities to simulate
+#'   entries of opponents in pool. Same options as prob.source.
+#' @param year year of tournament, used for prob.source and pool.source
 #' @param num.candidates number of random brackets to try, taking the best one
 #'   (default is 100)
 #' @param num.sims number of simulations over which to evaluate the candidate
@@ -27,9 +37,8 @@
 #'   tried, across num.sims simulations of a pool of pool.size with scoring
 #'   rules specified by bonus.round, bonus.seed and bonus.combine
 #' @examples
-#' probability.matrix = bradley.terry(games = games.2017)
-#' find.bracket(bracket.empty = bracket.2017,
-#'              probability.matrix = probability.matrix)
+#' find.bracket(bracket.empty = bracket.2017, prob.source = "538",
+#'   pool.source = "pop", year = 2017)
 #' @export
 #' @author sspowers
 find.bracket = function(bracket.empty, prob.matrix = NULL,

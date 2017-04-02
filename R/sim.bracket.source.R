@@ -2,9 +2,16 @@
 #'
 #' @param bracket.empty a length-64 character vector giving the field of 64
 #'   teams in the tournament, in order of initial overall seeding
-#' @param probability.matrix a matrix of probabilities, with rows and columns
-#'   corresponding to teams, matching the output of bradley.terry()
-#' @param num.reps number of simulations to perform (default is 1)
+#' @param prob.source source from which to use round probabilities for
+#'   simulation --- "pop": ESPN's population of picks,
+#'   "Pom": Ken Pomeroy's predictions (kenpom.com), or
+#'   "538": predictions form fivethirtyeight.com.
+#' @param year year of tournament, used for prob.source.
+#' @param num.reps number of simulations to perform
+#' @param outcome passed in from sim.bracket()
+#' @param round passed in from sim.bracket()
+#' @param teams passed in from sim.bracket()
+#' @param untangling.indices passed in from sim.bracket()
 #' @return a 63-by-num.reps matrix storing the simulation outcome, each
 #'   column encoding the outcome for a single simulation in the following
 #'   order: seeds 1 through 32 after round 1, seeds 1 through 16 after round 2,

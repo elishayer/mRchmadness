@@ -2,8 +2,16 @@
 #'
 #' @param bracket.empty a length-64 character vector giving the field of 64
 #'   teams in the tournament, in order of initial overall seeding
-#' @param probability.matrix a matrix of probabilities, with rows and columns
-#'   corresponding to teams, matching the output of bradley.terry()
+#' @param prob.matrix a matrix of probabilities, with rows and columns
+#'   corresponding to teams, matching the output of bradley.terry().
+#'   If NULL, prob.source is used.
+#' @param prob.source source from which to use round probabilities for
+#'   simulation --- "pop": ESPN's population of picks (default),
+#'   "Pom": Ken Pomeroy's predictions (kenpom.com), or
+#'   "538": predictions form fivethirtyeight.com.
+#'   Ignored if prob.matrix is specified.
+#' @param year year of tournament, used for prob.source.
+#'   Ignored if prob.matrix is specified.
 #' @param num.reps number of simulations to perform (default is 1)
 #' @return a 63-by-num.reps matrix storing the simulation outcome, each
 #'   column encoding the outcome for a single simulation in the following
@@ -12,8 +20,7 @@
 #'   seeds 1 and 2 after round 5, and finally seed 1 after round 6 (the
 #'   champion)
 #' @examples
-#' probability.matrix = bradley.terry(games.2017)
-#' sim.bracket(bracket.2017, probability.matrix)
+#' sim.bracket(bracket.empty = bracket.2017, prob.source = "538", year = 2017)
 #' @export
 #' @author sspowers
 sim.bracket = function(bracket.empty, prob.matrix = NULL,
@@ -72,7 +79,7 @@ sim.bracket = function(bracket.empty, prob.matrix = NULL,
       byrow = TRUE)
 # Randomly select one team from each row of matchup matrix
     teams = matchups[1:nrow(matchups) + nrow(matchups) *
-      (1 - stats::rbinom(nrow(matchups), 1, probability.matrix[matchups]))]
+      (1 - stats::rbinom(nrow(matchups), 1, prob.matrix[matchups]))]
 # Store outcomes from this round (across all simulations) in corresponding rows
     outcome[round == r, ] = matrix(teams, nrow = 2^(6 - r),
       ncol = num.reps)[untangling.indices[[r]], ]
