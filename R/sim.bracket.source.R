@@ -19,20 +19,21 @@
 #'   seeds 1 and 2 after round 5, and finally seed 1 after round 6 (the
 #'   champion)
 #' @author sspowers
-sim.bracket.source = function(prob.source, year, num.reps,
+sim.bracket.source = function(bracket.empty, prob.source, year, num.reps,
   outcome, round, teams, untangling.indices) {
 
   `%>%` = dplyr::`%>%`
 
-# Load round probabilities from source and merge with teams dataframe to get id
-  prob = parse(text =
-      paste("mRchmadness::pred", prob.source, year, sep = ".")) %>%
-    eval() %>% dplyr::left_join(mRchmadness::teams,
-      by = c("name" = paste0("name.", prob.source)))
-  rownames(prob) = prob$id
+# Load round probabilities from source
+  prob = eval(parse(text =
+      paste("mRchmadness::pred", prob.source, year, sep = ".")))
+
+# Get team ids to match tournament teams to probabilities from source
+  team.id = as.character(mRchmadness::teams$id)
+  names(team.id) = mRchmadness::teams[, paste0("name.", prob.source)]
 
 # Check that we have predictions for all teams in bracket
-  missing.teams = setdiff(teams, prob$id)
+  missing.teams = setdiff(teams, team.id)
   if (length(missing.teams) > 0) {
     print(mRchmadness::teams %>% dplyr::filter(id %in% missing.teams))
     stop("No predictions from source for above teams. Is year correct?")
@@ -42,20 +43,23 @@ sim.bracket.source = function(prob.source, year, num.reps,
 # minus probability of winning in round r+1. This is the probability of winning
 # in round r and losing in round r+1, which is how we draw winners of each
 # round.
-  prob.derived = -prob[teams, grep("round", colnames(prob))] %>%
-    apply(MARGIN = 1, FUN = diff) %>% t() %>% cbind(prob[teams, "round6"])
-  rownames(prob.derived) = colnames(prob.derived) = NULL
+  prob.derived = -prob[, grep("round", colnames(prob))] %>%
+    apply(MARGIN = 1, FUN = diff) %>% t() %>% cbind(prob$round6)
+  rownames(prob.derived) = team.id[as.character(prob$name)]
+  colnames(prob.derived) = paste0("round", 1:6)
+  prob.derived = prob.derived[teams, ]
 
 # Set up the variable to store the path (in terms of game #) that each team
 # would need to take to get to the championship. This will be used later to
 # ensure that teams who win in round r also win in rounds r-1, ..., 1.
   path = matrix(0, 64, 6)
+  rownames(path) = bracket.empty
 
 # Simulate winners of each round
   for (r in 1:6) {
     path[, r] = max(path) + rep(seq(2^(6-r)), each = 2^r)
 # Split teams into groups eligible for each slot in the bracket
-    groups = split(1:64, f = path[, r])
+    groups = split(bracket.empty, f = path[, r])
 # Choose among those eligible teams within each group based on derived probs
     outcome[round == r, ] = t(sapply(groups, function(i) {
       sample(i, num.reps, prob = prob.derived[i, 6], replace = TRUE)}))
@@ -66,7 +70,7 @@ sim.bracket.source = function(prob.source, year, num.reps,
 # Identify winners of round r
     winners = outcome[round == r, , drop = FALSE]
 # Find all games those winners must of won in rounds r-1, ..., 1
-    rows = path[as.numeric(winners), 1:(r-1), drop = FALSE]
+    rows = path[winners, 1:(r-1), drop = FALSE]
 # Find which simulation to which each of those games corresponds
     columns = matrix(rep(1:num.reps, each = nrow(winners)),
       nrow = length(winners), ncol = r - 1)

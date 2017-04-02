@@ -4,17 +4,31 @@
 \alias{find.bracket}
 \title{Fill out a bracket based on some criteria}
 \usage{
-find.bracket(bracket.empty, probability.matrix, num.candidates = 100,
-  num.sims = 1000, criterion = c("percentile", "score", "win"),
-  pool.size = 30, bonus.round = c(1, 2, 4, 8, 16, 32), bonus.seed = rep(0,
-  16), bonus.combine = c("add", "multiply"))
+find.bracket(bracket.empty, prob.matrix = NULL, prob.source = c("pop",
+  "Pom", "538"), pool.source = c("pop", "Pom", "538"), year = 2017,
+  num.candidates = 100, num.sims = 1000, criterion = c("percentile",
+  "score", "win"), pool.size = 30, bonus.round = c(1, 2, 4, 8, 16, 32),
+  bonus.seed = rep(0, 16), bonus.combine = c("add", "multiply"))
 }
 \arguments{
 \item{bracket.empty}{a length-64 character vector giving the field of 64
 teams in the tournament, in order of initial overall seeding}
 
-\item{probability.matrix}{a matrix of probabilities, with rows and columns
-corresponding to teams, matching the output of bradley.terry()}
+\item{prob.matrix}{a matrix of probabilities, with rows and columns
+corresponding to teams, matching the output of bradley.terry().
+This probabilities are used to simulate candidate brackets and outcomes on
+which to evaluate the candidates. If NULL, prob.source is used.}
+
+\item{prob.source}{source from which to use round probabilities to simulate
+candidate brackets and outcomes --- "pop": ESPN's population of picks
+(default), "Pom": Ken Pomeroy's predictions (kenpom.com), or
+"538": predictions form fivethirtyeight.com.
+Ignored if prob.matrix is specified.}
+
+\item{pool.source}{source from which to use round probabilities to simulate
+entries of opponents in pool. Same options as prob.source.}
+
+\item{year}{year of tournament, used for prob.source and pool.source}
 
 \item{num.candidates}{number of random brackets to try, taking the best one
 (default is 100)}
@@ -51,9 +65,8 @@ the length-63 character vector describing the filled bracket which
 Fill out a bracket based on some criteria
 }
 \examples{
-probability.matrix = bradley.terry(games = games.2017)
-find.bracket(bracket.empty = bracket.2017,
-             probability.matrix = probability.matrix)
+find.bracket(bracket.empty = bracket.2017, prob.source = "538",
+  pool.source = "pop", year = 2017)
 }
 \author{
 sspowers

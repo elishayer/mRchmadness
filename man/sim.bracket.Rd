@@ -4,14 +4,25 @@
 \alias{sim.bracket}
 \title{Simulate the full bracket starting with an empty bracket}
 \usage{
-sim.bracket(bracket.empty, probability.matrix, num.reps = 1)
+sim.bracket(bracket.empty, prob.matrix = NULL, prob.source = c("pop", "Pom",
+  "538"), year = 2017, num.reps = 1)
 }
 \arguments{
 \item{bracket.empty}{a length-64 character vector giving the field of 64
 teams in the tournament, in order of initial overall seeding}
 
-\item{probability.matrix}{a matrix of probabilities, with rows and columns
-corresponding to teams, matching the output of bradley.terry()}
+\item{prob.matrix}{a matrix of probabilities, with rows and columns
+corresponding to teams, matching the output of bradley.terry().
+If NULL, prob.source is used.}
+
+\item{prob.source}{source from which to use round probabilities for
+simulation --- "pop": ESPN's population of picks (default),
+"Pom": Ken Pomeroy's predictions (kenpom.com), or
+"538": predictions form fivethirtyeight.com.
+Ignored if prob.matrix is specified.}
+
+\item{year}{year of tournament, used for prob.source.
+Ignored if prob.matrix is specified.}
 
 \item{num.reps}{number of simulations to perform (default is 1)}
 }
@@ -27,8 +38,7 @@ a 63-by-num.reps matrix storing the simulation outcome, each
 Simulate the full bracket starting with an empty bracket
 }
 \examples{
-probability.matrix = bradley.terry(games.2017)
-sim.bracket(bracket.2017, probability.matrix)
+sim.bracket(bracket.empty = bracket.2017, prob.source = "538", year = 2017)
 }
 \author{
 sspowers

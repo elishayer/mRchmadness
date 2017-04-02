@@ -132,10 +132,10 @@ expected score, expected percentile and probability of winning.
 
 ```{r}
 set.seed(8675309)
-test = test.bracket(bracket.empty = bracket.2017, probability.matrix = probability.matrix,
-                    bracket.picks = my.bracket, pool.size = 30, num.sims = 1000,
-                    bonus.round = c(1, 2, 4, 8, 16, 32), bonus.seed = rep(0, 16),
-                    bonus.combine = "add")
+test = test.bracket(bracket.empty = bracket.2017, bracket.picks = my.bracket,
+  prob.matrix = prob.matrix, pool.size = 30, num.sims = 1000,
+  bonus.round = c(1, 2, 4, 8, 16, 32), bonus.seed = rep(0, 16),
+  bonus.combine = "add")
 hist(test$score, breaks = 20)
 hist(test$percentile, breaks = 20)
 mean(test$win)

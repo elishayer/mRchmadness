@@ -32,7 +32,6 @@ draw.bracket = function(bracket.empty, bracket.filled = NULL) {
 # append "seed" to beginning of team names
   seed = rep(1:16, each = 4)
   names(seed) = bracket.empty
-  bracket.empty = paste(seed, bracket.empty)
 
 # convert initial team placement from seed order to matchup order
   bracket.empty = paste(seed, bracket.empty) %>% fold(1) %>% fold(2) %>%

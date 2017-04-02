@@ -7,6 +7,6 @@
 \description{
 This dataset contains the ESPN team ids of the
   64 teams in the 2017 March Madness bracket specified by
-  ESPN team id. The teams are ordered by overall side, such
+  ESPN team id. The teams are ordered by overall seed, such
   that the first four team ids correspond to the four #1 seeds.
 }

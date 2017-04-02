@@ -20,7 +20,7 @@ matrix of win probabilities, with rows and columns labeled by team.
 Fit a Bradley-Terry model on game score data
 }
 \examples{
-  probability.matrix = bradley.terry(games.2017)
+  prob = bradley.terry(games = games.2017)
 }
 \author{
 sspowers

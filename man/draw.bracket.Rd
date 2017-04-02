@@ -17,9 +17,10 @@ tournament results (matching output from simulate.bracket)}
 Plot bracket to device
 }
 \examples{
-probability.matrix = bradley.terry(games.2017)
-picks = sim.bracket(bracket.2017, probability.matrix)
-draw.bracket(bracket.2017, picks)
+  prob.matrix = bradley.terry(games = games.2017)
+  outcome = sim.bracket(bracket.empty = bracket.2017,
+  prob.matrix = prob.matrix)
+draw.bracket(bracket.empty = bracket.2017, bracket.filled = outcome)
 }
 \author{
 sspowers
