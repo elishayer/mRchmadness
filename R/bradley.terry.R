@@ -7,7 +7,7 @@
 #'   Each entry gives the probability of the team corresponding to that row
 #'   beating the team corresponding to that column.
 #' @examples
-#'   probability.matrix = bradley.terry(games.2017)
+#'   prob = bradley.terry(games = games.2017)
 #' @export
 #' @author sspowers
 bradley.terry <- function(games) {

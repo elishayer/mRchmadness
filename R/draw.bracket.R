@@ -5,9 +5,10 @@
 #' @param bracket.filled an optional length-63 character vector encoding
 #'   tournament results (matching output from simulate.bracket)
 #' @examples
-#' probability.matrix = bradley.terry(games.2017)
-#' picks = sim.bracket(bracket.2017, probability.matrix)
-#' draw.bracket(bracket.2017, picks)
+#'   prob.matrix = bradley.terry(games = games.2017)
+#'   outcome = sim.bracket(bracket.empty = bracket.2017,
+#'   prob.matrix = prob.matrix)
+#' draw.bracket(bracket.empty = bracket.2017, bracket.filled = outcome)
 #' @export
 #' @author sspowers
 draw.bracket = function(bracket.empty, bracket.filled = NULL) {
