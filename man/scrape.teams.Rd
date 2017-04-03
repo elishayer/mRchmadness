@@ -4,7 +4,10 @@
 \alias{scrape.teams}
 \title{Scrape the team names and ids from the ESPN NCAA MBB index}
 \usage{
-scrape.teams()
+scrape.teams(sex)
+}
+\arguments{
+\item{sex}{either 'mens' or 'womens'}
 }
 \value{
 data.frame of team names and ids

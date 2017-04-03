@@ -1,7 +1,6 @@
 #' Run the Shiny app allowing for interaction with the bracket
 #' production given user-entered criteria
 #'
-#' @example run.app()
 #' @author eshayer
 #' @export
 #' @importFrom shiny runApp

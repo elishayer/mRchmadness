@@ -4,10 +4,12 @@
 \alias{scrape.game.results}
 \title{Scrape the game-by-game results of the NCAA MBB seaon}
 \usage{
-scrape.game.results(year)
+scrape.game.results(year, sex = c("mens", "womens"))
 }
 \arguments{
 \item{year}{a numeric value of the year, between 2002 and 2017 inclusive}
+
+\item{sex}{either 'mens' or 'womens'}
 }
 \value{
 data.frame with game-by-game results
