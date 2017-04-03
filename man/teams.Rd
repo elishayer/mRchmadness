@@ -3,7 +3,7 @@
 \name{teams}
 \alias{teams}
 \title{NCAA Men's Basketball Teams}
-\format{data frame with 64 rows and 4 variables}
+\format{data frame with 351 rows and 4 variables}
 \source{
 \url{http://www.espn.com/mens-college-basketball/teams}
 }
