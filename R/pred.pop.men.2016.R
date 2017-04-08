@@ -1,4 +1,4 @@
-#' @name pred.pop.2016
+#' @name pred.pop.men.2016
 #' @title 2016 March Madness Population Pick Distribution
 #' @description This dataset contains the percent of brackets submitted
 #'   to ESPN that include each of the 64 teams in March Madness 2016

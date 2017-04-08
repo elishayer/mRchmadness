@@ -1,4 +1,4 @@
-#' @name teams
+#' @name teams.men
 #' @title NCAA Men's Basketball Teams
 #' @description This dataset the names of each team in NCAA Men's
 #'   Basketball from ESPN, their ESPN team id, their name as it

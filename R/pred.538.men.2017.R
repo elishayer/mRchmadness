@@ -1,4 +1,4 @@
-#' @name pred.538.2017
+#' @name pred.538.men.2017
 #' @title 2017 March Madness 538 Win Probability Predictions
 #' @description This dataset contains the win probabilities forecasted
 #'   by the website FiveThirtyEight immediately after the First Four

@@ -1,4 +1,4 @@
-#' @name games.2016
+#' @name games.men.2016
 #' @title 2016 NCAA Men's Basketball Game-by-Game Results
 #' @description This dataset contains the game results of the
 #'   college men's basketball 2015-2016 season, identifying
@@ -7,6 +7,6 @@
 #'   neutral arena, and whether the game went into overtime. Teams
 #'   that are not in Division I are uniformly identified by the
 #'   string 'NA' as their id.
-#' @format data frame with 5949 rows and 7 variables
+#' @format data frame with 5924 rows and 7 variables
 #' @source ESPN
 NULL
