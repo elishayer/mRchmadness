@@ -28,8 +28,7 @@ scrape.game.results = function(year, sex = c('mens', 'womens')) {
                        ot = character(0))
   
   for (team.id in teams$id) {
-    results = rbind(results,
-                    scrape.team.game.results(year, team.id), sex)
+    results = rbind(results, scrape.team.game.results(year, team.id, sex))
   }
 
   results = results %>%
@@ -84,23 +83,32 @@ scrape.teams = function(sex) {
 
 #' Scrape game results for a single team-year combination
 #' @param year a character value representing a year
-#' @param id a character value for an ESPN team id
+#' @param team.id an ESPN team id
 #' @param sex either 'mens' or 'womens'
 #' @return data.frame of game data for the team-year
 #' @author eshayer
-scrape.team.game.results = function(year, id, sex) {
+scrape.team.game.results = function(year, team.id, sex) {
   `%>%` = dplyr::`%>%`
   year = as.character(year)
-
-  if (!all(c(class(year), class(id)) %in% 'character'))
-    stop('scrape.team.game.results: year and id must be characters')
+  team.id = as.character(team.id)
 
   url = paste0('http://www.espn.com/', sex, '-college-basketball/',
-               'team/schedule/_/id/', id, '/year/', year)
+               'team/schedule/_/id/', team.id, '/year/', year)
   
   rows = xml2::read_html(url) %>%
     rvest::html_nodes('.mod-content table tr:not(.colhead)')
   
+  # remove tournament games
+  tourney = rows %>%
+    rvest::html_text(trim = TRUE) %>%
+    startsWith(c("MEN'S BASKETBALL CHAMPIONSHIP",
+                 "NCAA WOMEN'S CHAMPIONSHIP")) %>%
+    which
+
+  if (length(tourney) > 0) {
+    rows = rows[1:(min(tourney) - 1)]
+  }
+
   opponent.cells = rows %>%
     rvest::html_nodes('td:nth-child(2)')
   
@@ -167,7 +175,7 @@ scrape.team.game.results = function(year, id, sex) {
     sapply(function(row) row[8])
   
   data.frame(game.id = game.id,
-             primary.id = id,
+             primary.id = team.id,
              primary.score = score[matrix(c(1:nrow(score), ifelse(won, 1, 2)),
                                           ncol = 2, byrow = FALSE)],
              other.id = other,
