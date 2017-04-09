@@ -28,6 +28,9 @@ outcomes --- "pop": ESPN's population of picks (default),
 "538": predictions form fivethirtyeight.com.
 Ignored if prob.matrix is specified.}
 
+\item{pool.source}{source from which to use round probabilities to simulate
+entries of opponents in pool. Same options as prob.source.}
+
 \item{league}{which league: "men" (default) or "women", for pool.source.}
 
 \item{year}{year of tournament, used for prob.source.

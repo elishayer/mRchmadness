@@ -13,6 +13,8 @@
 #'   "Pom": Ken Pomeroy's predictions (kenpom.com), or
 #'   "538": predictions form fivethirtyeight.com.
 #'   Ignored if prob.matrix is specified.
+#' @param pool.source source from which to use round probabilities to simulate
+#'   entries of opponents in pool. Same options as prob.source.
 #' @param league which league: "men" (default) or "women", for pool.source.
 #' @param year year of tournament, used for prob.source.
 #'   Ignored if prob.matrix is specified.

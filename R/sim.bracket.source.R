@@ -36,7 +36,7 @@ sim.bracket.source = function(prob.source, league, year, num.reps, outcome,
 # Check that we have predictions for all teams in bracket
   missing.teams = setdiff(teams.remaining, team.id)
   if (length(missing.teams) > 0) {
-    print(teams %>% dplyr::filter(id %in% missing.teams))
+    print(teams[teams$id %in% missing.teams, ])
     stop("No predictions from source for above teams. Is year correct?")
   }
 
@@ -81,7 +81,8 @@ sim.bracket.source = function(prob.source, league, year, num.reps, outcome,
 
 # Re-order teams from matchup order back to seed order
   for (r in 1:5) {
-    outcome[round == r, ] = outcome[round == r, ][untangling.indices[[r]], ]
+    outcome[round == r, ] =
+      outcome[round == r, , drop = FALSE][untangling.indices[[r]], ]
   }
 
   outcome

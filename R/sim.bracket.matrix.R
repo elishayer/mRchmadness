@@ -24,12 +24,12 @@ sim.bracket.matrix = function(prob.matrix, league, num.reps, outcome, round,
 # Check that we have rows and columns in prob.matrix for all teams in bracket
   missing.rows = setdiff(teams.remaining, rownames(prob.matrix))
   if (length(missing.rows) > 0) {
-    print(teams %>% dplyr::filter(id %in% missing.rows))
+    print(teams[teams$id %in% missing.rows, ])
     stop("prob.matrix has no rows for above teams. Row names must be team ID.")
   }
   missing.cols = setdiff(teams.remaining, colnames(prob.matrix))
   if (length(missing.cols) > 0) {
-    print(teams %>% dplyr::filter(id %in% missing.cols))
+    print(teams[teams$id %in% missing.cols, ])
     stop("prob.matrix has no cols for above teams. Col names must be team ID.")
   }
 

@@ -41,8 +41,8 @@ a 63-by-num.reps matrix storing the simulation outcome, each
 Simulate the full bracket starting with an empty bracket
 }
 \examples{
-sim.bracket(bracket.empty = bracket.mens.2017, prob.source = "538",
-  league = "mens", year = 2017)
+sim.bracket(bracket.empty = bracket.men.2017, prob.source = "538",
+  league = "men", year = 2017)
 }
 \author{
 sspowers
