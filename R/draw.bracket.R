@@ -4,14 +4,17 @@
 #'   teams in the tournament, in order of initial overall seeding
 #' @param bracket.filled an optional length-63 character vector encoding
 #'   tournament results (matching output from simulate.bracket)
+#' @param league which league: "men" (default) or "women".
+#'   Used for converting team IDs into team names
 #' @examples
-#'   prob.matrix = bradley.terry(games = games.2017)
-#'   outcome = sim.bracket(bracket.empty = bracket.2017,
-#'   prob.matrix = prob.matrix)
-#' draw.bracket(bracket.empty = bracket.2017, bracket.filled = outcome)
+#'   prob.matrix = bradley.terry(games = games.men.2017)
+#'   outcome = sim.bracket(bracket.empty = bracket.men.2017,
+#'     prob.matrix = prob.matrix)
+#'   draw.bracket(bracket.empty = bracket.men.2017, bracket.filled = outcome)
 #' @export
 #' @author sspowers
-draw.bracket = function(bracket.empty, bracket.filled = NULL) {
+draw.bracket = function(bracket.empty, bracket.filled = NULL,
+  league = c("men", "women")) {
 
   `%>%` = dplyr::`%>%`
 
@@ -23,9 +26,11 @@ draw.bracket = function(bracket.empty, bracket.filled = NULL) {
     stop("Length of bracket.empty (if specified) must be 63.")
   }
 
+# Load the dataframe of teams corresponding to the correct league
+  teams = eval(parse(text = paste("mRchmadness::teams", league, sep = ".")))
 # Convert team IDs into names
-  team.names = mRchmadness::teams$name
-  names(team.names) = mRchmadness::teams$id
+  team.names = teams$name
+  names(team.names) = teams$id
   bracket.empty = as.character(team.names[bracket.empty])
   bracket.filled = as.character(team.names[bracket.filled])
 

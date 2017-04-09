@@ -10,6 +10,8 @@
 #'   "Pom": Ken Pomeroy's predictions (kenpom.com), or
 #'   "538": predictions form fivethirtyeight.com.
 #'   Ignored if prob.matrix is specified.
+#' @param league which league: "men" (default) or "women", for prob.source.
+#'   Ignored if prob.matrix is specified.
 #' @param year year of tournament, used for prob.source.
 #'   Ignored if prob.matrix is specified.
 #' @param num.reps number of simulations to perform (default is 1)
@@ -24,12 +26,14 @@
 #' @export
 #' @author sspowers
 sim.bracket = function(bracket.empty, prob.matrix = NULL,
-  prob.source = c("pop", "Pom", "538"), year = 2017, num.reps = 1) {
+  prob.source = c("pop", "Pom", "538"), league = c("men", "women"),
+  year = 2017, num.reps = 1) {
 
   `%>%` = dplyr::`%>%`
 
 # Sanitize inputs
   prob.source = match.arg(prob.source)
+  league = match.arg(league)
   if (length(bracket.empty) != 64) {
     stop("Length of bracket.empty must be 64.")
   }
@@ -41,8 +45,8 @@ sim.bracket = function(bracket.empty, prob.matrix = NULL,
   round = c(rep(1, 32), rep(2, 16), rep(3, 8), rep(4, 4), 5, 5, 6)
 
 # Use the fold function to arrange the teams in "matchup order"
-  teams = bracket.empty %>% fold(1) %>% fold(2) %>% fold(4) %>%
-    fold(8) %>% fold(16) %>% fold(32) %>% rep(num.reps)
+  teams.remaining = bracket.empty %>% fold(1) %>% fold(2) %>% fold(4) %>%
+    fold(8) %>% fold(16) %>% fold(32)
 
 # The following chunk of code is a currently necessary evil.
 # To simulate quickly, teams need to be in matchup order, but we want to
@@ -59,13 +63,14 @@ sim.bracket = function(bracket.empty, prob.matrix = NULL,
   untangling.indices[[6]] = 1
 
   if (!is.null(prob.matrix)) {
-    outcome = sim.bracket.matrix(prob.matrix = prob.matrix,
-      num.reps = num.reps, outcome = outcome, round = round, teams = teams,
+    outcome = sim.bracket.matrix(prob.matrix = prob.matrix, league = league,
+      num.reps = num.reps, outcome = outcome, round = round,
+      teams.remaining = teams.remaining,
       untangling.indices = untangling.indices)
   } else {
-    outcome = sim.bracket.source(bracket.empty = bracket.empty,
-      prob.source = prob.source, year = year, num.reps = num.reps,
-      outcome = outcome, round = round, teams = teams,
+    outcome = sim.bracket.source(prob.source = prob.source, league = league,
+      year = year, num.reps = num.reps, outcome = outcome, round = round,
+      teams.remaining = teams.remaining,
       untangling.indices = untangling.indices)
   }
   outcome
