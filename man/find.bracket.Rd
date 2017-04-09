@@ -5,10 +5,11 @@
 \title{Fill out a bracket based on some criteria}
 \usage{
 find.bracket(bracket.empty, prob.matrix = NULL, prob.source = c("pop",
-  "Pom", "538"), pool.source = c("pop", "Pom", "538"), year = 2017,
-  num.candidates = 100, num.sims = 1000, criterion = c("percentile",
-  "score", "win"), pool.size = 30, bonus.round = c(1, 2, 4, 8, 16, 32),
-  bonus.seed = rep(0, 16), bonus.combine = c("add", "multiply"))
+  "Pom", "538"), pool.source = c("pop", "Pom", "538"), league = c("men",
+  "women"), year = 2017, num.candidates = 100, num.sims = 1000,
+  criterion = c("percentile", "score", "win"), pool.size = 30,
+  bonus.round = c(1, 2, 4, 8, 16, 32), bonus.seed = rep(0, 16),
+  bonus.combine = c("add", "multiply"))
 }
 \arguments{
 \item{bracket.empty}{a length-64 character vector giving the field of 64
@@ -27,6 +28,8 @@ Ignored if prob.matrix is specified.}
 
 \item{pool.source}{source from which to use round probabilities to simulate
 entries of opponents in pool. Same options as prob.source.}
+
+\item{league}{which league: "men" (default) or "women", for pool.source.}
 
 \item{year}{year of tournament, used for prob.source and pool.source}
 
@@ -65,8 +68,8 @@ the length-63 character vector describing the filled bracket which
 Fill out a bracket based on some criteria
 }
 \examples{
-find.bracket(bracket.empty = bracket.2017, prob.source = "538",
-  pool.source = "pop", year = 2017)
+find.bracket(bracket.empty = bracket.men.2017, prob.source = "538",
+  pool.source = "pop", league = "men", year = 2017)
 }
 \author{
 sspowers

@@ -5,7 +5,7 @@
 \title{Simulate the full bracket starting with an empty bracket}
 \usage{
 sim.bracket(bracket.empty, prob.matrix = NULL, prob.source = c("pop", "Pom",
-  "538"), year = 2017, num.reps = 1)
+  "538"), league = c("men", "women"), year = 2017, num.reps = 1)
 }
 \arguments{
 \item{bracket.empty}{a length-64 character vector giving the field of 64
@@ -19,6 +19,9 @@ If NULL, prob.source is used.}
 simulation --- "pop": ESPN's population of picks (default),
 "Pom": Ken Pomeroy's predictions (kenpom.com), or
 "538": predictions form fivethirtyeight.com.
+Ignored if prob.matrix is specified.}
+
+\item{league}{which league: "men" (default) or "women", for prob.source.
 Ignored if prob.matrix is specified.}
 
 \item{year}{year of tournament, used for prob.source.
@@ -38,7 +41,8 @@ a 63-by-num.reps matrix storing the simulation outcome, each
 Simulate the full bracket starting with an empty bracket
 }
 \examples{
-sim.bracket(bracket.empty = bracket.2017, prob.source = "538", year = 2017)
+sim.bracket(bracket.empty = bracket.mens.2017, prob.source = "538",
+  league = "mens", year = 2017)
 }
 \author{
 sspowers

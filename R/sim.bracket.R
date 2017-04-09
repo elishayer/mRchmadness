@@ -22,7 +22,8 @@
 #'   seeds 1 and 2 after round 5, and finally seed 1 after round 6 (the
 #'   champion)
 #' @examples
-#' sim.bracket(bracket.empty = bracket.2017, prob.source = "538", year = 2017)
+#' sim.bracket(bracket.empty = bracket.mens.2017, prob.source = "538",
+#'   league = "mens", year = 2017)
 #' @export
 #' @author sspowers
 sim.bracket = function(bracket.empty, prob.matrix = NULL,

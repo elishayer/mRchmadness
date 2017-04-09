@@ -4,17 +4,16 @@
 \alias{sim.bracket.source}
 \title{Simulate the full bracket starting with an empty bracket}
 \usage{
-sim.bracket.source(bracket.empty, prob.source, year, num.reps, outcome, round,
-  teams, untangling.indices)
+sim.bracket.source(prob.source, league, year, num.reps, outcome, round,
+  teams.remaining, untangling.indices)
 }
 \arguments{
-\item{bracket.empty}{a length-64 character vector giving the field of 64
-teams in the tournament, in order of initial overall seeding}
-
 \item{prob.source}{source from which to use round probabilities for
 simulation --- "pop": ESPN's population of picks,
 "Pom": Ken Pomeroy's predictions (kenpom.com), or
 "538": predictions form fivethirtyeight.com.}
+
+\item{league}{which league: "men" (default) or "women", for prob.source.}
 
 \item{year}{year of tournament, used for prob.source.}
 
@@ -24,7 +23,7 @@ simulation --- "pop": ESPN's population of picks,
 
 \item{round}{passed in from sim.bracket()}
 
-\item{teams}{passed in from sim.bracket()}
+\item{teams.remaining}{passed in from sim.bracket()}
 
 \item{untangling.indices}{passed in from sim.bracket()}
 }

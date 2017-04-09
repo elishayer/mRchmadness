@@ -4,12 +4,14 @@
 \alias{sim.bracket.matrix}
 \title{Simulate the full bracket starting with an empty bracket}
 \usage{
-sim.bracket.matrix(prob.matrix, num.reps, outcome, round, teams,
-  untangling.indices)
+sim.bracket.matrix(prob.matrix, league, num.reps, outcome, round,
+  teams.remaining, untangling.indices)
 }
 \arguments{
 \item{prob.matrix}{a matrix of probabilities, with rows and columns
 corresponding to teams, matching the output of bradley.terry()}
+
+\item{league}{which league: "men" (default) or "women"}
 
 \item{num.reps}{number of simulations to perform}
 
@@ -17,7 +19,7 @@ corresponding to teams, matching the output of bradley.terry()}
 
 \item{round}{passed in from sim.bracket()}
 
-\item{teams}{passed in from sim.bracket()}
+\item{teams.remaining}{passed in from sim.bracket()}
 
 \item{untangling.indices}{passed in from sim.bracket()}
 }

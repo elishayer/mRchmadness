@@ -6,9 +6,9 @@
 \usage{
 test.bracket(bracket.empty, bracket.picks, prob.matrix = NULL,
   prob.source = c("pop", "Pom", "538"), pool.source = c("pop", "Pom",
-  "538"), year = 2017, pool.size = 30, num.sims = 1000,
-  bonus.round = c(1, 2, 4, 8, 16, 32), bonus.seed = rep(0, 16),
-  bonus.combine = c("add", "multiply"))
+  "538"), league = c("men", "women"), year = 2017, pool.size = 30,
+  num.sims = 1000, bonus.round = c(1, 2, 4, 8, 16, 32),
+  bonus.seed = rep(0, 16), bonus.combine = c("add", "multiply"))
 }
 \arguments{
 \item{bracket.empty}{a length-64 character vector giving the field of 64
@@ -27,6 +27,8 @@ outcomes --- "pop": ESPN's population of picks (default),
 "Pom": Ken Pomeroy's predictions (kenpom.com), or
 "538": predictions form fivethirtyeight.com.
 Ignored if prob.matrix is specified.}
+
+\item{league}{which league: "men" (default) or "women", for pool.source.}
 
 \item{year}{year of tournament, used for prob.source.
 Ignored if prob.matrix is specified.}
@@ -52,12 +54,13 @@ multiply}
 Test a bracket
 }
 \examples{
-prob.matrix = bradley.terry(games = games.2017)
-my.bracket = find.bracket(bracket.empty = bracket.2017,
-  prob.matrix = prob.matrix, pool.soure = "pop")
-result = test.bracket(bracket.empty = bracket.2017,
+prob.matrix = bradley.terry(games = games.men.2017)
+my.bracket = find.bracket(bracket.empty = bracket.men.2017,
+  prob.matrix = prob.matrix, pool.source = "pop", league = "men",
+  year = 2017)
+result = test.bracket(bracket.empty = bracket.men.2017,
   bracket.picks = my.bracket, prob.matrix = prob.matrix,
-  pool.source = "pop", year = 2017)
+  pool.source = "pop", league = "men", year = 2017)
 }
 \author{
 sspowers

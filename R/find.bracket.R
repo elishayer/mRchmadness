@@ -13,6 +13,7 @@
 #'   Ignored if prob.matrix is specified.
 #' @param pool.source source from which to use round probabilities to simulate
 #'   entries of opponents in pool. Same options as prob.source.
+#' @param league which league: "men" (default) or "women", for pool.source.
 #' @param year year of tournament, used for prob.source and pool.source
 #' @param num.candidates number of random brackets to try, taking the best one
 #'   (default is 100)
@@ -37,14 +38,14 @@
 #'   tried, across num.sims simulations of a pool of pool.size with scoring
 #'   rules specified by bonus.round, bonus.seed and bonus.combine
 #' @examples
-#' find.bracket(bracket.empty = bracket.2017, prob.source = "538",
-#'   pool.source = "pop", year = 2017)
+#' find.bracket(bracket.empty = bracket.men.2017, prob.source = "538",
+#'   pool.source = "pop", league = "men", year = 2017)
 #' @export
 #' @author sspowers
 find.bracket = function(bracket.empty, prob.matrix = NULL,
   prob.source = c("pop", "Pom", "538"),
-  pool.source = c("pop", "Pom", "538"), year = 2017,
-  num.candidates = 100, num.sims = 1000,
+  pool.source = c("pop", "Pom", "538"), league = c("men", "women"),
+  year = 2017, num.candidates = 100, num.sims = 1000,
   criterion = c("percentile", "score", "win"), pool.size = 30,
   bonus.round = c(1, 2, 4, 8, 16, 32), bonus.seed = rep(0, 16),
   bonus.combine = c("add", "multiply")) {
@@ -64,17 +65,17 @@ find.bracket = function(bracket.empty, prob.matrix = NULL,
 
 # Simulate the brackets to be considered
   candidates = sim.bracket(bracket.empty = bracket.empty,
-    prob.matrix = prob.matrix, prob.source = prob.source, year = year,
-    num.reps = num.candidates)
+    prob.matrix = prob.matrix, prob.source = prob.source, league = league,
+    year = year, num.reps = num.candidates)
 
 # Simulate all of the pools (across all simulations)
   pool = sim.bracket(bracket.empty = bracket.empty, prob.source = pool.source,
-    year = year, num.reps = num.sims * pool.size)
+    league = league, year = year, num.reps = num.sims * pool.size)
 
 # Simulate all of the outcomes
   outcome = sim.bracket(bracket.empty = bracket.empty,
-    prob.matrix = prob.matrix, prob.source = prob.source, year = year,
-    num.reps = num.sims)
+    prob.matrix = prob.matrix, prob.source = prob.source, league = league,
+    year = year, num.reps = num.sims)
 
 # Prepare matrix to store all bracket scores
   score = matrix(NA, pool.size + num.candidates, num.sims)

@@ -57,7 +57,7 @@ The game results are stored using team IDs, and we will see that so is the
 tournament bracket. But you can use **teams.men** to see who these teams are.
 
 ```{r}
-head(teams.min
+head(teams.men)
 ```
 
 ### Predicting matchup results
