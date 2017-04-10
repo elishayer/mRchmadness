@@ -42,6 +42,9 @@ shiny::shinyUI(shiny::fluidPage(
   
     # Show a plot of the generated distribution
     shiny::mainPanel(
+      shiny::a('Click here for a vignette explaining how to use mRchmadness!', href = 'https://cran.r-project.org/web/packages/mRchmadness/vignettes/summary.html'),
+      shiny::br(),
+      shiny::br(),
       shiny::tabsetPanel(
         shiny::tabPanel('Empty Bracket',
           shiny::plotOutput("bracket.empty.plot", height = 600)
