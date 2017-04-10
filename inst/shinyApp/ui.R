@@ -3,6 +3,10 @@ shiny::shinyUI(shiny::fluidPage(
 
   shiny::sidebarLayout(
     shiny::sidebarPanel(
+      shiny::selectInput('sex', 'Men or Women:',
+                         choices = c('Men',
+                                     'Women')),
+
       shiny::selectInput('scoring', 'Scoring Scheme:',
                          choices = c('Traditional',
                                      'Add Seed',
@@ -28,6 +32,10 @@ shiny::shinyUI(shiny::fluidPage(
                           value = 1000, min = 100, max = 10000,
                           step = 100),
       
+      shiny::numericInput('num.test', 'Number of Test Simulations',
+                          value = 1000, min = 100, max = 10000,
+                          step = 100),
+
       shiny::actionButton('btn.optimal', 'Find Best Bracket',
                           class = "btn btn-primary")
     ),
@@ -40,6 +48,9 @@ shiny::shinyUI(shiny::fluidPage(
         ),
         shiny::tabPanel('Filled Bracket',
           shiny::plotOutput("bracket.filled.plot", height = 600)
+        ),
+        shiny::tabPanel('Test Results',
+                        shiny::plotOutput("bracket.diagnostics", height = 600)
         )
       )
     )
