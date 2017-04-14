@@ -59,6 +59,15 @@ find.bracket = function(bracket.empty, prob.matrix = NULL,
   if (!is.numeric(bonus.seed) | length(bonus.seed) != 16) {
     stop("bonus.seed must be length-16 numeric vector")
   }
+  num.candidates = as.integer(num.candidates)
+  if (num.candidates < 2) {
+    stop("num.candidates must be at least 2")
+  }
+  num.sims = as.integer(num.sims)
+  if (num.sims < 2) {
+    stop("num.sims must be at least 2")
+  }
+  pool.size = as.integer(pool.size)
   if (pool.size < 1) {
     stop("pool.size must be at least 1")
   }
