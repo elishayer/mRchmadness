@@ -48,9 +48,9 @@ shiny::shinyServer(function(input, output) {
       prob.src = '538'
     }
 
-    progress = shiny::Progress$new(message = 'Finding your bracket',
-      max = num.sims())
+    progress = shiny::Progress$new(max = num.sims())
     on.exit(progress$close())
+    progress$set(message = 'Finding your bracket')
 
     mRchmadness::find.bracket(bracket.empty = empty,
                               prob.matrix = prob.matrix,
@@ -99,9 +99,9 @@ shiny::shinyServer(function(input, output) {
       prob.src = '538'
     }
 
-    progress = shiny::Progress$new(message = 'Testing your bracket',
-      max = num.test())
+    progress = shiny::Progress$new(max = num.sims())
     on.exit(progress$close())
+    progress$set(message = 'Finding your bracket')
 
     results = mRchmadness::test.bracket(empty, filled.bracket(),
                                         prob.matrix = prob.matrix,
