@@ -75,14 +75,10 @@ find.bracket = function(bracket.empty, prob.matrix = NULL,
     stop("pool.size must be at least 1")
   }
 
-print('Checkpoint 1')
-
 # Simulate the brackets to be considered
   candidates = sim.bracket(bracket.empty = bracket.empty,
     prob.matrix = prob.matrix, prob.source = prob.source, league = league,
     year = year, num.reps = num.candidates)
-
-print('Checkpoint 2')
 
 # Update the user on progress
   if (print.progress) {
@@ -94,25 +90,17 @@ print('Checkpoint 2')
       paste('Simulating', num.sims, 'pools of size', pool.size))
   }
 
-print('Checkpoint 3')
-
 # Simulate all of the pools (across all simulations)
   pool = sim.bracket(bracket.empty = bracket.empty, prob.source = pool.source,
     league = league, year = year, num.reps = num.sims * pool.size)
-
-print('Checkpoint 4')
 
 # Simulate all of the outcomes
   outcome = sim.bracket(bracket.empty = bracket.empty,
     prob.matrix = prob.matrix, prob.source = prob.source, league = league,
     year = year, num.reps = num.sims)
 
-print('Checkpoint 5')
-
 # Prepare matrix to store all bracket scores
   score = matrix(NA, pool.size + num.candidates, num.sims)
-
-print('Checkpoint 6')
 
 # Update the user on progress
   if (print.progress) {
@@ -124,8 +112,6 @@ print('Checkpoint 6')
       paste('Scoring', num.sims * (num.candidates + pool.size), 'brackets'))
   }
 
-print('Checkpoint 7')
-  
   for (i in 1:num.sims) {
 # Extract brackets to be evaluated on this simulation
     brackets = cbind(pool[, (i - 1) * pool.size + 1:pool.size], candidates)
@@ -141,8 +127,6 @@ print('Checkpoint 7')
     if (!is.null(shiny.progress)) shiny.progress$set(value = i)
   }
   if (print.progress) cat('\n')
-
-print('Checkpoint 8')
 
 # Find bracket with highest average percentile finish (compare only to pool)
   if (criterion == "percentile") {

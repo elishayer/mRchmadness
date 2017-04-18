@@ -101,7 +101,7 @@ shiny::shinyServer(function(input, output) {
 
     progress = shiny::Progress$new(max = num.sims())
     on.exit(progress$close())
-    progress$set(message = 'Finding your bracket')
+    progress$set(message = 'Testing your bracket')
 
     results = mRchmadness::test.bracket(empty, filled.bracket(),
                                         prob.matrix = prob.matrix,
