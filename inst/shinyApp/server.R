@@ -40,17 +40,16 @@ shiny::shinyServer(function(input, output) {
 
     prob.matrix = NULL
     prob.src = NULL
-    league = NULL
+    league = tolower(sex())
 
     if (prob.source() == 'Bradley-Terry Model') {
       prob.matrix = eval(parse(text = paste('bt', tolower(sex()), sep = '.')))
     } else if (prob.source() == 'FiveThirtyEight') {
       prob.src = '538'
-      league = tolower(sex())
     }
 
-    print(prob.source())
-    print(is.null(prob.matrix))
+    progress = shiny::Progress$new(max = num.sims())
+    on.exit(progress$close())
 
     mRchmadness::find.bracket(bracket.empty = empty,
                               prob.matrix = prob.matrix,
@@ -62,7 +61,8 @@ shiny::shinyServer(function(input, output) {
                               pool.size = pool.size(),
                               bonus.round = bonus.round,
                               bonus.seed = bonus.seed,
-                              bonus.combine = bonus.combine)
+                              bonus.combine = bonus.combine,
+                              shiny.progress = progress)
   })
 
   output$bracket.filled.plot = shiny::renderPlot({
@@ -90,14 +90,16 @@ shiny::shinyServer(function(input, output) {
 
     prob.matrix = NULL
     prob.src = NULL
-    league = NULL
+    league = tolower(sex())
 
     if (prob.source() == 'Bradley-Terry Model') {
       prob.matrix = eval(parse(text = paste('bt', tolower(sex()), sep = '.')))
     } else if (prob.source() == 'FiveThirtyEight') {
       prob.src = '538'
-      league = tolower(sex())
     }
+
+    progress = shiny::Progress$new(max = num.test())
+    on.exit(progress$close())
 
     results = mRchmadness::test.bracket(empty, filled.bracket(),
                                         prob.matrix = prob.matrix,
@@ -109,7 +111,8 @@ shiny::shinyServer(function(input, output) {
                                         num.sims = num.test(),
                                         bonus.round = bonus.round,
                                         bonus.seed = bonus.seed,
-                                        bonus.combine = bonus.combine)
+                                        bonus.combine = bonus.combine,
+                                        shiny.progress = progress)
 
     hist(results$percentile,
          xlab = 'Percentile',

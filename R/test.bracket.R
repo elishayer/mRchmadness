@@ -30,6 +30,8 @@
 #' @param bonus.combine how to combine the round bonus with the seed bonus to
 #'   get the number of points awarded for each correct pick: "add" (default) or
 #'   multiply
+#' @param print.progress should progress be printed to console?
+#' @param shiny.progress a shiny::Progress object used only for the Shiny app
 #' @examples
 #' prob.matrix = bradley.terry(games = games.men.2017)
 #' my.bracket = find.bracket(bracket.empty = bracket.men.2017,
@@ -45,7 +47,8 @@ test.bracket = function(bracket.empty, bracket.picks, prob.matrix = NULL,
   pool.source = c("pop", "Pom", "538"), league = c("men", "women"),
   year = 2017, pool.size = 30, num.sims = 1000,
   bonus.round = c(1, 2, 4, 8, 16, 32), bonus.seed = rep(0, 16),
-  bonus.combine = c("add", "multiply")) {
+  bonus.combine = c("add", "multiply"),
+  print.progress = TRUE, shiny.progress = NULL) {
 
 # Sanitize inputs
   if (length(bracket.empty) != 64) {
@@ -58,6 +61,16 @@ test.bracket = function(bracket.empty, bracket.picks, prob.matrix = NULL,
     stop("pool.size must be at least 2")
   }
 
+# Update the user on progress
+  if (print.progress) {
+    cat('Testing your bracket ...')
+    cat('\n  Simulating', num.sims, 'pools of size', pool.size, '...')
+  }
+  if (!is.null(shiny.progress)) {
+    shiny.progress$set(message = 'Testing your bracket',
+      detail = paste('Simulating', num.sims, 'pools of size', pool.size))
+  }
+
 # Simulate the rest of the pool for all simulations
   pool = sim.bracket(bracket.empty = bracket.empty, prob.source = pool.source,
     league = league, year = year, num.reps = num.sims * pool.size)
@@ -68,6 +81,15 @@ test.bracket = function(bracket.empty, bracket.picks, prob.matrix = NULL,
 
 # Set up the matrix to hold the scores of all brackets in pool
   score = matrix(NA, pool.size + 1, num.sims)
+
+# Update the user on progress
+  if (print.progress) {
+    cat('\n  Scoring', num.sims * (1 + pool.size), 'brackets ... \n    ') 
+  }
+  if (!is.null(shiny.progress)) {
+    shiny.progress$set(detail =
+      paste('Scoring', num.sims * (1 + pool.size), 'brackets'))
+  }
   
   for (i in 1:num.sims) {
 # Extract brackets to be evaluated on this simulation
@@ -77,7 +99,13 @@ test.bracket = function(bracket.empty, bracket.picks, prob.matrix = NULL,
       bracket.picks = brackets, bracket.outcome = outcome[, i],
       bonus.round = bonus.round, bonus.seed = bonus.seed,
       bonus.combine = bonus.combine)
+# Update the user on progress
+    if (print.progress & (i %% 1000) == 0) {
+      cat(paste0(round(100 * i / num.sims), '% '))
+    }
+    if (!is.null(shiny.progress)) shiny.progress$set(value = i)
   }
+  if (print.progress) cat('\n')
 
 # Get percentile finish for your bracket in each simulation
   rank = apply(score, 2, rank, ties.method = 'max')
