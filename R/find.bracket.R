@@ -86,8 +86,8 @@ find.bracket = function(bracket.empty, prob.matrix = NULL,
     cat('\n  Simulating', num.sims, 'pools of size', pool.size, '...')
   }
   if (!is.null(shiny.progress)) {
-    shiny.progress$set(message = 'Finding your bracket',
-      detail = paste('Simulating', num.sims, 'pools of size', pool.size))
+    shiny.progress$set(detail =
+      paste('Simulating', num.sims, 'pools of size', pool.size))
   }
 
 # Simulate all of the pools (across all simulations)

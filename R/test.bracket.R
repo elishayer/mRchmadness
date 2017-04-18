@@ -67,8 +67,8 @@ test.bracket = function(bracket.empty, bracket.picks, prob.matrix = NULL,
     cat('\n  Simulating', num.sims, 'pools of size', pool.size, '...')
   }
   if (!is.null(shiny.progress)) {
-    shiny.progress$set(message = 'Testing your bracket',
-      detail = paste('Simulating', num.sims, 'pools of size', pool.size))
+    shiny.progress$set(detail =
+      paste('Simulating', num.sims, 'pools of size', pool.size))
   }
 
 # Simulate the rest of the pool for all simulations
