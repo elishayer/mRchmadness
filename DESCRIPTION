@@ -11,7 +11,7 @@ Imports:
   glmnet,
   Matrix,
   rvest,
-  selector (>= 0.3-1),
+  selectr (>= 0.3-1),
   shiny,
   xml2
 Description: Scrape season results, estimate win probabilities, and find a
