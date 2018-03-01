@@ -15,8 +15,8 @@ scrape.game.results = function(year, league = c('mens', 'womens')) {
     stop('scrape.game.results: The year must be numeric')
   if (year < 2002)
     stop('2002 is the earliest available season')
-  if (year > 2017)
-    warning('2017 was the latest season on which the scraper was tested')
+  if (year > 2018)
+    warning('2018 is the latest season on which the scraper was tested')
 
   teams = scrape.teams(league)
   
@@ -119,7 +119,7 @@ scrape.team.game.results = function(year, team.id, league) {
   
   skip = result.cells %>%
     rvest::html_text(trim = TRUE) %in%
-    c('Postponed', 'Canceled') %>%
+    c('Canceled', 'Postponed', 'Suspended') %>%
     which
   skip = result.cells %>%
     rvest::html_node('a') %>%
