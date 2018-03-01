@@ -1,14 +1,14 @@
 #' Scrape the average rate of teams being picked to win across all ESPN brackets
 #'
 #' @param year the numeric year to scrape, either 2016 or 2017
-#' @param sex either 'mens' or 'womens'
+#' @param league either 'mens' or 'womens'
 #' @return data.frame giving percentage of population picking each team in each round
 #' @examples
 #' populationDistribution = scrape.population.distribution(2017)
 #' @export
 #' @author eshayer
-scrape.population.distribution = function(year, sex = c('mens', 'womens')) {
-  sex = match.arg(sex)
+scrape.population.distribution = function(year, league = c('mens', 'womens')) {
+  league = match.arg(league)
   `%>%` = dplyr::`%>%`
 
   if (!(year %in% c(2016, 2017))) {
@@ -16,7 +16,7 @@ scrape.population.distribution = function(year, sex = c('mens', 'womens')) {
   }
 
   url = paste0('http://games.espn.com/tournament-challenge-bracket',
-               ifelse(sex == 'mens', '', '-women'), '/', year,
+               ifelse(league == 'mens', '', '-women'), '/', year,
                '/en/whopickedwhom')
   
   cells = xml2::read_html(url) %>%

@@ -1,22 +1,24 @@
 #' Scrape the game-by-game results of the NCAA MBB seaon
 #'
 #' @param year a numeric value of the year, between 2002 and 2017 inclusive
-#' @param sex either 'mens' or 'womens'
+#' @param league either 'mens' or 'womens'
 #' @return data.frame with game-by-game results
 #' @export
 #' @author eshayer
-scrape.game.results = function(year, sex = c('mens', 'womens')) {
-  sex = match.arg(sex)
+scrape.game.results = function(year, league = c('mens', 'womens')) {
+  league = match.arg(league)
   `%>%` = dplyr::`%>%`
 
   if (missing(year))
     stop('scrape.game.results: A year must be provided')
   if (!(class(year) %in% c('integer', 'numeric')))
     stop('scrape.game.results: The year must be numeric')
-  if (year < 2002 | year > 2017)
-    stop('The available seasons are 2002 to 2017')
+  if (year < 2002)
+    stop('2002 is the earliest available season')
+  if (year > 2017)
+    warning('2017 was the latest season on which the scraper was tested')
 
-  teams = scrape.teams(sex)
+  teams = scrape.teams(league)
   
   results = data.frame(game.id = character(0),
                        primary.id = character(0),
@@ -28,7 +30,7 @@ scrape.game.results = function(year, sex = c('mens', 'womens')) {
                        ot = character(0))
   
   for (team.id in teams$id) {
-    results = rbind(results, scrape.team.game.results(year, team.id, sex))
+    results = rbind(results, scrape.team.game.results(year, team.id, league))
   }
 
   results = results %>%
@@ -58,13 +60,13 @@ scrape.game.results = function(year, sex = c('mens', 'womens')) {
 
 #' Scrape the team names and ids from the ESPN NCAA MBB index
 #'
-#' @param sex either 'mens' or 'womens'
+#' @param league either 'mens' or 'womens'
 #' @return data.frame of team names and ids
 #' @author eshayer
-scrape.teams = function(sex) {
+scrape.teams = function(league) {
   `%>%` = dplyr::`%>%`
 
-  url = paste0('http://www.espn.com/', sex, '-college-basketball/teams')
+  url = paste0('http://www.espn.com/', league, '-college-basketball/teams')
   
   cells = xml2::read_html(url) %>%
     rvest::html_nodes('.mod-content > ul.medium-logos > li h5 a')
@@ -84,15 +86,15 @@ scrape.teams = function(sex) {
 #' Scrape game results for a single team-year combination
 #' @param year a character value representing a year
 #' @param team.id an ESPN team id
-#' @param sex either 'mens' or 'womens'
+#' @param league either 'mens' or 'womens'
 #' @return data.frame of game data for the team-year
 #' @author eshayer
-scrape.team.game.results = function(year, team.id, sex) {
+scrape.team.game.results = function(year, team.id, league) {
   `%>%` = dplyr::`%>%`
   year = as.character(year)
   team.id = as.character(team.id)
 
-  url = paste0('http://www.espn.com/', sex, '-college-basketball/',
+  url = paste0('http://www.espn.com/', league, '-college-basketball/',
                'team/schedule/_/id/', team.id, '/year/', year)
   
   rows = xml2::read_html(url) %>%
