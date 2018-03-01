@@ -9,7 +9,8 @@ find.bracket(bracket.empty, prob.matrix = NULL, prob.source = c("pop",
   "women"), year = 2017, num.candidates = 100, num.sims = 1000,
   criterion = c("percentile", "score", "win"), pool.size = 30,
   bonus.round = c(1, 2, 4, 8, 16, 32), bonus.seed = rep(0, 16),
-  bonus.combine = c("add", "multiply"))
+  bonus.combine = c("add", "multiply"), print.progress = TRUE,
+  shiny.progress = NULL)
 }
 \arguments{
 \item{bracket.empty}{a length-64 character vector giving the field of 64
@@ -57,6 +58,10 @@ picking winner based on winner's seed (default is zero)}
 \item{bonus.combine}{how to combine the round bonus with the seed bonus to
 get the number of points awarded for each correct pick: "add" (default) or
 multiply}
+
+\item{print.progress}{should progress be printed to console?}
+
+\item{shiny.progress}{a shiny::Progress object used only for the Shiny app}
 }
 \value{
 the length-63 character vector describing the filled bracket which

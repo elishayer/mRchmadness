@@ -4,14 +4,14 @@
 \alias{scrape.team.game.results}
 \title{Scrape game results for a single team-year combination}
 \usage{
-scrape.team.game.results(year, team.id, sex)
+scrape.team.game.results(year, team.id, league)
 }
 \arguments{
 \item{year}{a character value representing a year}
 
 \item{team.id}{an ESPN team id}
 
-\item{sex}{either 'mens' or 'womens'}
+\item{league}{either 'mens' or 'womens'}
 }
 \value{
 data.frame of game data for the team-year
