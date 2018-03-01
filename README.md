@@ -3,7 +3,7 @@ NCAA men's basketball data scraping and bracketology R package
 
 ## Installation
 
-```{r}
+``` r
 # For the latest version of the package, updated frequently during the first
 # couple weeks of March, install directly from this GitHub repository.
 devtools::install_github('elishayer/mRchmadness')
