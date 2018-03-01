@@ -1,6 +1,6 @@
 Package: mRchmadness
 Title: Numerical Tools for Filling Out an NCAA Basketball Tournament Bracket
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: c(
   person("Eli", "Shayer", email = "eshayer@stanford.edu",
     role = c("aut", "cre")),
@@ -11,6 +11,7 @@ Imports:
   glmnet,
   Matrix,
   rvest,
+  selector (>= 0.3-1),
   shiny,
   xml2
 Description: Scrape season results, estimate win probabilities, and find a
