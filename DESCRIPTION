@@ -4,7 +4,7 @@ Version: 1.0.1
 Authors@R: c(
   person("Eli", "Shayer", email = "eshayer@stanford.edu",
     role = c("aut", "cre")),
-  person("Scott", "Powers", email = "sspowers@stanford.edu", role = "aut"))
+  person("Scott", "Powers", email = "saberpowers@gmail.com", role = "aut"))
 URL: https://github.com/elishayer/mRchmadness
 Imports:
   dplyr,
