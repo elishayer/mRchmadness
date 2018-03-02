@@ -19,6 +19,7 @@ draw.bracket = function(bracket.empty, bracket.filled = NULL,
   `%>%` = dplyr::`%>%`
 
 # Sanitize inputs
+  league = match.arg(league)
   if (length(bracket.empty) != 64) {
     stop("Length of bracket.empty must be 64.")
   }
@@ -31,8 +32,15 @@ draw.bracket = function(bracket.empty, bracket.filled = NULL,
 # Convert team IDs into names
   team.names = teams$name
   names(team.names) = teams$id
-  bracket.empty = as.character(team.names[bracket.empty])
-  bracket.filled = as.character(team.names[bracket.filled])
+  bracket.empty = bracket.empty %>%
+    # Handle undetermined first-round games signified by "/"
+    strsplit(split = '/') %>%
+    lapply(function(id) as.character(team.names[id])) %>%
+    sapply(function(names) do.call(paste, args = as.list(c(names, sep = '/'))))
+  bracket.filled = bracket.filled %>%
+    strsplit(split = '/') %>%
+    lapply(function(id) as.character(team.names[id])) %>%
+    sapply(function(names) do.call(paste, args = as.list(c(names, sep = '/'))))
 
 # append "seed" to beginning of team names
   seed = rep(1:16, each = 4)

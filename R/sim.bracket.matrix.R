@@ -21,6 +21,26 @@ sim.bracket.matrix = function(prob.matrix, league, num.reps, outcome, round,
 # Load the dataframe of teams corresponding to the correct league
   teams = eval(parse(text = paste("mRchmadness::teams", league, sep = ".")))
 
+# Handle the case where some first-round games have not yet been decided by
+# creating a composite team whose win/loss probabilities are the weighted
+# averages of the two competing teams, weighted by how likely each team wins
+  # Identify teams in first-round games and advancement probabilities
+  teams.tbd = teams.remaining[grep('/', teams.remaining)]
+  if (length(teams.tbd > 0)) {
+    teams.tbd.split = t(sapply(strsplit(teams.tbd, '/'), identity))
+    probs.tbd = prob.matrix[teams.tbd.split]
+    # Add new rows to prob.matrix corresponding to composite of teams TBD
+    new.rows = probs.tbd * prob.matrix[teams.tbd.split[, 1], ] +
+      (1 - probs.tbd) * prob.matrix[teams.tbd.split[, 2], ]
+    rownames(new.rows) = teams.tbd
+    prob.matrix = rbind(prob.matrix, new.rows)
+    # Add new columns to prob.matrix corresponding to composite of teams TBD
+    new.cols = t(probs.tbd * t(prob.matrix[, teams.tbd.split[, 1]]) +
+      (1 - probs.tbd) * t(prob.matrix[, teams.tbd.split[, 2]]))
+    colnames(new.cols) = teams.tbd
+    prob.matrix = cbind(prob.matrix, new.cols)
+  }
+
 # Check that we have rows and columns in prob.matrix for all teams in bracket
   missing.rows = setdiff(teams.remaining, rownames(prob.matrix))
   if (length(missing.rows) > 0) {
