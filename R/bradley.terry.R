@@ -10,7 +10,7 @@
 #'   prob = bradley.terry(games = games.men.2017)
 #' @export
 #' @author sspowers
-bradley.terry <- function(games) {
+bradley.terry = function(games) {
 
   columns = c("game.id", "home.id", "away.id", "home.score", "away.score",
     "neutral", "ot")

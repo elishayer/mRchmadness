@@ -70,7 +70,7 @@ sim.bracket.source = function(prob.source, league, year, num.reps, outcome,
   for (r in 2:6) {
 # Identify winners of round r
     winners = outcome[round == r, , drop = FALSE]
-# Find all games those winners must of won in rounds r-1, ..., 1
+# Find all games those winners must have won in rounds r-1, ..., 1
     rows = path[winners, 1:(r-1), drop = FALSE]
 # Find which simulation to which each of those games corresponds
     columns = matrix(rep(1:num.reps, each = nrow(winners)),
