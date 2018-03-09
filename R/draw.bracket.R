@@ -33,14 +33,18 @@ draw.bracket = function(bracket.empty, bracket.filled = NULL,
   team.names = teams$name
   names(team.names) = teams$id
   bracket.empty = bracket.empty %>%
-    # Handle undetermined first-round games signified by "/"
+    # Handle unplayed first-round games signified by "/"
     strsplit(split = '/') %>%
     lapply(function(id) as.character(team.names[id])) %>%
     sapply(function(names) do.call(paste, args = as.list(c(names, sep = '/'))))
-  bracket.filled = bracket.filled %>%
-    strsplit(split = '/') %>%
-    lapply(function(id) as.character(team.names[id])) %>%
-    sapply(function(names) do.call(paste, args = as.list(c(names, sep = '/'))))
+  if (!is.null(bracket.filled)) {
+    # Only handle unplayed first-round games if test bracket is not NULL
+    bracket.filled = bracket.filled %>%
+      strsplit(split = '/') %>%
+      lapply(function(id) as.character(team.names[id])) %>%
+      sapply(function(names) {
+        do.call(paste, args = as.list(c(names, sep = '/')))})
+  }
 
 # append "seed" to beginning of team names
   seed = rep(1:16, each = 4)
