@@ -32,22 +32,15 @@ sim.bracket.source = function(prob.source, league, year, num.reps, outcome,
 # Get team ids to match tournament teams to probabilities from source
   team.id = as.character(teams$id)
   names(team.id) = teams[, paste0("name.", prob.source)]
-# Use name column to get team IDs as row names, then drop name column
-  rownames(prob) = team.id[as.character(prob$name)]
-  prob$name = NULL
 
-# Handle the case where some first-round games have not yet been decided by
-# creating a composite team whose win/loss probabilities are the weighted
-# averages of the two competing teams, weighted by how likely each team wins
-  # Identify teams in first-round games and advancement probabilities
-  teams.tbd = teams.remaining[grep('/', teams.remaining)]
-  if (length(teams.tbd) > 0) {
-    teams.tbd.split = t(sapply(strsplit(teams.tbd, '/'), identity))
-    # Add new rows to prob.matrix corresponding to composite of teams TBD
-    new.rows = prob[teams.tbd.split[, 1], ] + prob[teams.tbd.split[, 2], ]
-    rownames(new.rows) = teams.tbd
-    prob = rbind(prob, new.rows)
-  }
+# Look up team IDs to use as row names
+  rownames(prob) = prob$name %>%
+# Handle unplayed first-round games signified by "/"
+    as.character %>% strsplit(split = '/') %>%
+    lapply(function(name) as.character(team.id[name])) %>%
+    sapply(function(ids) do.call(paste, args = as.list(c(ids, sep = '/'))))
+# Drop team names from prob
+  prob$name = NULL
 
 # Check that we have predictions for all teams in bracket
   missing.teams = setdiff(teams.remaining, rownames(prob))
