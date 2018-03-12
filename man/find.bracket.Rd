@@ -6,7 +6,7 @@
 \usage{
 find.bracket(bracket.empty, prob.matrix = NULL, prob.source = c("pop",
   "Pom", "538"), pool.source = c("pop", "Pom", "538"), league = c("men",
-  "women"), year = 2017, num.candidates = 100, num.sims = 1000,
+  "women"), year = 2018, num.candidates = 100, num.sims = 1000,
   criterion = c("percentile", "score", "win"), pool.size = 30,
   bonus.round = c(1, 2, 4, 8, 16, 32), bonus.seed = rep(0, 16),
   bonus.combine = c("add", "multiply"), print.progress = TRUE,
@@ -73,8 +73,8 @@ the length-63 character vector describing the filled bracket which
 Fill out a bracket based on some criteria
 }
 \examples{
-find.bracket(bracket.empty = bracket.men.2017, prob.source = "538",
-  pool.source = "pop", league = "men", year = 2017)
+find.bracket(bracket.empty = bracket.men.2018, prob.source = "538",
+  pool.source = "pop", league = "men", year = 2018)
 }
 \author{
 sspowers
