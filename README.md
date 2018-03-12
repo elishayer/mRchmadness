@@ -19,3 +19,10 @@ install.packages('mRchmadness')
 # For a tutorial on the primary use case of the package, check out the vignette
 vignette('mRchmadness')
 ```
+
+## Shiny
+
+For those who prefer a point-and-click interface, check out our
+[Shiny app](https://saberpowers.shinyapps.io/mRchmadness/).
+The app is currently configured for 2017, but that will change soon.
+
