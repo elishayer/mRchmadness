@@ -40,14 +40,14 @@
 #'   tried, across num.sims simulations of a pool of pool.size with scoring
 #'   rules specified by bonus.round, bonus.seed and bonus.combine
 #' @examples
-#' find.bracket(bracket.empty = bracket.men.2017, prob.source = "538",
-#'   pool.source = "pop", league = "men", year = 2017)
+#' find.bracket(bracket.empty = bracket.men.2018, prob.source = "538",
+#'   pool.source = "pop", league = "men", year = 2018)
 #' @export
 #' @author sspowers
 find.bracket = function(bracket.empty, prob.matrix = NULL,
   prob.source = c("pop", "Pom", "538"),
   pool.source = c("pop", "Pom", "538"), league = c("men", "women"),
-  year = 2017, num.candidates = 100, num.sims = 1000,
+  year = 2018, num.candidates = 100, num.sims = 1000,
   criterion = c("percentile", "score", "win"), pool.size = 30,
   bonus.round = c(1, 2, 4, 8, 16, 32), bonus.seed = rep(0, 16),
   bonus.combine = c("add", "multiply"),

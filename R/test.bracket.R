@@ -33,19 +33,19 @@
 #' @param print.progress should progress be printed to console?
 #' @param shiny.progress a shiny::Progress object used only for the Shiny app
 #' @examples
-#' prob.matrix = bradley.terry(games = games.men.2017)
-#' my.bracket = find.bracket(bracket.empty = bracket.men.2017,
+#' prob.matrix = bradley.terry(games = games.men.2018)
+#' my.bracket = find.bracket(bracket.empty = bracket.men.2018,
 #'   prob.matrix = prob.matrix, pool.source = "pop", league = "men",
-#'   year = 2017)
-#' result = test.bracket(bracket.empty = bracket.men.2017,
+#'   year = 2018)
+#' result = test.bracket(bracket.empty = bracket.men.2018,
 #'   bracket.picks = my.bracket, prob.matrix = prob.matrix,
-#'   pool.source = "pop", league = "men", year = 2017)
+#'   pool.source = "pop", league = "men", year = 2018)
 #' @export
 #' @author sspowers
 test.bracket = function(bracket.empty, bracket.picks, prob.matrix = NULL,
   prob.source = c("pop", "Pom", "538"),
   pool.source = c("pop", "Pom", "538"), league = c("men", "women"),
-  year = 2017, pool.size = 30, num.sims = 1000,
+  year = 2018, pool.size = 30, num.sims = 1000,
   bonus.round = c(1, 2, 4, 8, 16, 32), bonus.seed = rep(0, 16),
   bonus.combine = c("add", "multiply"),
   print.progress = TRUE, shiny.progress = NULL) {

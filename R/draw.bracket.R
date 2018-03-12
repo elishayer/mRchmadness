@@ -7,10 +7,10 @@
 #' @param league which league: "men" (default) or "women".
 #'   Used for converting team IDs into team names
 #' @examples
-#'   prob.matrix = bradley.terry(games = games.men.2017)
-#'   outcome = sim.bracket(bracket.empty = bracket.men.2017,
+#'   prob.matrix = bradley.terry(games = games.men.2018)
+#'   outcome = sim.bracket(bracket.empty = bracket.men.2018,
 #'     prob.matrix = prob.matrix)
-#'   draw.bracket(bracket.empty = bracket.men.2017, bracket.filled = outcome)
+#'   draw.bracket(bracket.empty = bracket.men.2018, bracket.filled = outcome)
 #' @export
 #' @author sspowers
 draw.bracket = function(bracket.empty, bracket.filled = NULL,

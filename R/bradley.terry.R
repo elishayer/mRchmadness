@@ -7,7 +7,7 @@
 #'   Each entry gives the probability of the team corresponding to that row
 #'   beating the team corresponding to that column.
 #' @examples
-#'   prob = bradley.terry(games = games.men.2017)
+#'   prob = bradley.terry(games = games.men.2018)
 #' @export
 #' @author sspowers
 bradley.terry = function(games) {

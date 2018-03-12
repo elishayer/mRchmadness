@@ -22,13 +22,13 @@
 #'   seeds 1 and 2 after round 5, and finally seed 1 after round 6 (the
 #'   champion)
 #' @examples
-#' sim.bracket(bracket.empty = bracket.men.2017, prob.source = "538",
-#'   league = "men", year = 2017)
+#' sim.bracket(bracket.empty = bracket.men.2018, prob.source = "538",
+#'   league = "men", year = 2018)
 #' @export
 #' @author sspowers
 sim.bracket = function(bracket.empty, prob.matrix = NULL,
   prob.source = c("pop", "Pom", "538"), league = c("men", "women"),
-  year = 2017, num.reps = 1) {
+  year = 2018, num.reps = 1) {
 
   `%>%` = dplyr::`%>%`
 
