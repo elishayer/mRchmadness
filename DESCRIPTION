@@ -1,6 +1,6 @@
 Package: mRchmadness
 Title: Numerical Tools for Filling Out an NCAA Basketball Tournament Bracket
-Version: 1.0.1
+Version: 1.0.2
 Authors@R: c(
   person("Eli", "Shayer", email = "eshayer@stanford.edu",
     role = c("aut", "cre")),
