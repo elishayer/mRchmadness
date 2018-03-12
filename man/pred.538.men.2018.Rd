@@ -3,7 +3,7 @@
 \name{pred.538.men.2018}
 \alias{pred.538.men.2018}
 \title{2018 March Madness 538 Win Probability Predictions}
-\format{data frame with 68 rows and 7 variables}
+\format{data frame with 64 rows and 7 variables}
 \source{
 \url{https://projects.fivethirtyeight.com/2018-march-madness-predictions/}
 }
