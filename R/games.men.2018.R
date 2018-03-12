@@ -7,7 +7,6 @@
 #'   neutral arena, and whether the game went into overtime. Teams
 #'   that are not in Division I are uniformly identified by the
 #'   string 'NA' as their id.
-#'   The dataset is currently updated only through February 2018.
-#' @format data frame with 5352 rows and 7 variables
+#' @format data frame with 5773 rows and 7 variables
 #' @source ESPN
 NULL
