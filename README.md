@@ -12,3 +12,10 @@ devtools::install_github('elishayer/mRchmadness')
 # might prefer to install the latest stable version from CRAN.
 install.packages('mRchmadness')
 ```
+
+## Introduction
+
+``` r
+# For a tutorial on the primary use case of the package, check out the vignette
+vignette('mRchmadness')
+```
