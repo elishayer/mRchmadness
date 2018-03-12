@@ -26,7 +26,7 @@ sim.bracket.matrix = function(prob.matrix, league, num.reps, outcome, round,
 # averages of the two competing teams, weighted by how likely each team wins
   # Identify teams in first-round games and advancement probabilities
   teams.tbd = teams.remaining[grep('/', teams.remaining)]
-  if (length(teams.tbd > 0)) {
+  if (length(teams.tbd) > 0) {
     teams.tbd.split = t(sapply(strsplit(teams.tbd, '/'), identity))
     probs.tbd = prob.matrix[teams.tbd.split]
     # Add new rows to prob.matrix corresponding to composite of teams TBD
