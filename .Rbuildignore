@@ -1,2 +1,4 @@
 cran-comments.md
+NEWS.md
+README.md
 ^mRchmadness_[0-9\.]+\.tar\.gz$
