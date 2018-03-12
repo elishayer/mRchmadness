@@ -1,6 +1,6 @@
 #' Scrape the average rate of teams being picked to win across all ESPN brackets
 #'
-#' @param year the numeric year to scrape, either 2016 or 2017
+#' @param year the numeric year to scrape, in the range 2016 to 2018
 #' @param league either 'mens' or 'womens'
 #' @return data.frame giving percentage of population picking each team in each round
 #' @examples
@@ -11,7 +11,7 @@ scrape.population.distribution = function(year, league = c('mens', 'womens')) {
   league = match.arg(league)
   `%>%` = dplyr::`%>%`
 
-  if (!(year %in% c(2016, 2017))) {
+  if (!(year %in% c(2016, 2017, 2018))) {
     stop(paste0('The year ', year, ' is not available'))
   }
 
@@ -31,8 +31,20 @@ scrape.population.distribution = function(year, league = c('mens', 'womens')) {
     rvest::html_text(trim = TRUE) %>%
     substr(0, nchar(.) - 1) %>%
     as.numeric / 100
-  
+
   round = rep(1:6, 64)
-  
-  data.frame(names = names, probabilities = probabilities, round = round)
+
+  results = data.frame(names = names, probabilities = probabilities, round = round) %>%
+      tidyr::spread(round, probabilities) %>%
+      dplyr::mutate(names = as.character(names)) %>%
+      dplyr::mutate(names = ifelse(names == 'BON/LA', 'BON/UCLA',
+                            ifelse(names == 'NCC/TS', 'NCC/Texas Southern',
+                            ifelse(names == 'Florida State', 'FSU',
+                            ifelse(names == 'Kansas State', 'KSU',
+                            ifelse(names == 'New Mexico State', 'New Mexico St',
+                            ifelse(names == 'South Dakota State', 'South Dakota St', names))))))) %>%
+      dplyr::mutate(names = as.factor(names))
+  colnames(results) = c("name", paste0("round", 1:6))
+
+  results
 }
