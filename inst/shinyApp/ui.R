@@ -42,8 +42,16 @@ shiny::shinyUI(shiny::fluidPage(
   
     # Show a plot of the generated distribution
     shiny::mainPanel(
-      shiny::a('Click here for a vignette explaining how to use mRchmadness!', href = 'https://cran.r-project.org/web/packages/mRchmadness/vignettes/summary.html'),
-      shiny::br(),
+      shiny::p(
+        'Check out the ',
+        shiny::a('README', href = 'https://github.com/elishayer/mRchmadness/blob/master/README.md'),
+        ' on GitHub to learn more about how to use mRchmadness!'
+      ),
+      shiny::p(
+        'Note that while there is a memory limit on the Shiny app available ',
+        shiny::a('here', href = 'https://saberpowers.shinyapps.io/mRchmadness/'),
+        'via shinyapps.io, you can run the Shiny app locally if you want more computational muscle.'
+      ),
       shiny::br(),
       shiny::tabsetPanel(
         shiny::tabPanel('Empty Bracket',
