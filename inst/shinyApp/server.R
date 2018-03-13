@@ -1,5 +1,5 @@
-bt.men = mRchmadness::bradley.terry(mRchmadness::games.men.2017)
-bt.women = mRchmadness::bradley.terry(mRchmadness::games.women.2017)
+bt.men = mRchmadness::bradley.terry(mRchmadness::games.men.2018)
+bt.women = mRchmadness::bradley.terry(mRchmadness::games.women.2018)
 
 criterion.map = matrix(c('percentile', 'score', 'win'),
                        dimnames = list(c('Percentile',
@@ -18,7 +18,7 @@ shiny::shinyServer(function(input, output) {
 
   output$bracket.empty.plot = shiny::renderPlot({
     bracket = eval(parse(text = paste('mRchmadness::bracket',
-                                      tolower(sex()), '2017', sep = '.')))
+                                      tolower(sex()), '2018', sep = '.')))
     mRchmadness::draw.bracket(bracket, league = tolower(sex()))
   })
 
@@ -36,7 +36,7 @@ shiny::shinyServer(function(input, output) {
     }
 
     empty = eval(parse(text = paste('mRchmadness::bracket',
-                                    tolower(sex()), '2017', sep = '.')))
+                                    tolower(sex()), '2018', sep = '.')))
 
     prob.matrix = NULL
     prob.src = NULL
@@ -68,7 +68,7 @@ shiny::shinyServer(function(input, output) {
 
   output$bracket.filled.plot = shiny::renderPlot({
     empty = eval(parse(text = paste('mRchmadness::bracket',
-                                    tolower(sex()), '2017', sep = '.')))
+                                    tolower(sex()), '2018', sep = '.')))
 
     mRchmadness::draw.bracket(empty, filled.bracket())
   })
@@ -87,7 +87,7 @@ shiny::shinyServer(function(input, output) {
     }
 
     empty = eval(parse(text = paste('mRchmadness::bracket',
-                                    tolower(sex()), '2017', sep = '.')))
+                                    tolower(sex()), '2018', sep = '.')))
 
     prob.matrix = NULL
     prob.src = NULL
@@ -108,7 +108,7 @@ shiny::shinyServer(function(input, output) {
                                         prob.source = prob.src,
                                         pool.source = 'pop',
                                         league = league,
-                                        year = 2017,
+                                        year = 2018,
                                         pool.size = pool.size(),
                                         num.sims = num.test(),
                                         bonus.round = bonus.round,

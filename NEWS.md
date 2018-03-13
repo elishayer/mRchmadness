@@ -4,6 +4,9 @@
 * bracket.women.2018
 * pred.538.women.2018
 
+## Shiny updates
+* App flipped to 2018
+* App is men's only in this release, pending additional women's data
 
 # mRchmadness 1.0.1 - March 11, 2018
 
