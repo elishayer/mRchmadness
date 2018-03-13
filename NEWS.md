@@ -2,6 +2,7 @@
 
 ## New data
 * bracket.women.2018
+* pred.538.women.2018
 
 
 # mRchmadness 1.0.1 - March 11, 2018
