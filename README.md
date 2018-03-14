@@ -26,8 +26,6 @@ install.packages('mRchmadness')
 vignette('mRchmadness')
 ```
 
-A GitHub-generated version of the vignette can be found [here](https://github.com/elishayer/mRchmadness/blob/master/vignettes/mRchmadness.Rmd).
-
 ## Shiny
 
 For those who prefer a point-and-click interface, check out our
