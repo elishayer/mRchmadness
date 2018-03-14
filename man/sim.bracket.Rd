@@ -4,9 +4,9 @@
 \alias{sim.bracket}
 \title{Simulate the full bracket starting with an empty bracket}
 \usage{
-sim.bracket(bracket.empty, prob.matrix = NULL, prob.source = c("pop", "Pom",
-  "538"), league = c("men", "women"), year = 2018, home.teams = NULL,
-  num.reps = 1)
+sim.bracket(bracket.empty, prob.matrix = NULL, prob.source = c("pop",
+  "kenpom", "538"), league = c("men", "women"), year = 2018,
+  home.teams = NULL, num.reps = 1)
 }
 \arguments{
 \item{bracket.empty}{a length-64 character vector giving the field of 64
@@ -18,7 +18,7 @@ If NULL, prob.source is used.}
 
 \item{prob.source}{source from which to use round probabilities for
 simulation --- "pop": ESPN's population of picks (default),
-"Pom": Ken Pomeroy's predictions (kenpom.com), or
+"kenpom": Ken Pomeroy's predictions (kenpom.com), or
 "538": predictions form fivethirtyeight.com.
 Ignored if prob.matrix is specified.}
 

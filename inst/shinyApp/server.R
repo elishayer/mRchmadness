@@ -46,6 +46,8 @@ shiny::shinyServer(function(input, output) {
       prob.matrix = eval(parse(text = paste('bt', tolower(sex()), sep = '.')))
     } else if (prob.source() == 'FiveThirtyEight') {
       prob.src = '538'
+    } else if (prob.source() == 'KenPom') {
+      prob.src = 'kenpom'
     }
 
     progress = shiny::Progress$new(max = num.sims())
@@ -97,6 +99,8 @@ shiny::shinyServer(function(input, output) {
       prob.matrix = eval(parse(text = paste('bt', tolower(sex()), sep = '.')))
     } else if (prob.source() == 'FiveThirtyEight') {
       prob.src = '538'
+    } else if (prob.source() == 'KenPom') {
+      prob.src = 'kenpom'
     }
 
     progress = shiny::Progress$new(max = num.sims())

@@ -7,7 +7,7 @@
 #'   If NULL, prob.source is used.
 #' @param prob.source source from which to use round probabilities for
 #'   simulation --- "pop": ESPN's population of picks (default),
-#'   "Pom": Ken Pomeroy's predictions (kenpom.com), or
+#'   "kenpom": Ken Pomeroy's predictions (kenpom.com), or
 #'   "538": predictions form fivethirtyeight.com.
 #'   Ignored if prob.matrix is specified.
 #' @param league which league: "men" (default) or "women", for prob.source.
@@ -30,7 +30,7 @@
 #' @export
 #' @author sspowers
 sim.bracket = function(bracket.empty, prob.matrix = NULL,
-  prob.source = c("pop", "Pom", "538"), league = c("men", "women"),
+  prob.source = c("pop", "kenpom", "538"), league = c("men", "women"),
   year = 2018, home.teams = NULL, num.reps = 1) {
 
   `%>%` = dplyr::`%>%`

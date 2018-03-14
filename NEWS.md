@@ -1,3 +1,12 @@
+# mRchmadness 1.0.3 - March 13, 2018
+
+## New data
+* pred.kenpom.men.2018
+
+## New features
+* provide support for home bias adjustment
+* provide support for kenpom predictions
+
 # mRchmadness 1.0.2 - March 12, 2018
 
 ## New data
