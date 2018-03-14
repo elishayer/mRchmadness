@@ -1,8 +1,10 @@
 # mRchmadness 1.0.3 - March 13, 2018
 
 ## New data
-* bracket.men.2018 (updated)
+* bracket.men.2018 (update)
+* pred.538.men.2018 (update)
 * pred.kenpom.men.2018
+* pred.pop.men.2018 (update)
 
 ## New features
 * home team bias-adjustments for population picks
