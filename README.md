@@ -32,6 +32,6 @@ A GitHub-generated version of the vignette can be found [here](https://github.co
 
 For those who prefer a point-and-click interface, check out our
 [Shiny app](https://saberpowers.shinyapps.io/mRchmadness/).
-The app is currently configured for 2017, but that will change soon.
 
-You can also use the Shiny app locally by running `shiny::runApp('inst/shinyApp')` with mRchmadness in your working directory.
+You can also use the Shiny app locally by running
+`shiny::runApp('inst/shinyApp')` from the mRchmadness directory.
