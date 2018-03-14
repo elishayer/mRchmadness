@@ -1,7 +1,8 @@
 # mRchmadness 1.0.4 - March 14, 2018
 
 ## Bug fixes
-* Fix output of `add.home.bias()` to match `pred.pop.[league].[year]`
+* fixed output of `add.home.bias()` to match `pred.pop.[league].[year]`
+* fixed error on kenpom predictions due to first-round changes (#22)
 
 ## New features
 * `draw.bracket()` leaves less white space
