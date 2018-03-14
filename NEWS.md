@@ -1,20 +1,26 @@
+# mRchmadness 1.0.4 - March 14, 2018
+
+## Bug fixes
+* Fix output of `add.home.bias()` to match `pred.pop.[league].[year]`
+
 # mRchmadness 1.0.3 - March 13, 2018
 
 ## New data
-* bracket.men.2018 (update)
-* pred.538.men.2018 (update)
-* pred.kenpom.men.2018
-* pred.pop.men.2018 (update)
+* `bracket.men.2018` (update)
+* `pred.538.men.2018` (update)
+* `pred.kenpom.men.2018`
+* `pred.pop.men.2018` (update)
 
 ## New features
 * home team bias-adjustments for population picks
+  (see `pool.bias` argument of `find.bracket` and `test.bracket()`)
 * provide support for kenpom predictions
 
 # mRchmadness 1.0.2 - March 12, 2018
 
 ## New data
-* bracket.women.2018
-* pred.538.women.2018
+* `bracket.women.2018`
+* `pred.538.women.2018`
 
 ## Shiny updates
 * App flipped to 2018
@@ -23,12 +29,12 @@
 # mRchmadness 1.0.1 - March 11, 2018
 
 ## New data
-* bracket.men.2018
-* bracket.women.2018 - from Charlie Creme's bracketology page on ESPN
-* games.men.2018
-* games.women.2018
-* pred.538.men.2018
-* pred.pop.men.2018
+* `bracket.men.2018`
+* `bracket.women.2018` - from Charlie Creme's bracketology page on ESPN
+* `games.men.2018`
+* `games.women.2018`
+* `pred.538.men.2018`
+* `pred.pop.men.2018`
 
 ## New features
 * handling of unplayed first-round games

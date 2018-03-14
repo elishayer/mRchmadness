@@ -75,6 +75,8 @@ add.home.bias = function(teams, league = c("men", "women"), year = 2018) {
 
 # Re-normalize columns of round advancement probability matrix so that the
 # expected number of teams advancing to each round is correct
-  t(t(prob.bias) / colSums(prob.bias) * 2^(5:0))
+  prob.bias = t(t(prob.bias) / colSums(prob.bias) * 2^(5:0))
+  prob[, -1] = prob.bias
+  prob
 }
 
