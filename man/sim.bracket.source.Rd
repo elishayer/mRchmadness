@@ -10,7 +10,7 @@ sim.bracket.source(prob.source, league, year, home.teams, num.reps, outcome,
 \arguments{
 \item{prob.source}{source from which to use round probabilities for
 simulation --- "pop": ESPN's population of picks,
-"Pom": Ken Pomeroy's predictions (kenpom.com), or
+"kenpom": Ken Pomeroy's predictions (kenpom.com), or
 "538": predictions form fivethirtyeight.com.}
 
 \item{league}{which league: "men" (default) or "women", for prob.source.}

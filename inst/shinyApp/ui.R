@@ -21,7 +21,8 @@ shiny::shinyUI(shiny::fluidPage(
       
       shiny::selectInput('prob.source', 'Win Probability Source',
                          choices = c('Bradley-Terry Model',
-                                     'FiveThirtyEight')),
+                                     'FiveThirtyEight',
+                                     'KenPom')),
       
       shiny::numericInput('num.brackets', 'Number of Test Brackets',
                           value = 100, min = 10, max = 1000,
