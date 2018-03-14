@@ -1,5 +1,11 @@
 # mRchmadness
-NCAA men's basketball data scraping and bracketology R package
+mRchmadness is *not* designed to predict the winners of tournament games, but
+it *is* designed the answer the question: *Given the true probabilities
+dictating tournament results and given the probabilities with which my pool
+opponents make their picks, then what bracket maximizes my chances of winning
+my pool?* To answer this question, we simulate tournament results and opponent
+picks over and over again, testing a set of candidate brackets against pool
+opponents in each simulation and choosing the bracket that performs best.
 
 ## Installation
 
