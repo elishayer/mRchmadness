@@ -1,4 +1,4 @@
 cran-comments.md
 NEWS.md
 README.md
-builds/^mRchmadness_[0-9\.]+\.tar\.gz$
+^builds/mRchmadness_[0-9\.]+\.tar\.gz$
