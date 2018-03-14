@@ -5,7 +5,8 @@
 \title{Simulate the full bracket starting with an empty bracket}
 \usage{
 sim.bracket(bracket.empty, prob.matrix = NULL, prob.source = c("pop", "Pom",
-  "538"), league = c("men", "women"), year = 2018, num.reps = 1)
+  "538"), league = c("men", "women"), year = 2018, home.teams = NULL,
+  num.reps = 1)
 }
 \arguments{
 \item{bracket.empty}{a length-64 character vector giving the field of 64
@@ -26,6 +27,10 @@ Ignored if prob.matrix is specified.}
 
 \item{year}{year of tournament, used for prob.source.
 Ignored if prob.matrix is specified.}
+
+\item{home.teams}{character vector of names of teams to whom home-team bias
+is to be applied (must match name column of pred.pop.[league].[year]).
+Ignored unless prob.source is "pop" (see ?add.home.bias for details).}
 
 \item{num.reps}{number of simulations to perform (default is 1)}
 }

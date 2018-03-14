@@ -6,10 +6,10 @@
 \usage{
 find.bracket(bracket.empty, prob.matrix = NULL, prob.source = c("pop",
   "Pom", "538"), pool.source = c("pop", "Pom", "538"), league = c("men",
-  "women"), year = 2018, num.candidates = 100, num.sims = 1000,
-  criterion = c("percentile", "score", "win"), pool.size = 30,
-  bonus.round = c(1, 2, 4, 8, 16, 32), bonus.seed = rep(0, 16),
-  bonus.combine = c("add", "multiply"), print.progress = TRUE,
+  "women"), year = 2018, pool.bias = NULL, num.candidates = 100,
+  num.sims = 1000, criterion = c("percentile", "score", "win"),
+  pool.size = 30, bonus.round = c(1, 2, 4, 8, 16, 32), bonus.seed = rep(0,
+  16), bonus.combine = c("add", "multiply"), print.progress = TRUE,
   shiny.progress = NULL)
 }
 \arguments{
@@ -33,6 +33,10 @@ entries of opponents in pool. Same options as prob.source.}
 \item{league}{which league: "men" (default) or "women", for pool.source.}
 
 \item{year}{year of tournament, used for prob.source and pool.source}
+
+\item{pool.bias}{character vector of names of teams to whom home-team bias
+is to be applied (must match name column of pred.pop.[league].[year]).
+Ignored unless pool.source is "pop" (see ?add.home.bias for details).}
 
 \item{num.candidates}{number of random brackets to try, taking the best one
 (default is 100)}

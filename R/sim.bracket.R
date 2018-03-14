@@ -14,6 +14,9 @@
 #'   Ignored if prob.matrix is specified.
 #' @param year year of tournament, used for prob.source.
 #'   Ignored if prob.matrix is specified.
+#' @param home.teams character vector of names of teams to whom home-team bias
+#'   is to be applied (must match name column of pred.pop.[league].[year]).
+#'   Ignored unless prob.source is "pop" (see ?add.home.bias for details).
 #' @param num.reps number of simulations to perform (default is 1)
 #' @return a 63-by-num.reps matrix storing the simulation outcome, each
 #'   column encoding the outcome for a single simulation in the following
@@ -28,7 +31,7 @@
 #' @author sspowers
 sim.bracket = function(bracket.empty, prob.matrix = NULL,
   prob.source = c("pop", "Pom", "538"), league = c("men", "women"),
-  year = 2018, num.reps = 1) {
+  year = 2018, home.teams = NULL, num.reps = 1) {
 
   `%>%` = dplyr::`%>%`
 
@@ -70,8 +73,8 @@ sim.bracket = function(bracket.empty, prob.matrix = NULL,
       untangling.indices = untangling.indices)
   } else {
     outcome = sim.bracket.source(prob.source = prob.source, league = league,
-      year = year, num.reps = num.reps, outcome = outcome, round = round,
-      teams.remaining = teams.remaining,
+      year = year, home.teams = home.teams, num.reps = num.reps,
+      outcome = outcome, round = round, teams.remaining = teams.remaining,
       untangling.indices = untangling.indices)
   }
   outcome

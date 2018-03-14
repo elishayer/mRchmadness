@@ -4,8 +4,8 @@
 \alias{sim.bracket.source}
 \title{Simulate the full bracket starting with an empty bracket}
 \usage{
-sim.bracket.source(prob.source, league, year, num.reps, outcome, round,
-  teams.remaining, untangling.indices)
+sim.bracket.source(prob.source, league, year, home.teams, num.reps, outcome,
+  round, teams.remaining, untangling.indices)
 }
 \arguments{
 \item{prob.source}{source from which to use round probabilities for
@@ -16,6 +16,10 @@ simulation --- "pop": ESPN's population of picks,
 \item{league}{which league: "men" (default) or "women", for prob.source.}
 
 \item{year}{year of tournament, used for prob.source.}
+
+\item{home.teams}{character vector of names of teams to whom home-team bias
+is to be applied (must match name column of pred.pop.[league].[year]).
+Ignored unless prob.source is "pop" (see ?add.home.bias for details).}
 
 \item{num.reps}{number of simulations to perform}
 

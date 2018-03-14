@@ -15,6 +15,9 @@
 #'   entries of opponents in pool. Same options as prob.source.
 #' @param league which league: "men" (default) or "women", for pool.source.
 #' @param year year of tournament, used for prob.source and pool.source
+#' @param pool.bias character vector of names of teams to whom home-team bias
+#'   is to be applied (must match name column of pred.pop.[league].[year]).
+#'   Ignored unless pool.source is "pop" (see ?add.home.bias for details).
 #' @param num.candidates number of random brackets to try, taking the best one
 #'   (default is 100)
 #' @param num.sims number of simulations over which to evaluate the candidate
@@ -47,8 +50,8 @@
 find.bracket = function(bracket.empty, prob.matrix = NULL,
   prob.source = c("pop", "Pom", "538"),
   pool.source = c("pop", "Pom", "538"), league = c("men", "women"),
-  year = 2018, num.candidates = 100, num.sims = 1000,
-  criterion = c("percentile", "score", "win"), pool.size = 30,
+  year = 2018, pool.bias = NULL, num.candidates = 100,
+  num.sims = 1000, criterion = c("percentile", "score", "win"), pool.size = 30,
   bonus.round = c(1, 2, 4, 8, 16, 32), bonus.seed = rep(0, 16),
   bonus.combine = c("add", "multiply"),
   print.progress = TRUE, shiny.progress = NULL) {
@@ -92,7 +95,8 @@ find.bracket = function(bracket.empty, prob.matrix = NULL,
 
 # Simulate all of the pools (across all simulations)
   pool = sim.bracket(bracket.empty = bracket.empty, prob.source = pool.source,
-    league = league, year = year, num.reps = num.sims * pool.size)
+    league = league, year = year, home.teams = pool.bias,
+    num.reps = num.sims * pool.size)
 
 # Simulate all of the outcomes
   outcome = sim.bracket(bracket.empty = bracket.empty,

@@ -6,6 +6,9 @@
 #'   "538": predictions form fivethirtyeight.com.
 #' @param league which league: "men" (default) or "women", for prob.source.
 #' @param year year of tournament, used for prob.source.
+#' @param home.teams character vector of names of teams to whom home-team bias
+#'   is to be applied (must match name column of pred.pop.[league].[year]).
+#'   Ignored unless prob.source is "pop" (see ?add.home.bias for details).
 #' @param num.reps number of simulations to perform
 #' @param outcome passed in from sim.bracket()
 #' @param round passed in from sim.bracket()
@@ -18,8 +21,8 @@
 #'   seeds 1 and 2 after round 5, and finally seed 1 after round 6 (the
 #'   champion)
 #' @author sspowers
-sim.bracket.source = function(prob.source, league, year, num.reps, outcome,
-  round, teams.remaining, untangling.indices) {
+sim.bracket.source = function(prob.source, league, year, home.teams, num.reps,
+  outcome, round, teams.remaining, untangling.indices) {
 
   `%>%` = dplyr::`%>%`
 
@@ -28,6 +31,11 @@ sim.bracket.source = function(prob.source, league, year, num.reps, outcome,
       paste("mRchmadness::pred", prob.source, league, year, sep = ".")))
 # Load the dataframe of teams corresponding to the correct league
   teams = eval(parse(text = paste("mRchmadness::teams", league, sep = ".")))
+
+# If home teams are specified and prob.source is "pop", add home-team bias
+  if (!is.null(home.teams) && (prob.source == "pop")) {
+    prob = add.home.bias(home.teams, league = league, year = year)
+  }
 
 # Get team ids to match tournament teams to probabilities from source
   team.id = as.character(teams$id)
