@@ -1,11 +1,10 @@
 shiny::shinyUI(shiny::fluidPage(
-  shiny::titlePanel('mRchmadness: 2017'),
+  shiny::titlePanel('mRchmadness: 2018'),
 
   shiny::sidebarLayout(
     shiny::sidebarPanel(
       shiny::selectInput('sex', 'Men or Women:',
-                         choices = c('Men',
-                                     'Women')),
+                         choices = c('Men')),
 
       shiny::selectInput('scoring', 'Scoring Scheme:',
                          choices = c('Traditional',
@@ -42,8 +41,17 @@ shiny::shinyUI(shiny::fluidPage(
   
     # Show a plot of the generated distribution
     shiny::mainPanel(
-      shiny::a('Click here for a vignette explaining how to use mRchmadness!', href = 'https://cran.r-project.org/web/packages/mRchmadness/vignettes/summary.html'),
-      shiny::br(),
+      shiny::p(
+        'Check out the ',
+        shiny::a('README', href = 'https://github.com/elishayer/mRchmadness/blob/master/README.md'),
+        ' on GitHub to learn more about how to use mRchmadness!'
+      ),
+      shiny::p(
+        'Note that while there is a memory limit on the Shiny app available ',
+        shiny::a('here', href = 'https://saberpowers.shinyapps.io/mRchmadness/'),
+        'via shinyapps.io, you can run the Shiny app locally if you want more computational muscle.'
+      ),
+      shiny::p('NOTE: The bracket is men\'s only for the moment, pending the release of women\'s population picks from ESPN. We will add support for the women\'s bracket as soon as those data are available. This is as of the evening of March 12th, 2018.', style='color: red;'),
       shiny::br(),
       shiny::tabsetPanel(
         shiny::tabPanel('Empty Bracket',
