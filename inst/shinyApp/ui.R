@@ -15,9 +15,9 @@ shiny::shinyUI(shiny::fluidPage(
                           value = 10, min = 2, max = 100, step = 1),
       
       shiny::selectInput('criterion', 'Maximized Criterion:',
-                         choices = c('Score',
+                         choices = c('Win Probability',
                                      'Percentile',
-                                     'Win Probability')),
+                                     'Score')),
       
       shiny::selectInput('prob.source', 'Win Probability Source',
                          choices = c('Bradley-Terry Model',
