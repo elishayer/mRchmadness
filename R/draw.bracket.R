@@ -6,6 +6,7 @@
 #'   tournament results (matching output from simulate.bracket)
 #' @param league which league: "men" (default) or "women".
 #'   Used for converting team IDs into team names
+#' @param text.size character expansion factor for teams written into bracket
 #' @examples
 #'   prob.matrix = bradley.terry(games = games.men.2018)
 #'   outcome = sim.bracket(bracket.empty = bracket.men.2018,
@@ -14,7 +15,7 @@
 #' @export
 #' @author sspowers
 draw.bracket = function(bracket.empty, bracket.filled = NULL,
-  league = c("men", "women")) {
+  league = c("men", "women"), text.size = 0.5) {
 
   `%>%` = dplyr::`%>%`
 
@@ -76,6 +77,7 @@ draw.bracket = function(bracket.empty, bracket.filled = NULL,
     rep(seq(15/16, 1/16, -1/8), 2), rep(seq(7/8, 1/8, -1/4), 2),
     rep(c(3/4, 1/4), 2), 3/5, 2/5, 1/2)
 
+  graphics::par(mar = c(0, 0, 0, 0))
   graphics::plot(NA, xlim = c(-7, 7), ylim = 0:1, xlab = '', ylab = '',
     axes = FALSE)
 # horizontal line segments
@@ -87,11 +89,11 @@ draw.bracket = function(bracket.empty, bracket.filled = NULL,
     y[seq(2, length(y) - 3, 2)])
 
 # fill in intial seeding
-  graphics::text(x[1:64] - 0.46, y[1:64] + 0.01, bracket.empty, cex = 0.4,
-    adj = 0)
+  graphics::text(x[1:64] - 0.46, y[1:64] + 0.01, bracket.empty,
+    cex = text.size, adj = 0)
 
   if (!is.null(bracket.filled)) { # fill in tournament results
     graphics::text(x[-(1:64)] - 0.46, y[-(1:64)] + 0.01, bracket.filled,
-      cex = 0.4, adj = 0)
+      cex = text.size, adj = 0)
   }
 }

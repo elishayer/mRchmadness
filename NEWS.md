@@ -3,6 +3,9 @@
 ## Bug fixes
 * Fix output of `add.home.bias()` to match `pred.pop.[league].[year]`
 
+## New features
+* `draw.bracket()` leaves less white space
+
 # mRchmadness 1.0.3 - March 13, 2018
 
 ## New data

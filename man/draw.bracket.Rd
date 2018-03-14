@@ -5,7 +5,7 @@
 \title{Plot bracket to device}
 \usage{
 draw.bracket(bracket.empty, bracket.filled = NULL, league = c("men",
-  "women"))
+  "women"), text.size = 0.5)
 }
 \arguments{
 \item{bracket.empty}{a length-64 character vector giving the field of 64
@@ -16,6 +16,8 @@ tournament results (matching output from simulate.bracket)}
 
 \item{league}{which league: "men" (default) or "women".
 Used for converting team IDs into team names}
+
+\item{text.size}{character expansion factor for teams written into bracket}
 }
 \description{
 Plot bracket to device
