@@ -7,6 +7,7 @@
 
 ## New features
 * `draw.bracket()` leaves less white space
+* `input.bracket.filled` reorders filled brackets for user friendliness ([#23](https://github.com/elishayer/mRchmadness/issues/23))
 
 # mRchmadness 1.0.3 - March 13, 2018
 
