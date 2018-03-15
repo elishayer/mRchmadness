@@ -2,7 +2,8 @@
 
 ## Bug fixes
 * fixed output of `add.home.bias()` to match `pred.pop.[league].[year]`
-* fixed error on kenpom predictions due to first-round changes (#22)
+* fixed error on kenpom predictions due to first-round changes ([#22](https://github.com/elishayer/mRchmadness/issues/22))
+* fixed lack of error checking of `bracket.picks` contents in `test.bracket` ([#24](https://github.com/elishayer/mRchmadness/issues/24))
 
 ## New features
 * `draw.bracket()` leaves less white space

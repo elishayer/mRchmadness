@@ -60,6 +60,10 @@ test.bracket = function(bracket.empty, bracket.picks, prob.matrix = NULL,
   if (length(bracket.picks) != 63) {
     stop("Length of bracket.picks must be 63.")
   }
+  if (!all(bracket.picks %in% bracket.empty)) {
+    stop(paste0("All picked teams must be in the bracket (check on ",
+      paste(bracket.picks[!bracket.picks %in% bracket.empty], collapse = ", "), ")"))
+  }
   if (pool.size < 2) {
     stop("pool.size must be at least 2")
   }
