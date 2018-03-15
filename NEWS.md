@@ -9,12 +9,17 @@
 * `draw.bracket()` leaves less white space
 * `input.bracket.filled` reorders filled brackets for user friendliness ([#23](https://github.com/elishayer/mRchmadness/issues/23))
 
+## Updated data
+* `bracket.men.2018`
+* `pred.538.men.2018`
+* `pred.pop.men.2018`
+
 # mRchmadness 1.0.3 - March 13, 2018
 
 ## New data
+* `pred.kenpom.men.2018`
 * `bracket.men.2018` (update)
 * `pred.538.men.2018` (update)
-* `pred.kenpom.men.2018`
 * `pred.pop.men.2018` (update)
 
 ## New features
