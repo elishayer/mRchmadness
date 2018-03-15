@@ -11,8 +11,10 @@
 #'   for more details.
 #' @return a vector giving the picked bracket in the way used elsewhere
 #'   in mRchmadness (see sim.bracket documentation)
+#' @export
 #' @author elishayer
 input.bracket.filled = function(bracket.picks) {
+
   if (length(bracket.picks) != 63) {
     stop("Length of bracket.picks must be 63.")
   }
