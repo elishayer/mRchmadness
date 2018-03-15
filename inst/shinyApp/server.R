@@ -19,7 +19,7 @@ shiny::shinyServer(function(input, output) {
   output$bracket.empty.plot = shiny::renderPlot({
     bracket = eval(parse(text = paste('mRchmadness::bracket',
                                       tolower(sex()), '2018', sep = '.')))
-    mRchmadness::draw.bracket(bracket, league = tolower(sex()))
+    mRchmadness::draw.bracket(bracket, league = tolower(sex()), text.size = .6)
   })
 
   filled.bracket = shiny::reactive({
@@ -72,7 +72,7 @@ shiny::shinyServer(function(input, output) {
     empty = eval(parse(text = paste('mRchmadness::bracket',
                                     tolower(sex()), '2018', sep = '.')))
 
-    mRchmadness::draw.bracket(empty, filled.bracket())
+    mRchmadness::draw.bracket(empty, filled.bracket(), text.size = .6)
   })
 
   output$bracket.diagnostics = shiny::renderPlot({
