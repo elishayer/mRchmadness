@@ -1,3 +1,8 @@
+# mRchmadness 1.0.5 - March 15, 2018
+
+## Updated data
+* `pred.pop.men.2018` (final update)
+
 # mRchmadness 1.0.4 - March 14, 2018
 
 ## Bug fixes
