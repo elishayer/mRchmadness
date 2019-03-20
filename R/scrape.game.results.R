@@ -15,8 +15,8 @@ scrape.game.results = function(year, league = c('mens', 'womens')) {
     stop('scrape.game.results: The year must be numeric')
   if (year < 2002)
     stop('2002 is the earliest available season')
-  if (year > 2018)
-    warning('2018 is the latest season on which the scraper was tested')
+  if (year > 2019)
+    warning('2019 is the latest season on which the scraper was tested')
 
   teams = scrape.teams(league)
   
@@ -58,7 +58,7 @@ scrape.game.results = function(year, league = c('mens', 'womens')) {
   unique(results)
 }
 
-#' Scrape the team names and ids from the ESPN NCAA MBB index
+#' Scrape the team ids from the ESPN NCAA MBB/WBB index
 #'
 #' @param league either 'mens' or 'womens'
 #' @return data.frame of team names and ids
@@ -69,7 +69,7 @@ scrape.teams = function(league) {
   url = paste0('http://www.espn.com/', league, '-college-basketball/teams')
   
   cells = xml2::read_html(url) %>%
-    rvest::html_nodes('.mod-content > ul.medium-logos > li h5 a')
+    rvest::html_nodes('section.TeamLinks > a')
   
   name = cells %>%
     rvest::html_text(trim = TRUE)
@@ -78,7 +78,7 @@ scrape.teams = function(league) {
     rvest::html_attr('href') %>%
     strsplit('/') %>%
     sapply(identity) %>%
-    `[`(8,)
+    `[`(6,)
   
   data.frame(name = name, id = id, stringsAsFactors = FALSE)
 }
@@ -98,18 +98,12 @@ scrape.team.game.results = function(year, team.id, league) {
                'team/schedule/_/id/', team.id, '/year/', year)
   
   rows = xml2::read_html(url) %>%
-    rvest::html_nodes('.mod-content table tr:not(.colhead)')
-  
-  # remove tournament games
-  tourney = rows %>%
-    rvest::html_text(trim = TRUE) %>%
-    startsWith(c("MEN'S BASKETBALL CHAMPIONSHIP",
-                 "NCAA WOMEN'S CHAMPIONSHIP")) %>%
-    which
+    rvest::html_nodes('.Table2__tbody tr')
 
-  if (length(tourney) > 0) {
-    rows = rows[1:(min(tourney) - 1)]
-  }
+  # filter out headers and unplayed (tournament) games
+  rows = rows[sapply(rows,
+    function(tr) { rvest::html_nodes(tr, 'td') %>% length == 7 &
+                   !rvest::html_text(tr) %>% startsWith('Date')})]
 
   opponent.cells = rows %>%
     rvest::html_nodes('td:nth-child(2)')
@@ -129,7 +123,7 @@ scrape.team.game.results = function(year, team.id, league) {
     which %>%
     c(skip)
   skip = result.cells %>%
-    rvest::html_node('li.score') %>%
+    rvest::html_node('.ml4') %>%
     rvest::html_text(trim = TRUE) %>%
     is.na %>%
     which %>%
@@ -141,10 +135,10 @@ scrape.team.game.results = function(year, team.id, league) {
   }
   
   won = result.cells %>%
-    rvest::html_node('li.game-status') %>%
+    rvest::html_node('.fw-bold') %>%
     rvest::html_text(trim = TRUE) == 'W'
   score = result.cells %>%
-    rvest::html_node('li.score') %>%
+    rvest::html_node('.ml4') %>%
     rvest::html_text(trim = TRUE) %>%
     strsplit(' ') %>%
     sapply(function(row) row[1]) %>%
@@ -152,29 +146,28 @@ scrape.team.game.results = function(year, team.id, league) {
     sapply(identity) %>%
     t
   other = opponent.cells %>%
-    rvest::html_node('li.team-name a') %>%
+    rvest::html_node('.opponent-logo a') %>%
     rvest::html_attr('href') %>%
     strsplit('/') %>%
-    sapply(function(row) row[8])
+    sapply(function(row) row[6])
   neutral = opponent.cells %>%
-    rvest::html_node('li.team-name') %>%
     rvest::html_text(trim = TRUE) %>%
     endsWith('*')
   at.or.vs = opponent.cells %>%
-    rvest::html_node('li.game-status') %>%
+    rvest::html_node('.pr2') %>%
     rvest::html_text(trim = TRUE)
   location = ifelse(neutral, 'N', ifelse(at.or.vs == 'vs', 'H', 'A'))
   ot = result.cells %>%
-    rvest::html_node('li.score') %>%
+    rvest::html_node('.ml4') %>%
     rvest::html_text(trim = TRUE) %>%
     strsplit(' ') %>%
     sapply(function(row) row[2]) %>%
     ifelse(is.na(.), '', .)
   game.id = result.cells %>%
-    rvest::html_node('li.score a') %>%
+    rvest::html_node('.ml4 a') %>%
     rvest::html_attr('href') %>%
-    strsplit('/') %>%
-    sapply(function(row) row[8])
+    strsplit('=') %>%
+    sapply(function(row) row[2])
   
   data.frame(game.id = game.id,
              primary.id = team.id,
