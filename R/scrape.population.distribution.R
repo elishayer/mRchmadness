@@ -11,7 +11,7 @@ scrape.population.distribution = function(year, league = c('mens', 'womens')) {
   league = match.arg(league)
   `%>%` = dplyr::`%>%`
 
-  if (!(year %in% c(2016, 2017, 2018))) {
+  if (!(year %in% c(2016, 2017, 2018, 2019))) {
     stop(paste0('The year ', year, ' is not available'))
   }
 
@@ -34,11 +34,12 @@ scrape.population.distribution = function(year, league = c('mens', 'womens')) {
 
   round = rep(1:6, 64)
 
-  results = data.frame(names = names, probabilities = probabilities, round = round) %>%
+  results = data.frame(names = names, probabilities = probabilities, round = as.numeric(round)) %>%
       tidyr::spread(round, probabilities) %>%
       dplyr::mutate(names = as.character(names)) %>%
       dplyr::mutate(names = ifelse(names == 'BON/LA', 'BON/UCLA',
                             ifelse(names == 'NCC/TS', 'NCC/Texas Southern',
+                            ifelse(names == 'ASU/SJU', "ASU/St John's",
                             ifelse(names == 'Florida State', 'FSU',
                             ifelse(names == 'Kansas State', 'KSU',
                             ifelse(names == 'New Mexico State', 'New Mexico St',
