@@ -15,8 +15,8 @@ scrape.game.results = function(year, league = c('mens', 'womens')) {
     stop('scrape.game.results: The year must be numeric')
   if (year < 2002)
     stop('2002 is the earliest available season')
-  if (year > 2019)
-    warning('2019 is the latest season on which the scraper was tested')
+  if (year > 2021)
+    warning('2021 is the latest season on which the scraper was tested')
 
   teams = scrape.teams(league)
   
@@ -68,13 +68,15 @@ scrape.teams = function(league) {
 
   url = paste0('http://www.espn.com/', league, '-college-basketball/teams')
   
-  cells = xml2::read_html(url) %>%
-    rvest::html_nodes('section.TeamLinks > a')
+  team.links = xml2::read_html(url) %>%
+    rvest::html_nodes('section.TeamLinks')
   
-  name = cells %>%
+  name = team.links %>%
+    rvest::html_nodes('.pl3 h2') %>%
     rvest::html_text(trim = TRUE)
   
-  id = cells %>%
+  id = team.links %>%
+    rvest::html_nodes('.pl3 > a') %>%
     rvest::html_attr('href') %>%
     strsplit('/') %>%
     sapply(identity) %>%
