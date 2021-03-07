@@ -98,7 +98,7 @@ scrape.team.game.results = function(year, team.id, league) {
                'team/schedule/_/id/', team.id, '/year/', year)
   
   rows = xml2::read_html(url) %>%
-    rvest::html_nodes('.Table2__tbody tr')
+    rvest::html_nodes('.Table__TBODY tr')
 
   # filter out headers and unplayed (tournament) games
   rows = rows[sapply(rows,
