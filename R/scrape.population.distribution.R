@@ -43,7 +43,7 @@ scrape.population.distribution = function(year, league = c('mens', 'womens')) {
                             ifelse(names == 'Florida State', 'FSU',
                             ifelse(names == 'Kansas State', 'KSU',
                             ifelse(names == 'New Mexico State', 'New Mexico St',
-                            ifelse(names == 'South Dakota State', 'South Dakota St', names))))))) %>%
+                            ifelse(names == 'South Dakota State', 'South Dakota St', names)))))))) %>%
       dplyr::mutate(names = as.factor(names))
   colnames(results) = c("name", paste0("round", 1:6))
 
