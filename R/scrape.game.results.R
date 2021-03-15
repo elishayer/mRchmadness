@@ -107,6 +107,17 @@ scrape.team.game.results = function(year, team.id, league) {
     function(tr) { rvest::html_nodes(tr, 'td') %>% length == 7 &
                    !rvest::html_text(tr) %>% startsWith('Date')})]
 
+  if (length(rows) == 0) {
+    return (data.frame(game.id = character(0),
+                       primary.id = character(0),
+                       primary.score = character(0),
+                       other.id = character(0),
+                       other.score = character(0),
+                       home = character(0),
+                       location = character(0),
+                       ot = character(0)))
+  }
+
   opponent.cells = rows %>%
     rvest::html_nodes('td:nth-child(2)')
   
@@ -128,6 +139,12 @@ scrape.team.game.results = function(year, team.id, league) {
     rvest::html_node('.ml4') %>%
     rvest::html_text(trim = TRUE) %>%
     is.na %>%
+    which %>%
+    c(skip)
+  skip = result.cells %>%
+    rvest::html_node('.ml4') %>%
+    rvest::html_text(trim = TRUE) %>%
+    nchar %>% `==`(0) %>%
     which %>%
     c(skip)
 
