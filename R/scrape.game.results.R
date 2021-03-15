@@ -152,7 +152,18 @@ scrape.team.game.results = function(year, team.id, league) {
     opponent.cells = opponent.cells[-skip]
     result.cells = result.cells[-skip]
   }
-  
+
+  if (length(opponent.cells) == 0) {
+    return (data.frame(game.id = character(0),
+                       primary.id = character(0),
+                       primary.score = character(0),
+                       other.id = character(0),
+                       other.score = character(0),
+                       home = character(0),
+                       location = character(0),
+                       ot = character(0)))
+  }
+
   won = result.cells %>%
     rvest::html_node('.fw-bold') %>%
     rvest::html_text(trim = TRUE) == 'W'
