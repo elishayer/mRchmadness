@@ -11,7 +11,7 @@ scrape.population.distribution = function(year, league = c('mens', 'womens')) {
   league = match.arg(league)
   `%>%` = dplyr::`%>%`
 
-  if (!(year %in% c(2016, 2017, 2018, 2019))) {
+  if (!(year %in% c(2016, 2017, 2018, 2019, 2021))) {
     stop(paste0('The year ', year, ' is not available'))
   }
 
@@ -40,10 +40,17 @@ scrape.population.distribution = function(year, league = c('mens', 'womens')) {
       dplyr::mutate(names = ifelse(names == 'BON/LA', 'BON/UCLA',
                             ifelse(names == 'NCC/TS', 'NCC/Texas Southern',
                             ifelse(names == 'ASU/SJU', "ASU/St John's",
+                            ifelse(names == 'MSM/TXSO', 'MSM/Texas Southern',
+                            ifelse(names == 'MSU/UCLA', 'Michigan State/UCLA',
+                            ifelse(names == 'WICH/DRKE', 'Wichita State/Drake',
                             ifelse(names == 'Florida State', 'FSU',
                             ifelse(names == 'Kansas State', 'KSU',
+                            ifelse(names == 'North Carolina', 'UNC',
+                            ifelse(names == 'Ohio State', 'OSU',
+                            ifelse(names == 'UNC Greensboro', 'UNCG',
+                            ifelse(names == 'Virginia', 'UVA',
                             ifelse(names == 'New Mexico State', 'New Mexico St',
-                            ifelse(names == 'South Dakota State', 'South Dakota St', names)))))))) %>%
+                            ifelse(names == 'South Dakota State', 'South Dakota St', names))))))))))))))) %>%
       dplyr::mutate(names = as.factor(names))
   colnames(results) = c("name", paste0("round", 1:6))
 
