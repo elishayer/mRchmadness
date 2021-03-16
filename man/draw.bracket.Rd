@@ -4,8 +4,12 @@
 \alias{draw.bracket}
 \title{Plot bracket to device}
 \usage{
-draw.bracket(bracket.empty, bracket.filled = NULL, league = c("men",
-  "women"), text.size = 0.5)
+draw.bracket(
+  bracket.empty,
+  bracket.filled = NULL,
+  league = c("men", "women"),
+  text.size = 0.5
+)
 }
 \arguments{
 \item{bracket.empty}{a length-64 character vector giving the field of 64

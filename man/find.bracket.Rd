@@ -4,13 +4,24 @@
 \alias{find.bracket}
 \title{Fill out a bracket based on some criteria}
 \usage{
-find.bracket(bracket.empty, prob.matrix = NULL, prob.source = c("pop",
-  "kenpom", "538"), pool.source = c("pop", "kenpom", "538"),
-  league = c("men", "women"), year = 2018, pool.bias = NULL,
-  num.candidates = 100, num.sims = 1000, criterion = c("percentile",
-  "score", "win"), pool.size = 30, bonus.round = c(1, 2, 4, 8, 16, 32),
-  bonus.seed = rep(0, 16), bonus.combine = c("add", "multiply"),
-  print.progress = TRUE, shiny.progress = NULL)
+find.bracket(
+  bracket.empty,
+  prob.matrix = NULL,
+  prob.source = c("pop", "kenpom", "538"),
+  pool.source = c("pop", "kenpom", "538"),
+  league = c("men", "women"),
+  year = 2018,
+  pool.bias = NULL,
+  num.candidates = 100,
+  num.sims = 1000,
+  criterion = c("percentile", "score", "win"),
+  pool.size = 30,
+  bonus.round = c(1, 2, 4, 8, 16, 32),
+  bonus.seed = rep(0, 16),
+  bonus.combine = c("add", "multiply"),
+  print.progress = TRUE,
+  shiny.progress = NULL
+)
 }
 \arguments{
 \item{bracket.empty}{a length-64 character vector giving the field of 64

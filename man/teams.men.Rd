@@ -12,6 +12,6 @@ This dataset the names of each team in NCAA Men's
   Basketball from ESPN, their ESPN team id, their name as it
   appears on Who Picked Whom, FiveThirtyEight, and KenPom.
   The last three name fields are only available for those teams
-  who played in March Madness in 2016 to 2018, and are otherwise
+  who played in March Madness in 2016 to 2021, and are otherwise
   NA.
 }

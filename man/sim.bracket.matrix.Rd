@@ -4,8 +4,15 @@
 \alias{sim.bracket.matrix}
 \title{Simulate the full bracket starting with an empty bracket}
 \usage{
-sim.bracket.matrix(prob.matrix, league, num.reps, outcome, round,
-  teams.remaining, untangling.indices)
+sim.bracket.matrix(
+  prob.matrix,
+  league,
+  num.reps,
+  outcome,
+  round,
+  teams.remaining,
+  untangling.indices
+)
 }
 \arguments{
 \item{prob.matrix}{a matrix of probabilities, with rows and columns

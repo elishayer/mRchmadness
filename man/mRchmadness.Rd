@@ -3,7 +3,6 @@
 \docType{package}
 \name{mRchmadness}
 \alias{mRchmadness}
-\alias{mRchmadness-package}
 \title{March Madness Bracket Package}
 \description{
 \code{mRchmadness} provides utilities to gather NCAA Men's

@@ -9,7 +9,7 @@
 }
 \description{
 This dataset contains the percent of brackets submitted
-  to ESPN that include each of the 64 teams in March Madness 2017
+  to ESPN that include each of the 64 teams in March Madness 2018
   reaching and winning in each successive round of the tournament.
   Accessed the evening of March 11th, 2018 (Selection Sunday).
 }

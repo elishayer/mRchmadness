@@ -2,7 +2,7 @@
 % Please edit documentation in R/scrape.game.results.R
 \name{scrape.teams}
 \alias{scrape.teams}
-\title{Scrape the team names and ids from the ESPN NCAA MBB index}
+\title{Scrape the team ids from the ESPN NCAA MBB/WBB index}
 \usage{
 scrape.teams(league)
 }
@@ -13,7 +13,7 @@ scrape.teams(league)
 data.frame of team names and ids
 }
 \description{
-Scrape the team names and ids from the ESPN NCAA MBB index
+Scrape the team ids from the ESPN NCAA MBB/WBB index
 }
 \author{
 eshayer

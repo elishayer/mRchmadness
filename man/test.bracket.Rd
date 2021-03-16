@@ -4,12 +4,23 @@
 \alias{test.bracket}
 \title{Test a bracket}
 \usage{
-test.bracket(bracket.empty, bracket.picks, prob.matrix = NULL,
-  prob.source = c("pop", "kenpom", "538"), pool.source = c("pop", "kenpom",
-  "538"), league = c("men", "women"), year = 2018, pool.bias = NULL,
-  pool.size = 30, num.sims = 1000, bonus.round = c(1, 2, 4, 8, 16, 32),
-  bonus.seed = rep(0, 16), bonus.combine = c("add", "multiply"),
-  print.progress = TRUE, shiny.progress = NULL)
+test.bracket(
+  bracket.empty,
+  bracket.picks,
+  prob.matrix = NULL,
+  prob.source = c("pop", "kenpom", "538"),
+  pool.source = c("pop", "kenpom", "538"),
+  league = c("men", "women"),
+  year = 2018,
+  pool.bias = NULL,
+  pool.size = 30,
+  num.sims = 1000,
+  bonus.round = c(1, 2, 4, 8, 16, 32),
+  bonus.seed = rep(0, 16),
+  bonus.combine = c("add", "multiply"),
+  print.progress = TRUE,
+  shiny.progress = NULL
+)
 }
 \arguments{
 \item{bracket.empty}{a length-64 character vector giving the field of 64

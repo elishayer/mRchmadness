@@ -4,9 +4,14 @@
 \alias{score.bracket}
 \title{Compute score for bracket given actual result}
 \usage{
-score.bracket(bracket.empty, bracket.picks, bracket.outcome,
-  bonus.round = c(1, 2, 4, 8, 16, 32), bonus.seed = rep(0, 16),
-  bonus.combine = c("add", "multiply"))
+score.bracket(
+  bracket.empty,
+  bracket.picks,
+  bracket.outcome,
+  bonus.round = c(1, 2, 4, 8, 16, 32),
+  bonus.seed = rep(0, 16),
+  bonus.combine = c("add", "multiply")
+)
 }
 \arguments{
 \item{bracket.empty}{a length-64 character vector giving the field of 64

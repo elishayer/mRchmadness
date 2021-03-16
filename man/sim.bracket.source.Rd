@@ -4,8 +4,17 @@
 \alias{sim.bracket.source}
 \title{Simulate the full bracket starting with an empty bracket}
 \usage{
-sim.bracket.source(prob.source, league, year, home.teams, num.reps, outcome,
-  round, teams.remaining, untangling.indices)
+sim.bracket.source(
+  prob.source,
+  league,
+  year,
+  home.teams,
+  num.reps,
+  outcome,
+  round,
+  teams.remaining,
+  untangling.indices
+)
 }
 \arguments{
 \item{prob.source}{source from which to use round probabilities for
