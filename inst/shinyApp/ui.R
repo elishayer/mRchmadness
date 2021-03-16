@@ -1,5 +1,5 @@
 shiny::shinyUI(shiny::fluidPage(
-  shiny::titlePanel('mRchmadness: 2018'),
+  shiny::titlePanel('mRchmadness: 2021'),
 
   shiny::sidebarLayout(
     shiny::sidebarPanel(
@@ -52,7 +52,6 @@ shiny::shinyUI(shiny::fluidPage(
         shiny::a('here', href = 'https://saberpowers.shinyapps.io/mRchmadness/'),
         'via shinyapps.io, you can run the Shiny app locally if you want more computational muscle.'
       ),
-      shiny::p('NOTE: The bracket is men\'s only for the moment, pending the release of women\'s population picks from ESPN. We will add support for the women\'s bracket as soon as those data are available. This is as of the evening of March 12th, 2018.', style='color: red;'),
       shiny::br(),
       shiny::tabsetPanel(
         shiny::tabPanel('Empty Bracket',

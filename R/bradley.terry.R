@@ -21,6 +21,8 @@ bradley.terry = function(games) {
     stop(paste("games much be 'data.frame' with columns", columns))
   }
 
+games = games %>% dplyr::filter(home.id != "NA" & away.id != "NA")
+
 # Construct design matrix for Bradley-Terry model:
 # First column: 0 if neutral location, 1 otherwise
 # All other columns correspond to teams --- +1 in row means that team is home

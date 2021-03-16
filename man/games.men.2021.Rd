@@ -3,7 +3,7 @@
 \name{games.men.2021}
 \alias{games.men.2021}
 \title{2021 NCAA Men's Basketball Game-by-Game Results}
-\format{data frame with 2253 rows and 7 variables}
+\format{data frame with 4194 rows and 7 variables}
 \source{
 ESPN
 }

@@ -7,6 +7,6 @@
 #'   neutral arena, and whether the game went into overtime. Teams
 #'   that are not in Division I are uniformly identified by the
 #'   string 'NA' as their id.
-#' @format data frame with 2253 rows and 7 variables
+#' @format data frame with 4194 rows and 7 variables
 #' @source ESPN
 NULL
