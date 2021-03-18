@@ -3,7 +3,9 @@
 \name{teams.women}
 \alias{teams.women}
 \title{NCAA Women's Basketball Teams}
-\format{data frame with 349 rows and 4 variables}
+\format{
+data frame with 349 rows and 4 variables
+}
 \source{
 \url{http://www.espn.com/womens-college-basketball/teams}
 }

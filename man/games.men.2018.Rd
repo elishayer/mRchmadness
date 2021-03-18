@@ -3,7 +3,9 @@
 \name{games.men.2018}
 \alias{games.men.2018}
 \title{2018 NCAA Men's Basketball Game-by-Game Results}
-\format{data frame with 5773 rows and 7 variables}
+\format{
+data frame with 5773 rows and 7 variables
+}
 \source{
 ESPN
 }

@@ -3,7 +3,9 @@
 \name{bracket.women.2018}
 \alias{bracket.women.2018}
 \title{2018 Women's March Madness bracket}
-\format{character vector of length 64}
+\format{
+character vector of length 64
+}
 \description{
 This dataset contains the ESPN team ids of the 64 teams in the
   2018 March Madness women's bracket. The teams are ordered by overall seed,

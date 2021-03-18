@@ -10,7 +10,7 @@ find.bracket(
   prob.source = c("pop", "kenpom", "538"),
   pool.source = c("pop", "kenpom", "538"),
   league = c("men", "women"),
-  year = 2018,
+  year = current.year,
   pool.bias = NULL,
   num.candidates = 100,
   num.sims = 1000,

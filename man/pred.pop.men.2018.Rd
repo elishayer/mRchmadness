@@ -3,7 +3,9 @@
 \name{pred.pop.men.2018}
 \alias{pred.pop.men.2018}
 \title{2018 March Madness Population Pick Distribution}
-\format{data frame with 64 rows and 7 variables}
+\format{
+data frame with 64 rows and 7 variables
+}
 \source{
 \url{http://games.espn.com/tournament-challenge-bracket/2018/en/whopickedwhom}
 }

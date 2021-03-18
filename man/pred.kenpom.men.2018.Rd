@@ -3,7 +3,9 @@
 \name{pred.kenpom.men.2018}
 \alias{pred.kenpom.men.2018}
 \title{2018 March Madness KenPom Win Probability Predictions}
-\format{data frame with 64 rows and 7 variables}
+\format{
+data frame with 64 rows and 7 variables
+}
 \source{
 \url{https://kenpom.com/blog/2018-ncaa-tournament-probabilities/}
 }
