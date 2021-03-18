@@ -17,8 +17,14 @@ shiny::shinyServer(function(input, output) {
   num.test = shiny::eventReactive(input$btn.optimal, {input$num.test})
 
   output$bracket.empty.plot = shiny::renderPlot({
-    bracket = eval(parse(text = paste('mRchmadness::bracket',
-                                      tolower(sex()), '2021', sep = '.')))
+    bracket = eval(
+      parse(
+        text = paste(
+          'mRchmadness::bracket', tolower(sex()), mRchmadness::current.year,
+          sep = '.'
+        )
+      )
+    )
     mRchmadness::draw.bracket(bracket, league = tolower(sex()), text.size = .6)
   })
 
@@ -35,8 +41,14 @@ shiny::shinyServer(function(input, output) {
       bonus.combine = 'multiply'
     }
 
-    empty = eval(parse(text = paste('mRchmadness::bracket',
-                                    tolower(sex()), '2021', sep = '.')))
+    empty = eval(
+      parse(
+        text = paste(
+          'mRchmadness::bracket', tolower(sex()), mRchmadness::current.year,
+          sep = '.'
+        )
+      )
+    )
 
     prob.matrix = NULL
     prob.src = NULL
@@ -69,8 +81,14 @@ shiny::shinyServer(function(input, output) {
   })
 
   output$bracket.filled.plot = shiny::renderPlot({
-    empty = eval(parse(text = paste('mRchmadness::bracket',
-                                    tolower(sex()), '2021', sep = '.')))
+    empty = eval(
+      parse(
+        text = paste(
+          'mRchmadness::bracket', tolower(sex()), mRchmadness::current.year,
+          sep = '.'
+        )
+      )
+    )
 
     mRchmadness::draw.bracket(empty, filled.bracket(), text.size = .6)
   })
@@ -88,8 +106,14 @@ shiny::shinyServer(function(input, output) {
       bonus.combine = 'multiply'
     }
 
-    empty = eval(parse(text = paste('mRchmadness::bracket',
-                                    tolower(sex()), '2021', sep = '.')))
+    empty = eval(
+      parse(
+        text = paste(
+          'mRchmadness::bracket', tolower(sex()), mRchmadness::current.year,
+          sep = '.'
+        )
+      )
+    )
 
     prob.matrix = NULL
     prob.src = NULL
@@ -107,18 +131,21 @@ shiny::shinyServer(function(input, output) {
     on.exit(progress$close())
     progress$set(message = 'Testing your bracket')
 
-    results = mRchmadness::test.bracket(empty, filled.bracket(),
-                                        prob.matrix = prob.matrix,
-                                        prob.source = prob.src,
-                                        pool.source = 'pop',
-                                        league = league,
-                                        year = 2021,
-                                        pool.size = pool.size(),
-                                        num.sims = num.test(),
-                                        bonus.round = bonus.round,
-                                        bonus.seed = bonus.seed,
-                                        bonus.combine = bonus.combine,
-                                        shiny.progress = progress)
+    results = mRchmadness::test.bracket(
+      bracket.empty = empty,
+      bracket.picks = filled.bracket(),
+      prob.matrix = prob.matrix,
+      prob.source = prob.src,
+      pool.source = 'pop',
+      league = league,
+      year = mRchmadness::current.year,
+      pool.size = pool.size(),
+      num.sims = num.test(),
+      bonus.round = bonus.round,
+      bonus.seed = bonus.seed,
+      bonus.combine = bonus.combine,
+      shiny.progress = progress
+    )
 
     hist(results$percentile,
          xlab = 'Percentile',

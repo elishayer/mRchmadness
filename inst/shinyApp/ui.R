@@ -1,5 +1,5 @@
 shiny::shinyUI(shiny::fluidPage(
-  shiny::titlePanel('mRchmadness: 2021'),
+  shiny::titlePanel(paste('mRchmadness:', mRchmadness::current.year)),
 
   shiny::sidebarLayout(
     shiny::sidebarPanel(

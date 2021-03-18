@@ -2,6 +2,7 @@
 
 export(add.home.bias)
 export(bradley.terry)
+export(current.year)
 export(draw.bracket)
 export(find.bracket)
 export(input.bracket.filled)
