@@ -1,6 +1,6 @@
 # mRchmadness
 mRchmadness is *not* designed to predict the winners of tournament games, but
-it *is* designed the answer the question: *Given the true probabilities
+it *is* designed to answer the question: *Given the true probabilities
 dictating tournament results and given the probabilities with which my pool
 opponents make their picks, what bracket maximizes my chances of winning my
 pool?* To answer this question, we simulate tournament results and opponent
