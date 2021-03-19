@@ -4,7 +4,7 @@ shiny::shinyUI(shiny::fluidPage(
   shiny::sidebarLayout(
     shiny::sidebarPanel(
       shiny::selectInput('sex', 'Men or Women:',
-                         choices = c('Men')),
+                         choices = c('Men', 'Women')),
 
       shiny::selectInput('scoring', 'Scoring Scheme:',
                          choices = c('Traditional',
