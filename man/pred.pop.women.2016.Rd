@@ -3,9 +3,7 @@
 \name{pred.pop.women.2016}
 \alias{pred.pop.women.2016}
 \title{2016 March Madness Women's Population Pick Distribution}
-\format{
-data frame with 64 rows and 7 variables
-}
+\format{data frame with 64 rows and 7 variables}
 \source{
 \url{http://games.espn.com/tournament-challenge-bracket-women/2016/en/whopickedwhom}
 }

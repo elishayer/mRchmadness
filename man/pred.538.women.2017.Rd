@@ -3,9 +3,7 @@
 \name{pred.538.women.2017}
 \alias{pred.538.women.2017}
 \title{2017 Women's March Madness 538 Win Probability Predictions}
-\format{
-data frame with 64 rows and 7 variables
-}
+\format{data frame with 64 rows and 7 variables}
 \source{
 \url{https://projects.fivethirtyeight.com/2017-march-madness-predictions/}
 }

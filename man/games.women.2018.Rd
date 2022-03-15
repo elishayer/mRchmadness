@@ -3,9 +3,7 @@
 \name{games.women.2018}
 \alias{games.women.2018}
 \title{2018 NCAA Women's Basketball Game-by-Game Results}
-\format{
-data frame with 5424 rows and 7 variables
-}
+\format{data frame with 5424 rows and 7 variables}
 \source{
 ESPN
 }

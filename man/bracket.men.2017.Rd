@@ -3,9 +3,7 @@
 \name{bracket.men.2017}
 \alias{bracket.men.2017}
 \title{2017 Men's March Madness bracket}
-\format{
-character vector of length 64
-}
+\format{character vector of length 64}
 \description{
 This dataset contains the ESPN team ids of the 64 teams in the
   2017 March Madness men's bracket. The teams are ordered by overall seed,

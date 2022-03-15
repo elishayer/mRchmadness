@@ -3,9 +3,7 @@
 \name{pred.pop.men.2021}
 \alias{pred.pop.men.2021}
 \title{2021 March Madness Population Pick Distribution}
-\format{
-data frame with 64 rows and 7 variables
-}
+\format{data frame with 64 rows and 7 variables}
 \source{
 \url{http://games.espn.com/tournament-challenge-bracket/2021/en/whopickedwhom}
 }
