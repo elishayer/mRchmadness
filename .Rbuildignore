@@ -2,3 +2,12 @@ cran-comments.md
 NEWS.md
 README.md
 ^builds/mRchmadness_[0-9\.]+\.tar\.gz$
+^.*\.Rproj$
+^\.Rproj\.user$
+pred.kenpom.men.2022.csv
+pred.kempom.2022.csv
+pred.pop.men.2022.csv
+pred.538.men.2022.csv
+fivethirtyeight_ncaa_forecasts.csv
+NCAA2022_data.R
+NCAA_testing.R

@@ -77,7 +77,7 @@ find.bracket = function(bracket.empty, prob.matrix = NULL,
   if (pool.size < 1) {
     stop("pool.size must be at least 1")
   }
-  if("kenpom" %in% c(prob.source, pool.source) && (league == "women" || year < 2018)) {
+  if("kenpom" %in% c(prob.source, pool.source) && (league == "women")) {
       stop("kenpom is only available for the men's 2018 bracket.")
   }
 
@@ -86,15 +86,15 @@ find.bracket = function(bracket.empty, prob.matrix = NULL,
     prob.matrix = prob.matrix, prob.source = prob.source, league = league,
     year = year, num.reps = num.candidates)
 
-# Update the user on progress
-  if (print.progress) {
-    cat('Finding your bracket ...')
-    cat('\n  Simulating', num.sims, 'pools of size', pool.size, '...')
-  }
-  if (!is.null(shiny.progress)) {
-    shiny.progress$set(detail =
-      paste('Simulating', num.sims, 'pools of size', pool.size))
-  }
+# # Update the user on progress
+#   if (print.progress) {
+#     cat('Finding your bracket ...')
+#     cat('\n  Simulating', num.sims, 'pools of size', pool.size, '...')
+#   }
+#   if (!is.null(shiny.progress)) {
+#     shiny.progress$set(detail =
+#       paste('Simulating', num.sims, 'pools of size', pool.size))
+#   }
 
 # Simulate all of the pools (across all simulations)
   pool = sim.bracket(bracket.empty = bracket.empty, prob.source = pool.source,
@@ -109,14 +109,14 @@ find.bracket = function(bracket.empty, prob.matrix = NULL,
 # Prepare matrix to store all bracket scores
   score = matrix(NA, pool.size + num.candidates, num.sims)
 
-# Update the user on progress
-  if (print.progress) {
-    cat('\n  Scoring', num.sims * (num.candidates + pool.size), 'brackets ...',
-      '\n    ') 
-  }
-  if (!is.null(shiny.progress)) {
-    shiny.progress$set(detail =
-      paste('Scoring', num.sims * (num.candidates + pool.size), 'brackets'))
+# # Update the user on progress
+#   if (print.progress) {
+#     cat('\n  Scoring', num.sims * (num.candidates + pool.size), 'brackets ...',
+#       '\n    ') 
+#   }
+#   if (!is.null(shiny.progress)) {
+#     shiny.progress$set(detail =
+#       paste('Scoring', num.sims * (num.candidates + pool.size), 'brackets'))
   }
 
   for (i in 1:num.sims) {
@@ -127,13 +127,13 @@ find.bracket = function(bracket.empty, prob.matrix = NULL,
       bracket.picks = brackets, bracket.outcome = outcome[, i],
       bonus.round = bonus.round, bonus.seed = bonus.seed,
       bonus.combine = bonus.combine)
-# Update the user on progress
-    if (print.progress & (i %% 1000) == 0) {
-      cat(paste0(round(100 * i / num.sims), '% '))
-    }
-    if (!is.null(shiny.progress)) shiny.progress$set(value = i)
-  }
-  if (print.progress) cat('\n')
+# # Update the user on progress
+#     if (print.progress & (i %% 1000) == 0) {
+#       cat(paste0(round(100 * i / num.sims), '% '))
+#     }
+#     if (!is.null(shiny.progress)) shiny.progress$set(value = i)
+#   }
+#   if (print.progress) cat('\n')
 
 # Find bracket with highest average percentile finish (compare only to pool)
   if (criterion == "percentile") {
