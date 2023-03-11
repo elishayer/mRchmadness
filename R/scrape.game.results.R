@@ -196,8 +196,8 @@ scrape.team.game.results = function(year, team.id, league) {
   game.id = result.cells %>%
     rvest::html_node('.ml4 a') %>%
     rvest::html_attr('href') %>%
-    strsplit('=') %>%
-    sapply(function(row) row[2])
+    # Extract all numbers from the URL game link (assume this is the game ID)
+    gsub(".*?([0-9]+).*", "\\1", .)
   
   data.frame(game.id = game.id,
              primary.id = team.id,
