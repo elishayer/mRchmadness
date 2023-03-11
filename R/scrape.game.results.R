@@ -97,7 +97,7 @@ scrape.team.game.results = function(year, team.id, league) {
   team.id = as.character(team.id)
 
   url = paste0('http://www.espn.com/', league, '-college-basketball/',
-               'team/schedule/_/id/', team.id, '/year/', year)
+               'team/schedule/_/id/', team.id, '/season/', year)
   
   rows = xml2::read_html(url) %>%
     rvest::html_nodes('.Table__TBODY tr')
