@@ -2,7 +2,7 @@
 % Please edit documentation in R/pred.538.men.R
 \name{pred.538.men.2021}
 \alias{pred.538.men.2021}
-\title{2018 March Madness 538 Win Probability Predictions}
+\title{2021 March Madness 538 Win Probability Predictions}
 \format{
 data frame with 64 rows and 7 variables
 }
