@@ -4,7 +4,9 @@
 \name{current.year}
 \alias{current.year}
 \title{Current year}
-\format{An object of class \code{numeric} of length 1.}
+\format{
+An object of class \code{numeric} of length 1.
+}
 \usage{
 current.year
 }
