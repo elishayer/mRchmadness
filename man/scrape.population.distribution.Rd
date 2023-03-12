@@ -7,7 +7,7 @@
 scrape.population.distribution(year, league = c("mens", "womens"))
 }
 \arguments{
-\item{year}{the numeric year to scrape, in the range 2016 to 2018}
+\item{year}{the numeric year to scrape}
 
 \item{league}{either 'mens' or 'womens'}
 }
