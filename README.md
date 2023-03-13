@@ -3,7 +3,9 @@ mRchmadness is *not* designed to predict the winners of tournament games, but
 it *is* designed to answer the question: *Given the true probabilities
 dictating tournament results and given the probabilities with which my pool
 opponents make their picks, what bracket maximizes my chances of winning my
-pool?* To answer this question, we simulate tournament results and opponent
+pool?* For example, do you want to pick the team with the highest probability
+of winning if almost everybody else in your pool is making the same pick?
+To answer these questions, we simulate tournament results and opponent
 picks over and over again, testing a set of candidate brackets against pool
 opponents in each simulation and choosing the bracket that performs best.
 
