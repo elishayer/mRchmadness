@@ -26,14 +26,16 @@
 #'   year = 2023,
 #'   league = "women",
 #'   region.rank = c("Greenville 1" = 1, "Greenville 2" = 2, "Seattle 3" = 3, "Seattle 4" = 4),
-#'   skip.population.distribution = TRUE
+#'   skip.population.distribution = FALSE,
 #'   skip.game.results = TRUE
 #' )
 #' bracket.women.2023 = data.women.2023$bracket
 #' pred.538.women.2023 = data.women.2023$pred.538
+#' pred.pop.women.2023 = data.women.2023$pred.pop
 #' teams.women = data.women.2023$teams
 #' save(bracket.women.2023, file = "data/bracket.women.2023.RData")
 #' save(pred.538.women.2023, file = "data/pred.538.women.2023.RData")
+#' save(pred.pop.women.2023, file = "data/pred.pop.women.2023.RData")
 #' save(teams.women, file = "data/teams.women.RData")
 #' 
 #' data.men.2023 = prep.data(
@@ -147,7 +149,11 @@ prep.data = function(year,
 
     pred.pop = scrape.population.distribution(year = year, league = paste0(league, "s"))
 
-    teams.map.pop = map.population.team.names(pop.names = pred.pop$name, teams = teams)
+    teams.map.pop = map.population.team.names(
+      pop.names = pred.pop$name,
+      teams = teams,
+      teams.map.538 = teams.map.538
+    )
 
     teams = teams %>%
       dplyr::left_join(dplyr::rename(teams.map.pop$full.map, name.pop.new = name), by = "id") %>%

@@ -11,7 +11,7 @@ test.bracket(
   prob.source = c("pop", "kenpom", "538"),
   pool.source = c("pop", "kenpom", "538"),
   league = c("men", "women"),
-  year = 2018,
+  year = current.year,
   pool.bias = NULL,
   pool.size = 30,
   num.sims = 1000,
