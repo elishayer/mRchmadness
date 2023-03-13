@@ -31,7 +31,7 @@
 #' @author sspowers
 sim.bracket = function(bracket.empty, prob.matrix = NULL,
   prob.source = c("pop", "kenpom", "538"), league = c("men", "women"),
-  year = 2018, home.teams = NULL, num.reps = 1) {
+  year = current.year, home.teams = NULL, num.reps = 1) {
 
   `%>%` = dplyr::`%>%`
 
