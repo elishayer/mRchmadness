@@ -56,7 +56,11 @@ find.bracket = function(bracket.empty, prob.matrix = NULL,
   bonus.combine = c("add", "multiply"),
   print.progress = TRUE, shiny.progress = NULL) {
 
+  prob.source = match.arg(prob.source)
+  pool.source = match.arg(pool.source)
+  league = match.arg(league)
   criterion = match.arg(criterion)
+  bonus.combine = match.arg(bonus.combine)
 
 # Input sanitization
   if (!is.numeric(bonus.round) | length(bonus.round) != 6) {

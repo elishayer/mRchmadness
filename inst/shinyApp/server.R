@@ -1,5 +1,9 @@
-bt.men = mRchmadness::bradley.terry(mRchmadness::games.men.2021)
-bt.women = mRchmadness::bradley.terry(mRchmadness::games.women.2021)
+bt.men = mRchmadness::bradley.terry(
+  eval(parse(text = paste0("mRchmadness::games.men.", mRchmadness::current.year)))
+)
+bt.women = mRchmadness::bradley.terry(
+  eval(parse(text = paste0("mRchmadness::games.women.", mRchmadness::current.year)))
+)
 
 criterion.map = matrix(c('percentile', 'score', 'win'),
                        dimnames = list(c('Percentile',
