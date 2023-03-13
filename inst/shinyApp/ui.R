@@ -48,8 +48,7 @@ shiny::shinyUI(shiny::fluidPage(
         ' on GitHub to learn more about how to use mRchmadness!'
       ),
       shiny::p(
-        'Note that while there is a memory limit on the Shiny app available ',
-        shiny::a('here', href = 'https://saberpowers.shinyapps.io/mRchmadness/'),
+        'Note that while there is a memory limit on the Shiny app available here ',
         'via shinyapps.io, you can run the Shiny app locally if you want more computational muscle.'
       ),
       shiny::br(),
