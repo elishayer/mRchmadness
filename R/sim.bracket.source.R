@@ -45,8 +45,10 @@ sim.bracket.source = function(prob.source, league, year, home.teams, num.reps,
   rownames(prob) = prob$name %>%
 # Handle unplayed first-round games signified by "/"
     as.character %>% strsplit(split = '/') %>%
-    lapply(function(name) as.character(team.id[name])) %>%
-    sapply(function(ids) do.call(paste, args = as.list(c(ids, sep = '/'))))
+    lapply(function(name) team.id[name]) %>%
+    # sort(as.integer(ids)) is important here because we have chosen the convention that the lower
+    # team ID comes first for play-in matchups
+    sapply(function(ids) do.call(paste, args = as.list(c(sort(as.integer(ids)), sep = '/'))))
 # Drop team names from prob
   prob$name = NULL
 

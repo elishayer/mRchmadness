@@ -89,6 +89,8 @@ prep.data = function(year,
       # Extract number from team seed (e.g. 16a -> 16, 16b -> 16)
       team_seed = as.numeric(gsub(".*?([0-9]+).*", "\\1", team_seed))
     ) %>%
+    # Convention: When collapsing play-in opponents, the lower team ID comes first
+    dplyr::arrange(team_id) %>%
     dplyr::summarize(
       team_id = paste(team_id, collapse = "/"),
       team_name = paste(team_name, collapse = "/"),
