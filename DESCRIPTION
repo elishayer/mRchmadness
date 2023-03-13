@@ -13,6 +13,7 @@ Imports:
   rvest,
   selectr (>= 0.3-1),
   shiny,
+  stringr,
   tidyr,
   xml2
 Description: Scrape season results, estimate win probabilities, and find a

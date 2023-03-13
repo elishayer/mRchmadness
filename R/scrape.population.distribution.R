@@ -32,22 +32,23 @@ scrape.population.distribution = function(year, league = c('mens', 'womens')) {
 
   results = data.frame(names = names, probabilities = probabilities, round = as.numeric(round)) %>%
       tidyr::spread(round, probabilities) %>%
-      dplyr::mutate(names = as.character(names)) %>%
-      dplyr::mutate(names = ifelse(names == 'BON/LA', 'BON/UCLA',
-                            ifelse(names == 'NCC/TS', 'NCC/Texas Southern',
-                            ifelse(names == 'ASU/SJU', "ASU/St John's",
-                            ifelse(names == 'MSM/TXSO', 'MSM/Texas Southern',
-                            ifelse(names == 'MSU/UCLA', 'Michigan State/UCLA',
-                            ifelse(names == 'WICH/DRKE', 'Wichita State/Drake',
-                            ifelse(names == 'Florida State', 'FSU',
-                            ifelse(names == 'Kansas State', 'KSU',
-                            ifelse(names == 'North Carolina', 'UNC',
-                            ifelse(names == 'Ohio State', 'OSU',
-                            ifelse(names == 'UNC Greensboro', 'UNCG',
-                            ifelse(names == 'Virginia', 'UVA',
-                            ifelse(names == 'New Mexico State', 'New Mexico St',
-                            ifelse(names == 'South Dakota State', 'South Dakota St', names))))))))))))))) %>%
-      dplyr::mutate(names = as.factor(names))
+      dplyr::mutate(names = as.character(names)) #%>%
+      # NOTE (SP): Why did we do this??
+#      dplyr::mutate(names = ifelse(names == 'BON/LA', 'BON/UCLA',
+#                            ifelse(names == 'NCC/TS', 'NCC/Texas Southern',
+#                            ifelse(names == 'ASU/SJU', "ASU/St John's",
+#                            ifelse(names == 'MSM/TXSO', 'MSM/Texas Southern',
+#                            ifelse(names == 'MSU/UCLA', 'Michigan State/UCLA',
+#                            ifelse(names == 'WICH/DRKE', 'Wichita State/Drake',
+#                            ifelse(names == 'Florida State', 'FSU',
+#                            ifelse(names == 'Kansas State', 'KSU',
+#                            ifelse(names == 'North Carolina', 'UNC',
+#                            ifelse(names == 'Ohio State', 'OSU',
+#                            ifelse(names == 'UNC Greensboro', 'UNCG',
+#                            ifelse(names == 'Virginia', 'UVA',
+#                            ifelse(names == 'New Mexico State', 'New Mexico St',
+#                            ifelse(names == 'South Dakota State', 'South Dakota St', names))))))))))))))) %>%
+#      dplyr::mutate(names = as.factor(names))
   colnames(results) = c("name", paste0("round", 1:6))
 
   results
