@@ -15,3 +15,12 @@ NULL
 #' @format data frame with 64 rows and 7 variables
 #' @source \url{http://games.espn.com/tournament-challenge-bracket-women/2017/en/whopickedwhom}
 NULL
+
+#' @name pred.pop.women.2023
+#' @title 2023 March Madness Women's Population Pick Distribution
+#' @description This dataset contains the percent of brackets submitted
+#'   to ESPN that include each of the 64 teams in Women's March Madness 2023
+#'   reaching and winning in each successive round of the tournament.
+#' @format data frame with 64 rows and 7 variables
+#' @source \url{http://games.espn.com/tournament-challenge-bracket-women/2023/en/whopickedwhom}
+NULL

@@ -3,4 +3,4 @@
 #' Your (almost) one stop shop for updating the current year
 #'
 #' @export
-current.year = 2021
+current.year = 2023
