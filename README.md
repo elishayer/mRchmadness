@@ -13,10 +13,6 @@ opponents in each simulation and choosing the bracket that performs best.
 # For the latest version of the package, updated frequently during the first
 # couple weeks of March, install directly from this GitHub repository.
 devtools::install_github('elishayer/mRchmadness')
-
-# If you're not using this R package to fill out a bracket on a deadline, you
-# might prefer to install the latest stable version from CRAN.
-install.packages('mRchmadness')
 ```
 
 ## Introduction
