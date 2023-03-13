@@ -11,10 +11,6 @@ scrape.population.distribution = function(year, league = c('mens', 'womens')) {
   league = match.arg(league)
   `%>%` = dplyr::`%>%`
 
-  if (!(year %in% c(2016, 2017, 2018, 2019, 2021, 2022))) {
-    stop(paste0('The year ', year, ' is not available'))
-  }
-
   url = paste0('http://games.espn.com/tournament-challenge-bracket',
                ifelse(league == 'mens', '', '-women'), '/', year,
                '/en/whopickedwhom')

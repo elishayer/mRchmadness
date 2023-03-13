@@ -27,3 +27,13 @@ NULL
 #' @format data frame with 64 rows and 7 variables
 #' @source \url{https://projects.fivethirtyeight.com/2022-march-madness-predictions/}
 NULL
+
+#' @name pred.538.women.2023
+#' @title 2023 Women's March Madness 538 Win Probability Predictions
+#' @description This dataset contains the win probabilities forecasted by the
+#'   website FiveThirtyEight for the Women's March Madness tournament of the
+#'   2022-2023 season. The columns are the names of the teams, and
+#'   FiveThirtyEight's projected probability of reaching each round.
+#' @format data frame with 64 rows and 7 variables
+#' @source \url{https://projects.fivethirtyeight.com/2023-march-madness-predictions/}
+NULL
