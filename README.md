@@ -14,14 +14,14 @@ opponents in each simulation and choosing the bracket that performs best.
 ``` r
 # For the latest version of the package, updated frequently during the first
 # couple weeks of March, install directly from this GitHub repository.
-devtools::install_github('elishayer/mRchmadness')
+devtools::install_github("elishayer/mRchmadness", build_vignettes = TRUE)
 ```
 
 ## Introduction
 
 ``` r
 # For a tutorial on the primary use case of the package, check out the vignette
-vignette('mRchmadness')
+vignette("mRchmadness")
 ```
 
 ## Shiny
@@ -30,4 +30,4 @@ For those who prefer a point-and-click interface, check out our
 [Shiny app](https://saberpowers.shinyapps.io/mRchmadness/).
 
 You can also use the Shiny app locally by running
-`shiny::runApp('inst/shinyApp')` from the mRchmadness directory.
+`shiny::runApp("inst/shinyApp")` from the mRchmadness directory.
