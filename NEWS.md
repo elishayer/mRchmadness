@@ -1,3 +1,18 @@
+# mRchmadness 1.2023.3 - March 14, 2023
+
+## New features
+* Establishes new versioning convention: `[major update].[year].[release number]`
+* `prep.data()` function automates annual data update (KenPom predictions removed)
+
+## Bug fixes
+* Updated game scraper to reflect updates to ESPN API
+* Updated vignette for 2023
+
+## Updated data
+* `bracket.men.2023`, `pred.538.men.2023`, `pred.pop.men.2023`, `teams.men`, `games.men.2023`
+* `bracket.women.2023`, `pred.538.women.2023`, `pred.pop.women.2023`, `teams.women`, `games.women.2023`
+* `bracket.women.2022`, `pred.kenpom.men.2019`, `pred.kenpom.men.2021`
+
 # mRchmadness 1.0.5 - March 15, 2018
 
 ## Updated data
