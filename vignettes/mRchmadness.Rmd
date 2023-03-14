@@ -115,7 +115,7 @@ draw.bracket(bracket.empty = bracket.women.2023, bracket.filled = outcome)
 ```
 
 Congratulations are in order for Indiana, for winning the `set.seed(2023)`
-NCAA women's basketball tournament (v1.0.5)!
+NCAA women's basketball tournament!
 
 ### Finding a good bracket
 
@@ -152,8 +152,8 @@ draw.bracket(bracket.empty = bracket.women.2023, bracket.filled = my.bracket)
 
 ### Testing your bracket
 
-So you're picking South Carolina? Let's see how well we can expect this bracket to
-do, using the **test.bracket** function. This function simulates your pool to
+So you're picking South Carolina? Way to go out on a limb. Let's see how well we can expect this
+bracket to do, using the **test.bracket** function. This function simulates your pool to
 determine your expected score, expected percentile and probability of winning.
 
 ```{r}
