@@ -20,8 +20,7 @@ shiny::shinyUI(shiny::fluidPage(
                                      'Score')),
       
       shiny::selectInput('prob.source', 'Win Probability Source',
-                         choices = c('Bradley-Terry Model',
-                                     'FiveThirtyEight')),
+                         choices = c('Bradley-Terry Model')),
       
       shiny::numericInput('num.brackets', 'Number of Test Brackets',
                           value = 100, min = 10, max = 1000,
