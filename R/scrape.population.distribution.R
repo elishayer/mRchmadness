@@ -25,7 +25,7 @@ scrape.population.distribution = function(league = c('men', 'women')) {
     endpoint = glue::glue("{api}&{filter}")
     data = do.call(dplyr::bind_rows, args = jsonlite::fromJSON(endpoint)$possibleOutcomes)
 
-    pred.pop.round[[round]] = tibble::tibble(
+    pred.pop.round[[round]] = data.frame(
       seed = sapply(
         X = data$mappings,
         FUN = function(x) {
