@@ -7,8 +7,6 @@
 prep.data(
   year,
   league = c("men", "women"),
-  region.rank,
-  skip.population.distribution = FALSE,
   skip.game.results = FALSE,
   verbose = TRUE
 )
@@ -18,17 +16,17 @@ prep.data(
 
 \item{league}{"men" or "women"}
 
-\item{region.rank}{a named list giving the overall ranking of the No. 1 seed within each region.
-Names must exactly match the region names in the 538 data file, so take a look at that first.}
-
-\item{skip.population.distribution}{logical, should scraping population distribution be skipped?
-(for example, maybe it's not available yet)}
-
 \item{skip.game.results}{logical, should scraping game results be script (for example, maybe
 you've already done this)}
 
 \item{verbose}{logical, should progress be printed to console? (recommended because this shows
 the team mappings that were automatically made, and they may be incorrect)}
+
+\item{region.rank}{a named list giving the overall ranking of the No. 1 seed within each region.
+Names must exactly match the region names in the 538 data file, so take a look at that first.}
+
+\item{skip.population.distribution}{logical, should scraping population distribution be skipped?
+(for example, maybe it's not available yet)}
 }
 \value{
 a list of data to save into the package (don't forget to update documentation!)

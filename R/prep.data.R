@@ -10,10 +10,6 @@
 #' 
 #' @param year integer
 #' @param league "men" or "women"
-#' @param region.rank a named list giving the overall ranking of the No. 1 seed within each region.
-#'  Names must exactly match the region names in the 538 data file, so take a look at that first.
-#' @param skip.population.distribution logical, should scraping population distribution be skipped?
-#'  (for example, maybe it's not available yet)
 #' @param skip.game.results logical, should scraping game results be script (for example, maybe
 #'  you've already done this)
 #' @param verbose logical, should progress be printed to console? (recommended because this shows
