@@ -46,12 +46,13 @@ NULL
 #' @source \url{http://games.espn.com/tournament-challenge-bracket/2022/en/whopickedwhom}
 NULL
 
-#' @name pred.pop.men.2023
-#' @title 2023 March Madness Population Pick Distribution
+#' @name pred.pop.men.2024
+#' @title 2024 March Madness Population Pick Distribution
 #' @description This dataset contains the percent of brackets submitted
-#'   to ESPN that include each of the 64 teams in March Madness 2023
+#'   to ESPN that include each of the 64 teams in March Madness 2024
 #'   reaching and winning in each successive round of the tournament.
-#'   Accessed the evening of March 12th, 2023.
-#' @format data frame with 64 rows and 7 variables
-#' @source \url{http://games.espn.com/tournament-challenge-bracket/2023/en/whopickedwhom}
+#'   Accessed the afternoon of March 20th, 2024.
+#'   NOTE: For the first time, this data frame is now keyed on (seed, team.id, name)
+#' @format data frame with 64 rows and 9 variables
+#' @source \url{https://gambit-api.fantasy.espn.com/apis/v1/propositions?challengeId=240}
 NULL
