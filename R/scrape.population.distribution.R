@@ -1,55 +1,62 @@
 #' Scrape the average rate of teams being picked to win across all ESPN brackets
 #'
-#' @param year the numeric year to scrape
 #' @param league either 'mens' or 'womens'
 #' @return data.frame giving percentage of population picking each team in each round
 #' @examples
 #' populationDistribution = scrape.population.distribution(2017)
 #' @export
 #' @author eshayer
-scrape.population.distribution = function(year, league = c('mens', 'womens')) {
+scrape.population.distribution = function(league = c('men', 'women')) {
   league = match.arg(league)
   `%>%` = dplyr::`%>%`
 
-  url = paste0('http://games.espn.com/tournament-challenge-bracket',
-               ifelse(league == 'mens', '', '-women'), '/', year,
-               '/en/whopickedwhom')
-  
-  cells = xml2::read_html(url) %>%
-    rvest::html_nodes('table.wpw-table td')
-  
-  names = cells %>%
-    rvest::html_nodes('span.teamName') %>%
-    rvest::html_text(trim = TRUE)
-  
-  probabilities = cells %>%
-    rvest::html_nodes('span.percentage') %>%
-    rvest::html_text(trim = TRUE) %>%
-    substr(0, nchar(.) - 1) %>%
-    as.numeric / 100
+  challenge.id = switch(league, men = 240, women = 241)
+  api = glue::glue(
+    "https://gambit-api.fantasy.espn.com/apis/v1/propositions?challengeId={challenge.id}"
+  )
 
-  round = rep(1:6, 64)
+  pred.pop.round = list()
 
-  results = data.frame(names = names, probabilities = probabilities, round = as.numeric(round)) %>%
-      tidyr::spread(round, probabilities) %>%
-      dplyr::mutate(names = as.character(names)) #%>%
-      # NOTE (SP): Why did we do this??
-#      dplyr::mutate(names = ifelse(names == 'BON/LA', 'BON/UCLA',
-#                            ifelse(names == 'NCC/TS', 'NCC/Texas Southern',
-#                            ifelse(names == 'ASU/SJU', "ASU/St John's",
-#                            ifelse(names == 'MSM/TXSO', 'MSM/Texas Southern',
-#                            ifelse(names == 'MSU/UCLA', 'Michigan State/UCLA',
-#                            ifelse(names == 'WICH/DRKE', 'Wichita State/Drake',
-#                            ifelse(names == 'Florida State', 'FSU',
-#                            ifelse(names == 'Kansas State', 'KSU',
-#                            ifelse(names == 'North Carolina', 'UNC',
-#                            ifelse(names == 'Ohio State', 'OSU',
-#                            ifelse(names == 'UNC Greensboro', 'UNCG',
-#                            ifelse(names == 'Virginia', 'UVA',
-#                            ifelse(names == 'New Mexico State', 'New Mexico St',
-#                            ifelse(names == 'South Dakota State', 'South Dakota St', names))))))))))))))) %>%
-#      dplyr::mutate(names = as.factor(names))
-  colnames(results) = c("name", paste0("round", 1:6))
+  for (round in 1:6) {
 
-  results
+    filter = glue::glue(
+      "filter=%7B%22filterPropositionScoringPeriodIds%22%3A%7B%22value%22%3A%5B{round}%5D%7D%7D"
+    )
+    endpoint = glue::glue("{api}&{filter}")
+    data = do.call(dplyr::bind_rows, args = jsonlite::fromJSON(endpoint)$possibleOutcomes)
+
+    pred.pop.round[[round]] = tibble::tibble(
+      seed = sapply(
+        X = data$mappings,
+        FUN = function(x) {
+          x |>
+            dplyr::filter(type == "RANKING") |>
+            dplyr::pull(value) |>
+            as.integer()
+        }
+      ),
+      team.id = sapply(
+        X = data$mappings,
+        FUN = function(x) {
+          team_id = x |>
+            dplyr::filter(type == "COMPETITOR_ID") |>
+            dplyr::pull(value)
+          ifelse(length(team_id) == 0, NA, team_id)
+        }
+      ),
+      name = data$name
+    )
+
+    pred = sapply(data$choiceCounters, function(x) x$percentage)
+    pred.pop.round[[round]][[paste0("round", round)]] = pred
+  }
+
+  pred.pop <- pred.pop.round[[1]]
+  for (round in 2:6) {
+    pred.pop <- pred.pop |>
+      dplyr::left_join(pred.pop.round[[round]], by = c("seed", "team.id", "name")) |>
+      dplyr::arrange(seed)
+  }
+
+  pred.pop
 }
