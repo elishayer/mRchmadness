@@ -4,11 +4,9 @@
 \alias{scrape.population.distribution}
 \title{Scrape the average rate of teams being picked to win across all ESPN brackets}
 \usage{
-scrape.population.distribution(year, league = c("mens", "womens"))
+scrape.population.distribution(league = c("men", "women"))
 }
 \arguments{
-\item{year}{the numeric year to scrape}
-
 \item{league}{either 'mens' or 'womens'}
 }
 \value{

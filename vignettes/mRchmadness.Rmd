@@ -1,7 +1,7 @@
 ---
 title: "Win your office pool with mRchmadness"
 author: "Eli Shayer and Scott Powers"
-date: "March 12, 2023"
+date: "March 20, 2024"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Win your office pool with mRchmadness}
@@ -25,13 +25,13 @@ brackets to call your own. But which one?
 Is this the first day you've paid any attention to college basketball all year?
 We've got you covered, with scraping functions that will tell you everything
 that went down this season. You can scrape all of the game scores from the
-2022-2023 season using the **scrape.game.results** function. In fact, you can
+2023-2024 season using the **scrape.game.results** function. In fact, you can
 use this same function to scrape game results for any other season, past or
 future, as long as the data are available on ESPN.com. Later, we'll use the
 data from the current year to predict matchup results.
 
 ```{r, eval = FALSE}
-games.2023 = scrape.game.results(2023, league = "women")
+games.2024 = scrape.game.results(2024, league = "women")
 ```
 
 It also helps to know who everybody else is picking to advance in each round of
@@ -41,16 +41,16 @@ population distribution of picks according to ESPN. Note that these data are
 currently available online only for the two most recent tournaments.
 
 ```{r, eval = FALSE}
-pred.pop.2023 = scrape.population.distribution(2023, league = "women")
+pred.pop.2024 = scrape.population.distribution(league = "women")
 ```
 
-We've made life even easier for you by pre-scraping **games.women.2023**,
-**pred.pop.women.2023**, **games.men.2023** and **pred.pop.men.2023**. These are
+We've made life even easier for you by pre-scraping **games.women.2024**,
+**pred.pop.women.2024**, **games.men.2024** and **pred.pop.men.2024**. These are
 all available as datasets in the package. You're welcome.
 
 ```{r}
-head(games.women.2023)
-head(pred.pop.women.2023)
+head(games.women.2024)
+head(pred.pop.women.2024)
 ```
 
 The game results are stored using team IDs, and we will see that so is the
@@ -78,26 +78,18 @@ estimate for the probability that North Carolina beats Duke, for example.
 
 ```{r}
 set.seed(1)
-prob.matrix = bradley.terry(games = games.women.2023)
+prob.matrix = bradley.terry(games = games.women.2024)
 prob.matrix["153", "150"] # What is the predicted probability that UNC beats Duke on a neutral site?
-```
-
-Not satisfied with this model? Perhaps you'd trust the predictions of the
-pundits at FiveThirtyEight.com more. We've provided those in a data.frame as
-well.
-
-```{r}
-head(pred.538.women.2023)
 ```
 
 ### Simulating the tournament
 
 We've already taken care of those pesky first four games for you and stored the
-bracket in a vector called **bracket.women.2023**. This lists the tournament
+bracket in a vector called **bracket.women.2024**. This lists the tournament
 teams in order of overall seed.
 
 ```{r}
-head(bracket.women.2023)
+head(bracket.women.2024)
 ```
 
 If you want to play out your fantasy, though, you can specify any bracket
@@ -106,20 +98,20 @@ so, you can use the **sim.bracket** function to play out your own personal
 tournament and the **draw.bracket** function to display the outcome.
 
 ```{r,dpi=150,fig.height=6,fig.width=8,out.height="500px",out.width="700px"}
-set.seed(2023)
+set.seed(2024)
 outcome = sim.bracket(
-  bracket.empty = bracket.women.2023,
+  bracket.empty = bracket.women.2024,
   prob.matrix = prob.matrix
 )
-draw.bracket(bracket.empty = bracket.women.2023, bracket.filled = outcome)
+draw.bracket(bracket.empty = bracket.women.2024, bracket.filled = outcome)
 ```
 
-Congratulations are in order for Indiana, for winning the `set.seed(2023)`
+Congratulations are in order for South Carolina, for winning the `set.seed(2024)`
 NCAA women's basketball tournament!
 
 ### Finding a good bracket
 
-That's all well and good for Indiana, but wouldn't you prefer to win
+That's all well and good for South Carolina, but wouldn't you prefer to win
 something yourself? Now you can, using the **find.bracket** function. This
 function produces a number (*num.candidates*) of candidate brackets and then
 evaluates each of them across a number (*num.sims*) of simulations. The larger
@@ -136,7 +128,7 @@ using the default scoring rules for CBS Sports.
 ```{r,dpi=150,fig.height=6,fig.width=8,out.height="500px",out.width="700px"}
 set.seed(42)
 my.bracket = find.bracket(
-  bracket.empty = bracket.women.2023,
+  bracket.empty = bracket.women.2024,
   prob.matrix = prob.matrix,
   league = "women",
   num.candidates = 100,
@@ -147,7 +139,7 @@ my.bracket = find.bracket(
   bonus.seed = rep(0, 16),
   bonus.combine = "add"
 )
-draw.bracket(bracket.empty = bracket.women.2023, bracket.filled = my.bracket)
+draw.bracket(bracket.empty = bracket.women.2024, bracket.filled = my.bracket)
 ```
 
 ### Testing your bracket
@@ -159,7 +151,7 @@ determine your expected score, expected percentile and probability of winning.
 ```{r}
 set.seed(8675309)
 test = test.bracket(
-  bracket.empty = bracket.women.2023,
+  bracket.empty = bracket.women.2024,
   bracket.picks = my.bracket,
   prob.matrix = prob.matrix,
   league = "women",
@@ -174,6 +166,6 @@ hist(test$percentile, breaks = 20)
 mean(test$win)
 ```
 
-There you have it. You can expect this bracket to win 7.1% of the Groundhog
+There you have it. You can expect this bracket to win 17.3% of the Groundhog
 Day replays of your bracket pool. Here's to the "real" outcome being one of
-those 7.1%!
+those 17.3%!

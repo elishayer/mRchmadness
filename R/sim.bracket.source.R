@@ -41,15 +41,10 @@ sim.bracket.source = function(prob.source, league, year, home.teams, num.reps,
   team.id = as.character(teams$id)
   names(team.id) = teams[, paste0("name.", prob.source)]
 
-# Look up team IDs to use as row names
-  rownames(prob) = prob$name %>%
-# Handle unplayed first-round games signified by "/"
-    as.character %>% strsplit(split = '/') %>%
-    lapply(function(name) team.id[name]) %>%
-    # sort(as.integer(ids)) is important here because we have chosen the convention that the lower
-    # team ID comes first for play-in matchups
-    sapply(function(ids) do.call(paste, args = as.list(c(sort(as.integer(ids)), sep = '/'))))
-# Drop team names from prob
+  rownames(prob) = prob$team.id
+# Drop non-numeric columns from prob
+  prob$seed = NULL
+  prob$team.id = NULL
   prob$name = NULL
 
 # Check that we have predictions for all teams in bracket
