@@ -58,6 +58,8 @@ prep.data = function(year,
                      skip.game.results = FALSE,
                      verbose = TRUE) {
 
+  `%>%` = dplyr::`%>%`
+
   league = match.arg(league)
 
   # Get games ----
