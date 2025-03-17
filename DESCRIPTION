@@ -23,7 +23,7 @@ Description: Scrape season results, estimate win probabilities, and find a
 Depends: R (>= 3.3.0)
 License: GPL-2
 LazyData: true
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr
