@@ -77,7 +77,7 @@ prep.data = function(year,
 
   # Get population distribution and bracket ----
 
-  pred.pop = scrape.population.distribution(league)
+  pred.pop = scrape.population.distribution(year = year, league = league)
 
   bracket = pred.pop %>%
     dplyr::arrange(seed) %>%

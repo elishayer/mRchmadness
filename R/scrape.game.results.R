@@ -15,8 +15,8 @@ scrape.game.results = function(year, league = c('mens', 'womens')) {
     stop('scrape.game.results: The year must be numeric')
   if (year < 2002)
     stop('2002 is the earliest available season')
-  if (year > 2023)
-    warning('2023 is the latest season on which the scraper was tested')
+  if (year > 2025)
+    warning('2025 is the latest season on which the scraper was tested')
 
   teams = scrape.teams(league)
   
