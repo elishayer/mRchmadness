@@ -1,6 +1,6 @@
 Package: mRchmadness
 Title: Numerical Tools for Filling Out an NCAA Basketball Tournament Bracket
-Version: 1.2024.1
+Version: 1.2025.0
 Authors@R: c(
   person("Eli", "Shayer", email = "eshayer@stanford.edu",
     role = c("aut", "cre")),
@@ -23,7 +23,7 @@ Description: Scrape season results, estimate win probabilities, and find a
 Depends: R (>= 3.3.0)
 License: GPL-2
 LazyData: true
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr

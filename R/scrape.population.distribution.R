@@ -1,16 +1,22 @@
 #' Scrape the average rate of teams being picked to win across all ESPN brackets
 #'
+#' @param year a numeric value of the year, between 2002 and 2017 inclusive
 #' @param league either 'mens' or 'womens'
 #' @return data.frame giving percentage of population picking each team in each round
 #' @examples
 #' populationDistribution = scrape.population.distribution(2017)
 #' @export
 #' @author eshayer
-scrape.population.distribution = function(league = c('men', 'women')) {
+scrape.population.distribution = function(year, league = c('men', 'women')) {
   league = match.arg(league)
   `%>%` = dplyr::`%>%`
 
-  challenge.id = switch(league, men = 240, women = 241)
+  challenge.id = dplyr::case_when(
+    year == 2024 & league == "men" ~ 240,
+    year == 2024 & league == "women" ~ 241,
+    year == 2025 & league == "men" ~ 257,
+    year == 2025 & league == "women" ~ 258
+  )
   api = glue::glue(
     "https://gambit-api.fantasy.espn.com/apis/v1/propositions?challengeId={challenge.id}"
   )
