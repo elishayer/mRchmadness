@@ -45,3 +45,13 @@ NULL
 #' @format data frame with 64 rows and 9 variables
 #' @source \url{https://gambit-api.fantasy.espn.com/apis/v1/propositions?challengeId=241}
 NULL
+
+#' @name pred.pop.women.2026
+#' @title 2026 March Madness Population Pick Distribution
+#' @description This dataset contains the percent of brackets submitted
+#'   to ESPN that include each of the 64 teams in March Madness 2026
+#'   reaching and winning in each successive round of the tournament.
+#'   Accessed the evening of March 19, 2026.
+#' @format data frame with 64 rows and 9 variables
+#' @source \url{https://gambit-api.fantasy.espn.com/apis/v1/propositions?challengeId=278}
+NULL
