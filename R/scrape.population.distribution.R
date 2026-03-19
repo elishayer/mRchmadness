@@ -15,7 +15,9 @@ scrape.population.distribution = function(year, league = c('men', 'women')) {
     year == 2024 & league == "men" ~ 240,
     year == 2024 & league == "women" ~ 241,
     year == 2025 & league == "men" ~ 257,
-    year == 2025 & league == "women" ~ 258
+    year == 2025 & league == "women" ~ 258,
+    year == 2026 & league == "men" ~ 277,
+    year == 2026 & league == "women" ~ 278
   )
   api = glue::glue(
     "https://gambit-api.fantasy.espn.com/apis/v1/propositions?challengeId={challenge.id}"
